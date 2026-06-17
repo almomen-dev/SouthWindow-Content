@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="South Window - Compare Properties" />
+    <meta name="author" content="South Window" />
+    <title>Compare Properties - South Window</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/mystyle.css" rel="stylesheet" />
+    <style>
+        .compare-table {
+            background: #f3f4f5;  
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .compare-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .compare-table th,
+        .compare-table td {
+            padding: 16px 20px;
+            text-align: center;
+            border-bottom: 1px solid #e9ecef;
+            vertical-align: middle;
+        }
+        /* ====== COLORED FEATURE COLUMN ====== */
+        .compare-table th {
+            background: #006169;
+            color: white;
+            font-weight: 600;
+            text-align: left;
+            width: 160px;
+            font-size: 0.95rem;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+        .compare-table th i {
+            margin-right: 8px;
+        }
+        .compare-table td {
+            font-size: 0.95rem;
+            color: #333;
+            background: white;
+        }
+        /* Alternate row colors for better readability */
+        .compare-table tr:nth-child(even) td {
+            background: #fafbfc;
+        }
+        .compare-table tr:nth-child(even) th {
+            background: #005a5f;
+        }
+        .compare-table .property-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #1a2a3a;
+        }
+        .compare-table .property-price {
+            font-weight: 700;
+            color: #006169;
+            font-size: 1.2rem;
+        }
+        .compare-table .badge-tag {
+            font-size: 0.7rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+        .compare-table .property-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .compare-table .remove-btn {
+            color: #dc3545;
+            cursor: pointer;
+            font-size: 1.2rem;
+            background: white;
+            padding: 0 6px;
+            border-radius: 50%;
+            display: inline-block;
+            line-height: 1.4;
+        }
+        .compare-table .remove-btn:hover {
+            color: #a71d2a;
+            transform: scale(1.2);
+        }
+        .compare-empty {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .compare-empty .icon {
+            font-size: 4rem;
+            color: #dee2e6;
+        }
+        .compare-empty h4 {
+            color: #1a2a3a;
+            margin-top: 16px;
+        }
+        .compare-empty p {
+            color: #6c757d;
+        }
+        /* Feature icon column */
+        .compare-table .feature-icon {
+            font-size: 1.2rem;
+            color: #006169;
+        }
+        @media (max-width: 768px) {
+            .compare-table th,
+            .compare-table td {
+                padding: 10px 12px;
+                font-size: 0.8rem;
+            }
+            .compare-table th {
+                width: 100px;
+                font-size: 0.8rem;
+            }
+            .compare-table .property-img {
+                height: 120px;
+            }
+            .compare-table .property-price {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== NAVBAR ====== -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light py-0">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand fw-bold text-primary d-flex align-items-center" href="index.html">
+                <img src="assets/logo1.png" alt="South Window Logo" style="height: 60px; width: auto; margin-right: 10px;">
+                South Window
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-2">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="property-listing.html">Properties</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="compare.html">Compare</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
+                </ul>
+                <div class="d-flex gap-2">
+                    <a href="login.html" class="btn btn-outline-primary rounded-pill px-3" style="border-color: #006169; color: #006169; text-decoration: none; white-space: nowrap;">
+                        <i class="bi-person me-1"></i> Login
+                    </a>
+                    <a href="register.html" class="btn btn-primary rounded-pill px-3" style="background: #006169; border: none; color: white; text-decoration: none; white-space: nowrap;">
+                        <i class="bi-person-plus me-1"></i> Register
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ====== PAGE HEADER ====== -->
+    <section class="py-4 bg-light border-bottom">
+        <div class="container px-4 px-lg-5">
+            <h2 class="fw-bold" style="color: #1a2a3a;">Compare Properties</h2>
+            <p class="text-muted">Side-by-side comparison of your selected properties</p>
+        </div>
+    </section>
+
+    <!-- ====== COMPARE CONTENT ====== -->
+    <section class="py-4">
+        <div class="container px-4 px-lg-5">
+            <div id="compareContent"></div>
+        </div>
+    </section>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; South Window 2024. All rights reserved.</p>
+            <p class="m-0 text-center text-white-50 small mt-2">Your trusted property partner in Bangladesh</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // ====== PROPERTY DATA ======
+        const allProperties = [
+            { id: '1', title: 'Luxury Apartment', price: 'BDT 1.2 Cr', location: 'Bashundhara, Dhaka', beds: '3', baths: '2', area: '1,500 sqft', type: 'Apartment', status: 'For Sale', image: 'https://placehold.co/600x400/e0e0e0/666?text=Luxury+Apartment', badge: 'Direct Owner', badgeColor: 'bg-success' },
+            { id: '2', title: 'Family Home', price: 'BDT 2.5 Cr', location: 'Dhanmondi, Dhaka', beds: '4', baths: '3', area: '2,200 sqft', type: 'House', status: 'For Rent', image: 'https://placehold.co/600x400/e0e0e0/666?text=Family+Home', badge: 'Verified Broker', badgeColor: 'bg-warning' },
+            { id: '3', title: 'Commercial Shop', price: 'BDT 3.8 Cr', location: 'Gulshan, Dhaka', beds: '-', baths: '-', area: '2,500 sqft', type: 'Shop', status: 'For Sale', image: 'https://placehold.co/600x400/e0e0e0/666?text=Commercial+Shop', badge: 'Direct Owner', badgeColor: 'bg-success' },
+            { id: '4', title: 'Residential Land', price: 'BDT 1.8 Cr', location: 'Uttara, Dhaka', beds: '-', baths: '-', area: '10 Katha', type: 'Land', status: 'For Sale', image: 'https://placehold.co/600x400/e0e0e0/666?text=Residential+Land', badge: 'Verified Broker', badgeColor: 'bg-warning' },
+            { id: '5', title: 'Premium Apartment', price: 'BDT 85,000/month', location: 'Banani, Dhaka', beds: '3', baths: '3', area: '1,800 sqft', type: 'Apartment', status: 'For Rent', image: 'https://placehold.co/600x400/e0e0e0/666?text=Premium+Apartment', badge: 'Direct Owner', badgeColor: 'bg-success' },
+            { id: '6', title: 'New Project', price: 'Starting BDT 75 Lakh', location: 'Purbachal, Dhaka', beds: '-', baths: '-', area: '-', type: 'Project', status: 'Under Construction', image: 'https://placehold.co/600x400/e0e0e0/666?text=New+Project', badge: 'Developer', badgeColor: 'bg-dark' }
+        ];
+
+        // ====== GET SELECTED IDS FROM URL ======
+        const urlParams = new URLSearchParams(window.location.search);
+        const idsParam = urlParams.get('ids');
+        const selectedIds = idsParam ? idsParam.split(',') : [];
+
+        // ====== RENDER COMPARE TABLE ======
+        function renderCompare() {
+            const container = document.getElementById('compareContent');
+
+            if (selectedIds.length < 2) {
+                container.innerHTML = `
+                    <div class="compare-empty">
+                        <div class="icon">🏠</div>
+                        <h4>No Properties Selected</h4>
+                        <p>Select at least 2 properties to compare.</p>
+                        <a href="property-listing.html" class="btn btn-primary rounded-pill px-4" style="background: #006169; border: none;">
+                            <i class="bi bi-arrow-left"></i> Browse Properties
+                        </a>
+                    </div>
+                `;
+                return;
+            }
+
+            const compareProps = allProperties.filter(p => selectedIds.includes(p.id));
+
+            if (compareProps.length < 2) {
+                container.innerHTML = `
+                    <div class="compare-empty">
+                        <div class="icon">⚠️</div>
+                        <h4>Properties Not Found</h4>
+                        <p>Selected properties could not be found. Please go back and select again.</p>
+                        <a href="property-listing.html" class="btn btn-primary rounded-pill px-4" style="background: #006169; border: none;">
+                            <i class="bi bi-arrow-left"></i> Browse Properties
+                        </a>
+                    </div>
+                `;
+                return;
+            }
+
+            // Feature list with icons
+            const features = [
+                { label: 'Property Name', key: 'title', icon: 'bi-building' },
+                { label: 'Price', key: 'price', icon: 'bi-tag' },
+                { label: 'Seller Type', key: 'badge', icon: 'bi-person-badge' },
+                { label: 'Location', key: 'location', icon: 'bi-geo-alt' },
+                { label: 'Property Type', key: 'type', icon: 'bi-house' },
+                { label: 'Status', key: 'status', icon: 'bi-info-circle' },
+                { label: 'Bedrooms', key: 'beds', icon: 'bi-door-open' },
+                { label: 'Bathrooms', key: 'baths', icon: 'bi-droplet' },
+                { label: 'Area', key: 'area', icon: 'bi-arrows-expand' }
+            ];
+
+            let tableHTML = `
+                <div class="compare-table">
+                    <table>
+                        <tr>
+                            <th style="width: 160px;"><i class="bi bi-list-ul"></i> Features</th>
+                            ${compareProps.map(p => `
+                                <td style="min-width: 200px;">
+                                    <div style="position: relative;">
+                                        <img src="${p.image}" class="property-img" alt="${p.title}">
+                                        <span class="remove-btn" data-id="${p.id}" style="position: absolute; top: 6px; right: 10px; background: white; padding: 0 6px; border-radius: 50%;">×</span>
+                                    </div>
+                                    <div class="property-name mt-2">${p.title}</div>
+                                    <div class="property-price">${p.price}</div>
+                                    <span class="badge-tag ${p.badgeColor} text-white">${p.badge}</span>
+                                </td>
+                            `).join('')}
+                        </tr>
+            `;
+
+            features.forEach(feature => {
+                if (feature.key === 'title' || feature.key === 'price' || feature.key === 'badge') return;
+                tableHTML += `
+                    <tr>
+                        <th><i class="bi ${feature.icon}"></i> ${feature.label}</th>
+                        ${compareProps.map(p => {
+                            let value = p[feature.key] || '-';
+                            if (feature.key === 'status') {
+                                const color = value === 'For Sale' ? 'bg-primary' : value === 'For Rent' ? 'bg-danger' : 'bg-secondary';
+                                value = `<span class="badge ${color}">${value}</span>`;
+                            }
+                            return `<td>${value}</td>`;
+                        }).join('')}
+                    </tr>
+                `;
+            });
+
+            tableHTML += `
+                        <tr>
+                            <th><i class="bi bi-eye"></i> Action</th>
+                            ${compareProps.map(p => `
+                                <td>
+                                    <a href="property-detail.html?id=${p.id}" class="btn btn-sm btn-outline-primary rounded-pill px-3" style="border-color: #006169; color: #006169;">
+                                        View Details
+                                    </a>
+                                </td>
+                            `).join('')}
+                        </tr>
+                    </table>
+                </div>
+                <div class="text-center mt-4">
+                    <a href="property-listing.html" class="btn btn-outline-secondary rounded-pill px-4">
+                        <i class="bi bi-arrow-left"></i> Back to Properties
+                    </a>
+                    <button class="btn btn-primary rounded-pill px-4 ms-2" style="background: #006169; border: none;" onclick="window.location.href='property-listing.html'">
+                        Add More Properties
+                    </button>
+                </div>
+            `;
+
+            container.innerHTML = tableHTML;
+
+            // Remove button functionality
+            document.querySelectorAll('.remove-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = this.dataset.id;
+                    const newIds = selectedIds.filter(i => i !== id);
+                    const query = newIds.length > 0 ? `?ids=${newIds.join(',')}` : '';
+                    window.location.href = `compare.html${query}`;
+                });
+            });
+        }
+
+        renderCompare();
+    </script>
+</body>
+</html>
