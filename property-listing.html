@@ -335,10 +335,10 @@
 </head>
 <body>
 
-    <!-- ====== NAVBAR ====== -->
+   <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light py-0">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand fw-bold text-primary d-flex align-items-center" href="index.html">
+            <a class="navbar-brand fw-bold text-primary d-flex align-items-center" href="#!">
                 <img src="assets/logo1.png" alt="South Window Logo" style="height: 60px; width: auto; margin-right: 10px;">
                 South Window
             </a>
@@ -346,20 +346,24 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-2">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="property-listing.html">Properties</a></li>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" href="#!">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                    
                     <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="property-listing.html">Properties</a></li>
                 </ul>
-                <div class="d-flex gap-2">
-                    <a href="login.html" class="btn btn-outline-primary rounded-pill px-3" style="border-color: #006169; color: #006169; text-decoration: none; white-space: nowrap;">
-                        <i class="bi-person me-1"></i> Login
-                    </a>
-                    <a href="register.html" class="btn btn-primary rounded-pill px-3" style="background: #006169; border: none; color: white; text-decoration: none; white-space: nowrap;">
-                        <i class="bi-person-plus me-1"></i> Register
-                    </a>
-                </div>
+                <form class="d-flex">
+                    <button class="btn btn-outline-dark" type="submit">
+                        <i class="bi-heart-fill me-1"></i>
+                        Favorites
+                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                    </button>
+                    <button class="btn btn-outline-primary ms-2" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        <i class="bi-person me-1"></i>
+                        Login/Register
+                    </button>
+                </form>
             </div>
         </div>
     </nav>
