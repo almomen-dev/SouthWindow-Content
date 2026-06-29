@@ -1,33 +1,22 @@
-/* ====== BODY - GREEN BANGLADESHI VIBE ====== */
+/* ====== BODY - WHITE BACKGROUND ====== */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-image: url('../assets/greenhero.png');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background-color: #ffffff !important;
     min-height: 100vh;
     position: relative;
 }
 
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(200, 230, 200, 0.2);
-    z-index: -1;
-}
-
-/* ====== HERO BANNER ====== */
+/* ====== HERO BANNER - WITH BACKGROUND IMAGE ====== */
 .hero-banner {
-    background-image: url('../assets/hero4.png');
+    background-image: url('../assets/geen.png');
     background-size: cover;
     background-position: center;
     min-height: 650px;
     position: relative;
+    padding: 0 !important;
+    margin: 0 !important;
 }
+
 .hero-banner::before {
     content: '';
     position: absolute;
@@ -37,27 +26,142 @@ body::before {
     bottom: 0;
     background: rgba(0, 0, 0, 0.3);
 }
+
 .hero-banner > div {
     position: relative;
     z-index: 1;
 }
 
-/* --- ALL YOUR OTHER CUSTOM STYLES (Navbar, Cards, etc.) --- */
-/* ... */
-
-/* ====== NAVBAR ====== */
-.navbar-nav .nav-link:hover {
-    color: #006169 !important;
-    transition: all 0.3s ease;
+/* ====== GROUP 1: BROWSE + FOLLOW - ONE COMBINED CARD ====== */
+.section-group.group-1 {
+    padding: 25px 50px 30px 50px !important;
+    margin: 30px 30px 20px 30px !important;
+    border-radius: 24px !important;
+    border: 2px solid #dce3ea !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
+    background: #f7f8fa !important;
 }
+
+.section-group.group-1 section {
+    background: transparent !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+/* ====== SPACE BETWEEN BROWSE AND FOLLOW ====== */
+.section-group.group-1 #categories {
+    margin-bottom: 40px !important;
+    padding-bottom: 30px !important;
+    border-bottom: 1px solid #dde3ea !important;
+}
+
+/* ====== GROUP 2: PROPERTIES + TESTIMONIALS - ONE COMBINED CARD ====== */
+.section-group.group-2 {
+    padding: 40px 50px 45px 50px !important;
+    margin: 20px 30px 30px 30px !important;
+    border-radius: 24px !important;
+    border: 2px solid #dce3ea !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
+    background: #f5f6f8 !important;
+}
+
+.section-group.group-2 section {
+    background: transparent !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+/* ====== SPACE BETWEEN PROPERTIES AND TESTIMONIALS ====== */
+.section-group.group-2 #properties {
+    margin-bottom: 40px !important;
+    padding-bottom: 30px !important;
+    border-bottom: 1px solid #dde3ea !important;
+}
+
+/* ====== CONTAINER WITHIN SECTIONS ====== */
+.section-group .container {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
+
+/* ====== NAVBAR - WHITE THEME ====== */
+.navbar {
+    background: #ffffff !important;
+    padding: 0 !important;
+    min-height: 50px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08) !important;
+}
+
+.navbar-brand {
+    color: #004d40 !important;
+    font-size: 1.3rem !important;
+}
+
 .navbar-brand:hover {
     opacity: 0.8;
     transition: all 0.3s ease;
 }
-.btn-outline-dark:hover, .btn-outline-primary:hover {
-    background-color: #006169 !important;
-    border-color: #006169 !important;
-    transition: all 0.3s ease;
+
+.navbar-brand img {
+    height: 34px !important;
+    width: auto !important;
+}
+
+/* ====== NAVBAR LINKS - TRANSPARENT ACTIVE ====== */
+.navbar .navbar-nav .nav-link {
+    padding: 8px 22px !important;
+    font-size: 15px !important;
+    color: #004d40 !important;
+    border-radius: 30px !important;
+    transition: all 0.3s ease !important;
+    font-weight: 500 !important;
+    background: transparent !important;
+}
+
+.navbar .navbar-nav .nav-link:hover {
+    background: rgba(0, 105, 92, 0.08) !important;
+    color: #004d40 !important;
+}
+
+.navbar .navbar-nav .nav-link.active {
+    color: #00695c !important;
+    background: rgba(0, 105, 92, 0.08) !important;
+    font-weight: 600 !important;
+    box-shadow: none !important;
+}
+
+.navbar .btn {
+    background: #00695c !important;
+    color: #ffffff !important;
+    border: 1px solid #00695c !important;
+    font-weight: 600;
+    font-size: 12px;
+    padding: 5px 16px;
+    border-radius: 30px !important;
+}
+
+.navbar .btn:hover {
+    background: #004d40 !important;
+    color: #ffffff !important;
+    border-color: #004d40 !important;
+}
+
+@media (max-width: 991px) {
+    .navbar .navbar-nav .nav-link {
+        padding: 8px 14px !important;
+    }
+    
+    .navbar .btn {
+        margin-top: 5px;
+        width: 100%;
+        text-align: center;
+    }
 }
 
 /* ====== TAB BUTTONS ====== */
@@ -68,6 +172,7 @@ body::before {
     cursor: pointer;
     transition: all 0.3s ease;
 }
+
 .tab-btn:hover {
     color: #006169 !important;
     border-bottom: 2px solid #006169 !important;
@@ -79,6 +184,7 @@ body::before {
     cursor: pointer;
     border: none;
 }
+
 .badge-btn:hover {
     background-color: #006169 !important;
     transform: scale(1.05);
@@ -89,12 +195,14 @@ body::before {
     transition: all 0.3s ease;
     cursor: pointer;
 }
+
 .rent-btn:hover, .filter-btn:hover {
     background: rgba(0, 97, 105, 0.1) !important;
     color: #006169 !important;
     border: 1px solid #006169 !important;
     transform: scale(1.02);
 }
+
 .buy-btn:hover, .search-btn:hover {
     background: #004d52 !important;
     color: white !important;
@@ -111,6 +219,7 @@ body::before {
     cursor: pointer;
     transition: all 0.3s ease;
 }
+
 .filter-btn-active:hover {
     transform: scale(1.05);
     background: #004d52 !important;
@@ -135,6 +244,7 @@ select:hover {
     overflow: hidden;
     position: relative;
     min-height: 180px !important;
+    border-radius: 16px !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -142,10 +252,12 @@ select:hover {
     border: none !important;
     background: #2c3e50 !important;
 }
+
 .feature-card:hover {
     transform: translateY(-8px) scale(1.02);
     box-shadow: 0 15px 40px rgba(0, 97, 105, 0.2) !important;
 }
+
 .feature-card .feature-icon {
     font-size: 2.5rem;
     margin-bottom: 8px;
@@ -153,9 +265,11 @@ select:hover {
     z-index: 2;
     position: relative;
 }
+
 .feature-card:hover .feature-icon {
     transform: scale(1.15);
 }
+
 .feature-card .card-bg-image {
     position: absolute;
     top: 0;
@@ -167,18 +281,22 @@ select:hover {
     opacity: 0.4;
     transition: all 0.5s ease;
 }
+
 .feature-card:hover .card-bg-image {
     opacity: 0.7;
     transform: scale(1.05);
 }
+
 .feature-card .card-content {
     position: relative;
     z-index: 1;
     text-align: center;
 }
+
 .feature-card .card-content h6 {
     color: white !important;
 }
+
 .feature-card .card-content p {
     color: rgba(255,255,255,0.8) !important;
 }
@@ -192,22 +310,26 @@ select:hover {
     transition: all 0.3s ease;
     cursor: pointer;
     border: 1px solid #e9ecef !important;
-    min-height: 160px;
+    min-height: 160px !important;
+    border-radius: 16px !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background: white !important;
 }
+
 .area-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 12px 30px rgba(0, 97, 105, 0.12) !important;
     border-color: #006169 !important;
 }
+
 .area-card.active {
     border: 2px solid #006169 !important;
     background: rgba(0, 97, 105, 0.04) !important;
 }
+
 .area-card .btn-outline-primary:hover {
     background: #006169 !important;
     color: white !important;
@@ -217,27 +339,32 @@ select:hover {
 .property-card {
     transition: all 0.4s ease;
     overflow: hidden;
-    border-radius: 12px !important;
+    border-radius: 16px !important;
     border: 1px solid #e9ecef !important;
     background: white !important;
     position: relative;
 }
+
 .property-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1) !important;
     border-color: #006169 !important;
 }
+
 .property-card img {
     height: 180px;
     object-fit: cover;
     transition: all 0.4s ease;
 }
+
 .property-card:hover img {
     transform: scale(1.03);
 }
+
 .property-card .card-body {
-    padding: 14px !important;
+    padding: 16px !important;
 }
+
 .property-card .card-title {
     font-size: 0.95rem;
     font-weight: 600;
@@ -246,27 +373,33 @@ select:hover {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .property-card .card-text {
     font-size: 0.8rem;
     color: #6c757d;
 }
+
 .property-card .price {
     font-size: 1.1rem;
     font-weight: 700;
     color: #006169;
 }
+
 .property-card .badge-tag {
     font-size: 0.65rem;
     padding: 2px 10px;
     border-radius: 20px;
 }
+
 .property-card .feature-icons {
     font-size: 0.75rem;
     color: #6c757d;
 }
+
 .property-card .feature-icons span {
     margin-right: 8px;
 }
+
 .property-card .card-badge {
     position: absolute;
     top: 10px;
@@ -290,6 +423,7 @@ select:hover {
     transition: all 0.4s ease;
     z-index: 1;
 }
+
 .property-card:hover::after {
     background: rgba(0, 0, 0, 0.1);
 }
@@ -302,9 +436,11 @@ select:hover {
     padding: 18px;
     background-size: 60%;
 }
+
 .carousel-indicators button {
     background-color: #006169 !important;
 }
+
 .carousel-indicators .active {
     background-color: #004d52 !important;
 }
@@ -319,12 +455,15 @@ select:hover {
     border-radius: 50% !important;
     opacity: 1 !important;
 }
+
 .carousel-control-prev {
     left: -20px !important;
 }
+
 .carousel-control-next {
     right: -20px !important;
 }
+
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
     background-color: transparent !important;
@@ -332,6 +471,7 @@ select:hover {
     width: 30px !important;
     height: 30px !important;
 }
+
 .carousel-control-prev:hover,
 .carousel-control-next:hover {
     background: rgba(0, 97, 105, 0.9) !important;
@@ -342,6 +482,7 @@ select:hover {
 .testimonial-card {
     transition: all 0.3s ease;
 }
+
 .testimonial-card:hover {
     transform: scale(1.02);
 }
@@ -351,11 +492,56 @@ select:hover {
     background: #006169 !important;
     color: white !important;
 }
+
 .btn-primary:hover {
     background: #004d52 !important;
     color: white !important;
 }
-.navbar .btn-outline-primary:hover {
-    background: #006169 !important;
-    color: white !important;
+
+/* ====== SECTION HEADING STYLES ====== */
+section h2 {
+    font-size: 2.2rem !important;
+    font-weight: 700 !important;
+    color: #1a2a3a !important;
+    margin-bottom: 8px !important;
+}
+
+section .lead {
+    font-size: 1.1rem !important;
+    color: #6c757d !important;
+    margin-bottom: 25px !important;
+}
+
+/* ====== RESPONSIVE FOR MOBILE ====== */
+@media (max-width: 768px) {
+    .section-group.group-1 {
+        padding: 18px 20px 22px 20px !important;
+        margin: 20px 15px 8px 15px !important;
+        border-radius: 20px !important;
+    }
+    
+    .section-group.group-1 #categories {
+        margin-bottom: 25px !important;
+        padding-bottom: 20px !important;
+    }
+    
+    .section-group.group-2 {
+        padding: 25px 20px 30px 20px !important;
+        margin: 8px 15px 20px 15px !important;
+        border-radius: 20px !important;
+    }
+    
+    .section-group.group-2 #properties {
+        margin-bottom: 25px !important;
+        padding-bottom: 20px !important;
+    }
+    
+    .section-group .container {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+    
+    section h2 {
+        font-size: 1.6rem !important;
+    }
 }

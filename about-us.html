@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="South Window - About Us" />
+    <meta name="author" content="South Window" />
+    <title>About Us - South Window</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/mystyle.css" rel="stylesheet" />
+    <style>
+        * {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .about-hero {
+            background: linear-gradient(135deg, #00695c 0%, #004d40 100%);
+            color: white;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+
+        .about-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 50%;
+        }
+
+        .about-hero h1 {
+            font-weight: 800;
+            font-size: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stats-section {
+            background: white;
+            padding: 60px 0;
+            margin-top: -40px;
+            position: relative;
+            z-index: 2;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #00695c;
+            display: block;
+        }
+
+        .stat-label {
+            color: #6c757d;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .mission-vision-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .mission-card,
+        .vision-card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .mission-card:hover,
+        .vision-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 105, 92, 0.12);
+        }
+
+        .mission-card .icon-box,
+        .vision-card .icon-box {
+            width: 70px;
+            height: 70px;
+            background: rgba(0, 105, 92, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .mission-card .icon-box i,
+        .vision-card .icon-box i {
+            font-size: 30px;
+            color: #00695c;
+        }
+
+        .values-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            border: 2px solid #e9ecef;
+            height: 100%;
+        }
+
+        .value-card:hover {
+            border-color: #00695c;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 105, 92, 0.1);
+        }
+
+        .value-card .value-icon {
+            width: 60px;
+            height: 60px;
+            background: #00695c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+        }
+
+        .value-card .value-icon i {
+            font-size: 24px;
+            color: white;
+        }
+
+        .value-card h5 {
+            color: #1a2a3a;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .value-card p {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        .timeline-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #00695c;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 30px;
+            position: relative;
+            margin-bottom: 40px;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 30px;
+            margin-left: 50%;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            background: #00695c;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #00695c;
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            right: auto;
+            left: -8px;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 20px 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 105, 92, 0.12);
+        }
+
+        .timeline-content .year {
+            color: #00695c;
+            font-weight: 800;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .timeline-content h6 {
+            font-weight: 700;
+            color: #1a2a3a;
+            margin-bottom: 5px;
+        }
+
+        .timeline-content p {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        .team-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            height: 100%;
+            border: 1px solid #e9ecef;
+        }
+
+        .team-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 105, 92, 0.12);
+            border-color: #00695c;
+        }
+
+        .team-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background: #e9ecef;
+        }
+
+        .team-card .team-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .team-card .team-info h5 {
+            font-weight: 700;
+            color: #1a2a3a;
+            margin-bottom: 5px;
+        }
+
+        .team-card .team-info .designation {
+            color: #00695c;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .team-card .team-info p {
+            color: #6c757d;
+            font-size: 0.85rem;
+            margin-top: 10px;
+        }
+
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .team-social a {
+            width: 36px;
+            height: 36px;
+            background: #f8f9fa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1a2a3a;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .team-social a:hover {
+            background: #00695c;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #00695c 0%, #004d40 100%);
+            padding: 80px 0;
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: white !important;
+            font-size: 2.5rem !important;
+            font-weight: 800 !important;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .cta-btn {
+            background: white;
+            color: #00695c;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            background: #f8f9fa;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            color: #004d40;
+        }
+
+        @media (max-width: 768px) {
+            .about-hero h1 {
+                font-size: 2rem;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 50px;
+                padding-right: 0;
+                margin-left: 0;
+            }
+
+            .timeline-item:nth-child(odd) {
+                padding-left: 50px;
+                margin-left: 0;
+            }
+
+            .timeline-item::before {
+                left: 12px !important;
+                right: auto !important;
+            }
+
+            .timeline-item:nth-child(odd)::before {
+                left: 12px !important;
+            }
+
+            .timeline-content {
+                max-width: 100%;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .cta-section h2 {
+                font-size: 1.8rem !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .about-hero {
+                padding: 50px 0;
+            }
+
+            .stats-section {
+                margin-top: -20px;
+                padding: 30px 0;
+            }
+
+            .mission-card,
+            .vision-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+
+<!--  NAVBAR -->
+<div style="border-radius: 8px; box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08); overflow: hidden;">
+    
+    <!-- TOP: Green Gradient -->
+    <div style="background: linear-gradient(90deg, #ffffff 0%, #ffffff 20%, #00695c 45%, #00695c 55%, #ffffff 80%, #ffffff 100%); padding: 8px 0;">
+        <div class="container px-4 px-lg-5">
+            <div class="text-center">
+                <span style="color: #ffffff; font-weight: 500; font-size: 15px; text-shadow: 0 1px 4px rgba(0,0,0,0.3);">
+                    <i class="bi bi-calendar3 me-1"></i> Wednesday, 10 August 2026
+                </span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- BOTTOM: White Navbar -->
+    <nav class="navbar navbar-expand-lg" style="background: #ffffff; padding: 0; min-height: 32px;">
+        <div class="container px-4 px-lg-5">
+            
+            <!-- LEFT: Logo -->
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html" style="font-size: 1rem; padding: 2px 0; color: #004d40 !important;">
+                <img src="assets/logo1.png" alt="South Window Logo" style="height: 26px; width: auto; margin-right: 6px;">
+                South Window
+            </a>
+            
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" style="background: rgba(0,77,64,0.08); padding: 2px 5px;">
+                <span class="navbar-toggler-icon" style="width: 18px; height: 18px;"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarMain">
+                
+                <!-- CENTER: Nav Links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="gap: 4px;">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about-us.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="property-listing.html">Properties</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                
+                <!-- RIGHT: Login Button -->
+                <button class="btn rounded-pill px-4" style="background: #00695c; color: white !important; border: 1px solid #00695c; font-weight: 700; font-size: 16px; padding: 6px 22px;" data-bs-toggle="modal" data-bs-target="#loginModal">
+                    <i class="bi bi-person-fill me-1"></i> Login/Register
+                </button>
+                
+            </div>
+            
+        </div>
+    </nav>
+    
+</div>
+    
+</div>
+    <!-- ===== ABOUT HERO ===== -->
+    <section class="about-hero">
+        <div class="container text-center">
+            <h1 class="mb-3">About South Window</h1>
+            <p class="lead">Your trusted partner in finding the perfect property in Bangladesh</p>
+        </div>
+    </section>
+
+    <!-- ===== STATS SECTION ===== -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-6 col-lg-3">
+                    <div class="stat-card">
+                        <span class="stat-number" data-count="1500">0</span>
+                        <span class="stat-label">Properties Listed</span>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="stat-card">
+                        <span class="stat-number" data-count="850">0</span>
+                        <span class="stat-label">Happy Clients</span>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="stat-card">
+                        <span class="stat-number" data-count="12">0</span>
+                        <span class="stat-label">Years of Experience</span>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="stat-card">
+                        <span class="stat-number" data-count="50">0</span>
+                        <span class="stat-label">Expert Agents</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MISSION & VISION ===== -->
+    <section class="mission-vision-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="mission-card">
+                        <div class="icon-box">
+                            <i class="bi bi-bullseye"></i>
+                        </div>
+                        <h4 class="fw-bold" style="color: #1a2a3a;">Our Mission</h4>
+                        <p style="color: #6c757d; line-height: 1.8;">
+                            To provide transparent, reliable, and hassle-free property solutions that help 
+                            people find their dream homes and make smart real estate investments in Bangladesh.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="vision-card">
+                        <div class="icon-box">
+                            <i class="bi bi-eye"></i>
+                        </div>
+                        <h4 class="fw-bold" style="color: #1a2a3a;">Our Vision</h4>
+                        <p style="color: #6c757d; line-height: 1.8;">
+                            To become Bangladesh's most trusted property portal, revolutionizing the real 
+                            estate industry through technology, transparency, and customer-centric innovation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CORE VALUES ===== -->
+    <section class="values-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold" style="color: #1a2a3a;">Our Core Values</h2>
+                <p class="text-muted">The principles that guide everything we do</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3 col-6">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <h5>Trust</h5>
+                        <p>Building lasting relationships through transparency</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="bi bi-rocket"></i>
+                        </div>
+                        <h5>Innovation</h5>
+                        <p>Leveraging technology for better experiences</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="bi bi-heart"></i>
+                        </div>
+                        <h5>Integrity</h5>
+                        <p>Doing what's right, always</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <h5>Excellence</h5>
+                        <p>Delivering the best service possible</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== COMPANY TIMELINE ===== -->
+    <section class="timeline-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold" style="color: #1a2a3a;">Our Journey</h2>
+                <p class="text-muted">Key milestones in our company history</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="year">2024</span>
+                        <h6>Launched South Window</h6>
+                        <p>Started our journey to transform the real estate market in Bangladesh</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="year">2024</span>
+                        <h6>First 100 Properties Listed</h6>
+                        <p>Reached a milestone of 100 property listings across major cities</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="year">2025</span>
+                        <h6>Expanded to 10+ Cities</h6>
+                        <p>Extended our services to over 10 cities across Bangladesh</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="year">2025</span>
+                        <h6>500+ Happy Clients</h6>
+                        <p>Helped more than 500 clients find their dream properties</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="year">2026</span>
+                        <h6>Industry Recognition</h6>
+                        <p>Recognized as one of the fastest-growing property portals in Bangladesh</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TEAM SECTION ===== -->
+    <section class="team-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold" style="color: #1a2a3a;">Meet Our Team</h2>
+                <p class="text-muted">Passionate professionals dedicated to your property journey</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3 col-6">
+                    <div class="team-card">
+                        <img src="https://ui-avatars.com/api/?name=John+Doe&size=250&background=00695c&color=fff" alt="John Doe">
+                        <div class="team-info">
+                            <h5>John Doe</h5>
+                            <div class="designation">CEO & Founder</div>
+                            <p>20+ years of real estate expertise</p>
+                            <div class="team-social">
+                                <a href="#"><i class="bi bi-linkedin"></i></a>
+                                <a href="#"><i class="bi bi-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="team-card">
+                        <img src="https://ui-avatars.com/api/?name=Jane+Smith&size=250&background=00695c&color=fff" alt="Jane Smith">
+                        <div class="team-info">
+                            <h5>Jane Smith</h5>
+                            <div class="designation">Head of Operations</div>
+                            <p>Expert in property management</p>
+                            <div class="team-social">
+                                <a href="#"><i class="bi bi-linkedin"></i></a>
+                                <a href="#"><i class="bi bi-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="team-card">
+                        <img src="https://ui-avatars.com/api/?name=Mike+Johnson&size=250&background=00695c&color=fff" alt="Mike Johnson">
+                        <div class="team-info">
+                            <h5>Mike Johnson</h5>
+                            <div class="designation">Lead Agent</div>
+                            <p>Top performing real estate agent</p>
+                            <div class="team-social">
+                                <a href="#"><i class="bi bi-linkedin"></i></a>
+                                <a href="#"><i class="bi bi-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="team-card">
+                        <img src="https://ui-avatars.com/api/?name=Sarah+Williams&size=250&background=00695c&color=fff" alt="Sarah Williams">
+                        <div class="team-info">
+                            <h5>Sarah Williams</h5>
+                            <div class="designation">Marketing Director</div>
+                            <p>Digital marketing strategist</p>
+                            <div class="team-social">
+                                <a href="#"><i class="bi bi-linkedin"></i></a>
+                                <a href="#"><i class="bi bi-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA SECTION ===== -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Find Your Dream Property?</h2>
+            <p>Join thousands of happy clients who found their perfect home through South Window</p>
+            <a href="property-listing.html" class="cta-btn">
+                <i class="bi bi-arrow-right me-2"></i>Browse Properties
+            </a>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // ===== ANIMATED COUNTER =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const counters = document.querySelectorAll('.stat-number');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                let current = 0;
+                const increment = Math.ceil(target / 50);
+                
+                const updateCounter = () => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.textContent = target + '+';
+                        return;
+                    }
+                    counter.textContent = current;
+                    setTimeout(updateCounter, 40);
+                };
+                
+                // Start counter when visible
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            updateCounter();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                });
+                
+                observer.observe(counter);
+            });
+        });
+    </script>
+</body>
+</html>

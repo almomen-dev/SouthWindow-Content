@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="South Window - Seller Dashboard" />
+    <meta name="author" content="South Window" />
+    <title>Seller Dashboard - South Window</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/mystyle.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #f0f2f5;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar-custom {
+            background: #ffffff !important;
+            padding: 0 !important;
+            min-height: 50px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08) !important;
+            border-radius: 0 !important;
+            position: relative;
+            z-index: 1050 !important;
+            overflow: visible !important;
+        }
+
+        .navbar-custom .navbar-brand {
+            color: #004d40 !important;
+            font-size: 1.3rem !important;
+        }
+
+        .navbar-custom .navbar-brand img {
+            height: 34px !important;
+            width: auto !important;
+        }
+
+        .navbar-custom .navbar-nav .nav-link {
+            padding: 8px 22px !important;
+            font-size: 15px !important;
+            color: #004d40 !important;
+            border-radius: 30px !important;
+            transition: all 0.3s ease !important;
+            font-weight: 500 !important;
+            background: transparent !important;
+        }
+
+        .navbar-custom .navbar-nav .nav-link:hover {
+            background: rgba(0, 105, 92, 0.08) !important;
+            color: #004d40 !important;
+        }
+
+        .navbar-custom .navbar-nav .nav-link.active {
+            color: #00695c !important;
+            background: rgba(0, 105, 92, 0.08) !important;
+            font-weight: 600 !important;
+            box-shadow: none !important;
+        }
+
+        .top-gradient {
+            background: linear-gradient(90deg, #ffffff 0%, #ffffff 20%, #00695c 45%, #00695c 55%, #ffffff 80%, #ffffff 100%);
+            padding: 8px 0;
+        }
+
+        .top-gradient .date-text {
+            color: #ffffff;
+            font-weight: 500;
+            font-size: 15px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+        }
+
+        /* ===== NAVBAR CONTAINER OVERRIDE ===== */
+        .navbar-custom .container {
+            position: relative;
+            overflow: visible !important;
+        }
+
+        .navbar-collapse {
+            overflow: visible !important;
+        }
+
+        /* ===== NOTIFICATION & PROFILE ===== */
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            overflow: visible !important;
+        }
+
+        .nav-icons .notification-btn {
+            position: relative;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #1a2a3a;
+            font-size: 1.1rem;
+        }
+
+        .nav-icons .notification-btn:hover {
+            background: #e9ecef;
+        }
+
+        .nav-icons .notification-btn .badge-dot {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 8px;
+            height: 8px;
+            background: #dc3545;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        .nav-icons .profile-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 4px 12px 4px 4px;
+            border-radius: 30px;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #1a2a3a;
+        }
+
+        .nav-icons .profile-btn:hover {
+            background: #e9ecef;
+        }
+
+        .nav-icons .profile-btn .avatar-sm {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #00695c;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.75rem;
+        }
+
+        .nav-icons .profile-btn span {
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* ===== PROFILE DROPDOWN - FIXED ===== */
+        .profile-dropdown-menu {
+            position: absolute !important;
+            top: calc(100% + 8px) !important;
+            right: 0 !important;
+            left: auto !important;
+            background: white !important;
+            border-radius: 16px !important;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15) !important;
+            border: 1px solid #e9ecef !important;
+            min-width: 240px !important;
+            padding: 8px 0 !important;
+            display: none !important;
+            z-index: 9999 !important;
+        }
+
+        .profile-dropdown-menu.show {
+            display: block !important;
+        }
+
+        .profile-dropdown-menu .dropdown-header {
+            padding: 12px 20px 16px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .profile-dropdown-menu .dropdown-header .user-name {
+            font-weight: 700;
+            color: #1a2a3a;
+            font-size: 0.95rem;
+        }
+
+        .profile-dropdown-menu .dropdown-header .user-email {
+            color: #6c757d;
+            font-size: 0.8rem;
+        }
+
+        .profile-dropdown-menu .dropdown-header .user-role {
+            font-size: 0.7rem;
+            color: #00695c;
+            font-weight: 600;
+        }
+
+        .profile-dropdown-menu .dropdown-item {
+            padding: 10px 20px;
+            color: #6c757d;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .profile-dropdown-menu .dropdown-item:hover {
+            background: rgba(0,105,92,0.06);
+            color: #00695c;
+        }
+
+        .profile-dropdown-menu .dropdown-item i {
+            font-size: 1rem;
+            width: 20px;
+        }
+
+        .profile-dropdown-menu .dropdown-divider {
+            height: 1px;
+            background: #e9ecef;
+            margin: 6px 0;
+        }
+
+        .profile-dropdown-menu .dropdown-item.danger {
+            color: #dc3545;
+        }
+
+        .profile-dropdown-menu .dropdown-item.danger:hover {
+            background: #fce4ec;
+            color: #c62828;
+        }
+
+        /* ===== DASHBOARD WRAPPER ===== */
+        .dashboard-wrapper {
+            display: flex;
+            min-height: calc(100vh - 50px);
+            margin-top: 10px;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .dashboard-sidebar {
+            width: 280px;
+            background: linear-gradient(180deg, #00695c 0%, #004d40 50%, #002d26 100%);
+            border-right: 1px solid rgba(255,255,255,0.08);
+            padding: 24px 0;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            height: calc(100vh - 60px);
+            position: sticky;
+            top: 60px;
+            overflow-y: auto;
+        }
+
+        .dashboard-sidebar.collapsed {
+            width: 60px;
+            padding: 24px 0;
+        }
+
+        .dashboard-sidebar.collapsed .sidebar-section .section-title {
+            display: none;
+        }
+
+        .dashboard-sidebar.collapsed .nav-link-dashboard span {
+            display: none;
+        }
+
+        .dashboard-sidebar.collapsed .nav-link-dashboard .badge-dash {
+            display: none;
+        }
+
+        .dashboard-sidebar.collapsed .nav-link-dashboard {
+            justify-content: center;
+            padding: 12px;
+        }
+
+        .dashboard-sidebar.collapsed .nav-link-dashboard i {
+            font-size: 1.3rem;
+            width: auto;
+        }
+
+        .dashboard-sidebar.collapsed .sidebar-toggle-btn .dashboard-label {
+            display: none;
+        }
+
+        .dashboard-sidebar.collapsed .sidebar-toggle-btn {
+            justify-content: center;
+            padding: 0 0 16px;
+        }
+
+        .dashboard-sidebar .sidebar-section {
+            padding: 0 16px;
+        }
+
+        .dashboard-sidebar .sidebar-section .section-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: rgba(255,255,255,0.5);
+            font-weight: 700;
+            margin: 20px 0 10px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .dashboard-sidebar .nav-link-dashboard {
+            padding: 10px 16px;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            margin-bottom: 2px;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .dashboard-sidebar .nav-link-dashboard:hover {
+            background: rgba(255,255,255,0.08);
+            color: #ffffff;
+        }
+
+        .dashboard-sidebar .nav-link-dashboard.active {
+            background: rgba(255,255,255,0.12);
+            color: #ffffff;
+            font-weight: 600;
+            border-right: 3px solid #00a896;
+        }
+
+        .dashboard-sidebar .nav-link-dashboard i {
+            font-size: 1.1rem;
+            width: 22px;
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .dashboard-sidebar .nav-link-dashboard.active i {
+            color: #00a896;
+        }
+
+        .dashboard-sidebar .nav-link-dashboard .badge-dash {
+            margin-left: auto;
+            background: linear-gradient(135deg, #00a896, #00695c);
+            color: white;
+            font-size: 0.65rem;
+            padding: 2px 10px;
+            border-radius: 12px;
+        }
+
+        .dashboard-sidebar .nav-link-dashboard .badge-dash.warning {
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+        }
+
+        .dashboard-sidebar .nav-link-dashboard .badge-dash.danger {
+            background: linear-gradient(135deg, #dc3545, #ef4444);
+        }
+
+        /* ===== SIDEBAR TOGGLE ===== */
+        .sidebar-toggle-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            margin-bottom: 16px;
+        }
+
+        .sidebar-toggle-btn .dashboard-label {
+            font-weight: 600;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .sidebar-toggle-btn .toggle-icon {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.6);
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-toggle-btn .toggle-icon:hover {
+            background: rgba(255,255,255,0.08);
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .dashboard-main {
+            flex: 1;
+            padding: 24px 30px 30px;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .dashboard-main .page-title {
+            font-weight: 800;
+            color: #1a2a3a;
+            font-size: 1.5rem;
+            margin-bottom: 4px;
+        }
+
+        .dashboard-main .page-subtitle {
+            color: #6c757d;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+
+        /* ===== SELLER BADGE ===== */
+        .seller-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .seller-badge.owner {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .seller-badge.broker {
+            background: #cce5ff;
+            color: #004085;
+        }
+
+        .seller-badge.developer {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        /* ===== STATS CARDS ===== */
+        .stat-dash-card {
+            background: white;
+            border-radius: 16px;
+            padding: 22px 24px;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-dash-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00695c, #00a896);
+        }
+
+        .stat-dash-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+        }
+
+        .stat-dash-card .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1a2a3a;
+        }
+
+        .stat-dash-card .stat-label {
+            color: #6c757d;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .stat-dash-card .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(0,105,92,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00695c;
+            font-size: 1.3rem;
+        }
+
+        .stat-dash-card .stat-change {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 2px 10px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 4px;
+        }
+
+        .stat-change.up {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .stat-change.down {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* ===== SECTION CARDS ===== */
+        .section-card {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #e9ecef;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .section-card .section-header {
+            padding: 18px 24px;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-card .section-header h6 {
+            font-weight: 700;
+            color: #1a2a3a;
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        .section-card .section-header a {
+            color: #00695c;
+            font-size: 0.8rem;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .section-card .section-header a:hover {
+            text-decoration: underline;
+        }
+
+        .section-card .section-body {
+            padding: 20px 24px;
+        }
+
+        /* ===== PROPERTY LISTING ITEM ===== */
+        .listing-item {
+            display: flex;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f0f0;
+            align-items: center;
+        }
+
+        .listing-item:last-child {
+            border-bottom: none;
+        }
+
+        .listing-item img {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+
+        .listing-item .listing-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .listing-item .listing-info h6 {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #1a2a3a;
+            margin-bottom: 1px;
+        }
+
+        .listing-item .listing-info p {
+            color: #6c757d;
+            font-size: 0.78rem;
+            margin-bottom: 2px;
+        }
+
+        .listing-item .listing-info .price {
+            font-weight: 700;
+            color: #00695c;
+            font-size: 0.85rem;
+        }
+
+        .listing-item .listing-stats {
+            display: flex;
+            gap: 12px;
+            font-size: 0.7rem;
+            color: #6c757d;
+            margin-top: 4px;
+        }
+
+        .listing-item .listing-stats span i {
+            margin-right: 3px;
+            color: #00695c;
+        }
+
+        .listing-item .listing-actions {
+            display: flex;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .listing-item .listing-actions .btn-sm-custom {
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            border: 1px solid #e9ecef;
+            background: white;
+            color: #6c757d;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .listing-item .listing-actions .btn-sm-custom:hover {
+            background: #00695c;
+            color: white;
+            border-color: #00695c;
+        }
+
+        .listing-item .listing-actions .btn-sm-custom.primary {
+            background: #00695c;
+            color: white;
+            border-color: #00695c;
+        }
+
+        .listing-item .listing-actions .btn-sm-custom.primary:hover {
+            background: #004d40;
+        }
+
+        /* ===== PENDING BOOKING ===== */
+        .booking-item {
+            display: flex;
+            gap: 14px;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+            align-items: center;
+        }
+
+        .booking-item:last-child {
+            border-bottom: none;
+        }
+
+        .booking-item .booking-date {
+            min-width: 44px;
+            text-align: center;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 4px 8px;
+        }
+
+        .booking-item .booking-date .day {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #00695c;
+            line-height: 1.2;
+        }
+
+        .booking-item .booking-date .month {
+            font-size: 0.6rem;
+            color: #6c757d;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .booking-item .booking-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .booking-item .booking-info h6 {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #1a2a3a;
+            margin-bottom: 1px;
+        }
+
+        .booking-item .booking-info p {
+            color: #6c757d;
+            font-size: 0.75rem;
+            margin-bottom: 0;
+        }
+
+        .booking-item .booking-status {
+            font-size: 0.6rem;
+            padding: 3px 14px;
+            border-radius: 20px;
+            font-weight: 600;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .booking-status.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .booking-status.confirmed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .booking-status.completed {
+            background: #cce5ff;
+            color: #004085;
+        }
+
+        /* ===== UPLOAD CTA ===== */
+        .upload-cta {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 2px dashed #00695c;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .upload-cta:hover {
+            background: rgba(0,105,92,0.04);
+            border-color: #00a896;
+        }
+
+        .upload-cta i {
+            font-size: 2.5rem;
+            color: #00695c;
+            margin-bottom: 10px;
+        }
+
+        .upload-cta h6 {
+            font-weight: 700;
+            color: #1a2a3a;
+            margin-bottom: 4px;
+        }
+
+        .upload-cta p {
+            color: #6c757d;
+            font-size: 0.85rem;
+            margin-bottom: 0;
+        }
+
+        /* ===== SHORTCUT KEYS ===== */
+        .shortcut-keys {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .shortcut-keys kbd {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 2px 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #1a2a3a;
+        }
+
+        /* ===== QUICK ACTION BUTTON ===== */
+        .quick-action-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 18px 10px;
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #1a2a3a;
+        }
+
+        .quick-action-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            border-color: #00695c;
+            color: #00695c;
+        }
+
+        .quick-action-btn i {
+            font-size: 1.4rem;
+            color: #00695c;
+            margin-bottom: 6px;
+        }
+
+        .quick-action-btn span {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .dashboard-sidebar {
+                width: 0;
+                padding: 0;
+                overflow: hidden;
+                border: none;
+                position: fixed;
+                top: 60px;
+                left: 0;
+                bottom: 0;
+                z-index: 99;
+                background: #004d40;
+                box-shadow: 4px 0 30px rgba(0,0,0,0.2);
+            }
+            .dashboard-sidebar.open {
+                width: 280px;
+                padding: 24px 0;
+                border-right: 1px solid rgba(255,255,255,0.08);
+            }
+            .dashboard-sidebar.collapsed {
+                width: 0;
+                padding: 0;
+            }
+            .dashboard-main {
+                padding: 20px;
+            }
+            .nav-icons .profile-btn span {
+                display: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .stat-dash-card .stat-number {
+                font-size: 1.5rem;
+            }
+            .listing-item img {
+                width: 60px;
+                height: 50px;
+            }
+            .dashboard-main {
+                padding: 14px;
+            }
+            .section-card .section-header {
+                padding: 14px 16px;
+            }
+            .section-card .section-body {
+                padding: 14px 16px;
+            }
+            .nav-icons .profile-btn {
+                padding: 4px 6px;
+            }
+            .nav-icons .profile-btn span {
+                display: none;
+            }
+            .listing-item .listing-actions {
+                flex-direction: column;
+                gap: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <div style="border-radius: 0; box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08); overflow: hidden;">
+
+        <!-- TOP: Green Gradient -->
+        <div class="top-gradient">
+            <div class="container px-4 px-lg-5">
+                <div class="text-center">
+                    <span class="date-text">
+                        <i class="bi bi-calendar3 me-1"></i> Wednesday, 10 August 2026
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTTOM: White Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-custom">
+            <div class="container px-4 px-lg-5" style="overflow: visible !important;">
+
+                <!-- LEFT: Logo -->
+                <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
+                    <img src="assets/logo1.png" alt="South Window Logo" style="height: 26px; width: auto; margin-right: 6px;">
+                    South Window
+                </a>
+
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" style="background: rgba(0,77,64,0.08); padding: 2px 5px;">
+                    <span class="navbar-toggler-icon" style="width: 18px; height: 18px;"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarMain" style="overflow: visible !important;">
+
+                    <!-- CENTER: Nav Links -->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="gap: 4px;">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="property-listing.html">Properties</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="seller-dashboard.html">Dashboard</a></li>
+                    </ul>
+
+                    <!-- RIGHT: Notification + Profile -->
+                    <div class="nav-icons" style="overflow: visible !important;">
+                        <div class="notification-btn">
+                            <i class="bi bi-bell"></i>
+                            <span class="badge-dot"></span>
+                        </div>
+
+                        <div class="profile-btn" id="profileBtn">
+                            <div class="avatar-sm">JD</div>
+                            <span>John Doe</span>
+                            <i class="bi bi-chevron-down" style="font-size: 0.7rem; color: #6c757d;"></i>
+                        </div>
+
+                        <div class="profile-dropdown-menu" id="profileDropdown">
+                            <div class="dropdown-header">
+                                <div class="user-name">John Doe</div>
+                                <div class="user-email">john.doe@email.com</div>
+                                <div class="user-role">● Verified Seller</div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item"><i class="bi bi-person"></i> My Profile</a>
+                            <a href="#" class="dropdown-item"><i class="bi bi-gear"></i> Settings</a>
+                            <a href="#" class="dropdown-item"><i class="bi bi-credit-card"></i> Billing</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item danger"><i class="bi bi-box-arrow-right"></i> Logout</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </nav>
+
+    </div>
+
+    <!-- ===== DASHBOARD WRAPPER ===== -->
+    <div class="dashboard-wrapper">
+
+        <!-- ===== SIDEBAR ===== -->
+        <aside class="dashboard-sidebar" id="sidebar">
+            
+            <div class="sidebar-toggle-btn">
+                <span class="dashboard-label" id="dashboardLabel">Dashboard / Seller</span>
+                <button class="toggle-icon" id="sidebarToggle">
+                    <i class="bi bi-layout-sidebar"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="section-title">Main</div>
+                <a href="#" class="nav-link-dashboard active">
+                    <i class="bi bi-grid-1x2-fill"></i> <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-link-dashboard">
+                    <i class="bi bi-house"></i> <span>My Listings</span>
+                    <span class="badge-dash">12</span>
+                </a>
+                <a href="#" class="nav-link-dashboard">
+                    <i class="bi bi-calendar-check"></i> <span>Visit Booking</span>
+                    <span class="badge-dash warning">5</span>
+                </a>
+                <a href="#" class="nav-link-dashboard">
+                    <i class="bi bi-file-earmark-pdf"></i> <span>Brochure</span>
+                </a>
+                <a href="#" class="nav-link-dashboard">
+                    <i class="bi bi-play-circle"></i> <span>Digital Content</span>
+                </a>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="section-title">Analytics</div>
+                <a href="#" class="nav-link-dashboard">
+                    <i class="bi bi-graph-up"></i> <span>Performance</span>
+                </a>
+                <a href="#" class="nav-link-dashboard">
+                    <i class="bi bi-people"></i> <span>Leads</span>
+                    <span class="badge-dash danger">8</span>
+                </a>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="section-title">Account</div>
+                <a href="#" class="nav-link-dashboard">
+                    <i class="bi bi-gear"></i> <span>Settings</span>
+                </a>
+            </div>
+
+            <!-- Shortcut Keys -->
+            <div style="padding: 20px 16px; border-top: 1px solid rgba(255,255,255,0.08); margin-top: 20px;">
+                <p style="font-size: 0.65rem; color: rgba(255,255,255,0.4); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px;">Shortcut Keys</p>
+                <div class="shortcut-keys">
+                    <kbd>F1</kbd> <span style="font-size: 0.65rem; color: rgba(255,255,255,0.5);">Badge</span>
+                    <kbd>F5</kbd> <span style="font-size: 0.65rem; color: rgba(255,255,255,0.5);">Visit Booking</span>
+                    <kbd>F14</kbd> <span style="font-size: 0.65rem; color: rgba(255,255,255,0.5);">Brochure</span>
+                    <kbd>F15</kbd> <span style="font-size: 0.65rem; color: rgba(255,255,255,0.5);">Digital Content</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ===== MAIN CONTENT ===== -->
+        <main class="dashboard-main" id="mainContent">
+
+            <!-- Page Title with Badge -->
+            <div class="d-flex align-items-center gap-3 flex-wrap">
+                <div>
+                    <h4 class="page-title">Seller Dashboard</h4>
+                    <p class="page-subtitle">Manage your listings, track performance, and grow your business</p>
+                </div>
+                <span class="seller-badge owner">
+                    <i class="bi bi-check-circle-fill"></i> Verified Owner
+                </span>
+            </div>
+
+            <!-- Stats Row -->
+            <div class="row g-3 mb-4">
+                <div class="col-xl-3 col-lg-6 col-md-6 col-6">
+                    <div class="stat-dash-card d-flex justify-content-between align-items-center">
+                        <div>
+                            <div class="stat-number">12</div>
+                            <div class="stat-label">Total Listings</div>
+                            <div class="stat-change up">↑ 2 new this month</div>
+                        </div>
+                        <div class="stat-icon"><i class="bi bi-house"></i></div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-6">
+                    <div class="stat-dash-card d-flex justify-content-between align-items-center">
+                        <div>
+                            <div class="stat-number">4,280</div>
+                            <div class="stat-label">Total Views</div>
+                            <div class="stat-change up">↑ 12% this week</div>
+                        </div>
+                        <div class="stat-icon"><i class="bi bi-eye"></i></div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-6">
+                    <div class="stat-dash-card d-flex justify-content-between align-items-center">
+                        <div>
+                            <div class="stat-number">24</div>
+                            <div class="stat-label">Total Leads</div>
+                            <div class="stat-change up">↑ 5 new enquiries</div>
+                        </div>
+                        <div class="stat-icon"><i class="bi bi-people"></i></div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-6">
+                    <div class="stat-dash-card d-flex justify-content-between align-items-center">
+                        <div>
+                            <div class="stat-number">8</div>
+                            <div class="stat-label">Pending Bookings</div>
+                            <div class="stat-change down">↑ 3 awaiting confirmation</div>
+                        </div>
+                        <div class="stat-icon"><i class="bi bi-calendar-check"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4">
+
+                <!-- ===== ACTIVE LISTINGS ===== -->
+                <div class="col-lg-7">
+                    <div class="section-card">
+                        <div class="section-header">
+                            <h6><i class="bi bi-house" style="color: #00695c; margin-right: 8px;"></i>Active Listings</h6>
+                            <a href="#">View All →</a>
+                        </div>
+                        <div class="section-body">
+                            <div class="listing-item">
+                                <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=100&h=80&fit=crop" alt="Property">
+                                <div class="listing-info">
+                                    <h6>Luxury Apartment</h6>
+                                    <p>Bashundhara, Dhaka</p>
+                                    <span class="price">BDT 1.2 Cr</span>
+                                    <div class="listing-stats">
+                                        <span><i class="bi bi-eye"></i> 320 views</span>
+                                        <span><i class="bi bi-chat"></i> 8 enquiries</span>
+                                    </div>
+                                </div>
+                                <div class="listing-actions">
+                                    <a href="edit-listing-page.html" class="btn-sm-custom primary"><i class="bi bi-pencil"></i></a>
+                                    <a href="#" class="btn-sm-custom"><i class="bi bi-eye"></i></a>
+                                </div>
+                            </div>
+                            <div class="listing-item">
+                                <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=100&h=80&fit=crop" alt="Property">
+                                <div class="listing-info">
+                                    <h6>Family Home</h6>
+                                    <p>Dhanmondi, Dhaka</p>
+                                    <span class="price">BDT 2.5 Cr</span>
+                                    <div class="listing-stats">
+                                        <span><i class="bi bi-eye"></i> 180 views</span>
+                                        <span><i class="bi bi-chat"></i> 4 enquiries</span>
+                                    </div>
+                                </div>
+                                <div class="listing-actions">
+                                    <a href="#" class="btn-sm-custom primary"><i class="bi bi-pencil"></i></a>
+                                    <a href="#" class="btn-sm-custom"><i class="bi bi-eye"></i></a>
+                                </div>
+                            </div>
+                            <div class="listing-item">
+                                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=100&h=80&fit=crop" alt="Property">
+                                <div class="listing-info">
+                                    <h6>Commercial Shop</h6>
+                                    <p>Gulshan, Dhaka</p>
+                                    <span class="price">BDT 3.8 Cr</span>
+                                    <div class="listing-stats">
+                                        <span><i class="bi bi-eye"></i> 450 views</span>
+                                        <span><i class="bi bi-chat"></i> 12 enquiries</span>
+                                    </div>
+                                </div>
+                                <div class="listing-actions">
+                                    <a href="#" class="btn-sm-custom primary"><i class="bi bi-pencil"></i></a>
+                                    <a href="#" class="btn-sm-custom"><i class="bi bi-eye"></i></a>
+                                </div>
+                            </div>
+                            <div class="listing-item">
+                                <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=100&h=80&fit=crop" alt="Property">
+                                <div class="listing-info">
+                                    <h6>Premium Villa</h6>
+                                    <p>Uttara, Dhaka</p>
+                                    <span class="price">BDT 4.2 Cr</span>
+                                    <div class="listing-stats">
+                                        <span><i class="bi bi-eye"></i> 280 views</span>
+                                        <span><i class="bi bi-chat"></i> 6 enquiries</span>
+                                    </div>
+                                </div>
+                                <div class="listing-actions">
+                                    <a href="#" class="btn-sm-custom primary"><i class="bi bi-pencil"></i></a>
+                                    <a href="#" class="btn-sm-custom"><i class="bi bi-eye"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== PENDING BOOKINGS ===== -->
+                <div class="col-lg-5">
+                    <div class="section-card">
+                        <div class="section-header">
+                            <h6><i class="bi bi-calendar-check" style="color: #00695c; margin-right: 8px;"></i>Pending Bookings</h6>
+                            <a href="#">View All →</a>
+                        </div>
+                        <div class="section-body">
+                            <div class="booking-item">
+                                <div class="booking-date">
+                                    <div class="day">15</div>
+                                    <div class="month">AUG</div>
+                                </div>
+                                <div class="booking-info">
+                                    <h6>Luxury Apartment</h6>
+                                    <p>Bashundhara, Dhaka · 10:00 AM</p>
+                                    <p style="font-size: 0.7rem; color: #6c757d;">Buyer: Mr. Rahim</p>
+                                </div>
+                                <span class="booking-status pending">Pending</span>
+                            </div>
+                            <div class="booking-item">
+                                <div class="booking-date">
+                                    <div class="day">18</div>
+                                    <div class="month">AUG</div>
+                                </div>
+                                <div class="booking-info">
+                                    <h6>Family Home</h6>
+                                    <p>Dhanmondi, Dhaka · 2:30 PM</p>
+                                    <p style="font-size: 0.7rem; color: #6c757d;">Buyer: Ms. Karim</p>
+                                </div>
+                                <span class="booking-status confirmed">Confirmed</span>
+                            </div>
+                            <div class="booking-item">
+                                <div class="booking-date">
+                                    <div class="day">22</div>
+                                    <div class="month">AUG</div>
+                                </div>
+                                <div class="booking-info">
+                                    <h6>Commercial Shop</h6>
+                                    <p>Gulshan, Dhaka · 11:00 AM</p>
+                                    <p style="font-size: 0.7rem; color: #6c757d;">Buyer: Mr. Khan</p>
+                                </div>
+                                <span class="booking-status pending">Pending</span>
+                            </div>
+                            <div class="booking-item">
+                                <div class="booking-date">
+                                    <div class="day">25</div>
+                                    <div class="month">AUG</div>
+                                </div>
+                                <div class="booking-info">
+                                    <h6>Premium Villa</h6>
+                                    <p>Uttara, Dhaka · 4:00 PM</p>
+                                    <p style="font-size: 0.7rem; color: #6c757d;">Buyer: Mr. Hussain</p>
+                                </div>
+                                <span class="booking-status completed">Completed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== UPLOAD BROCHURE / VIDEO CTA ===== -->
+                <div class="col-lg-6">
+                    <div class="upload-cta" id="uploadBrochure">
+                        <i class="bi bi-file-earmark-pdf"></i>
+                        <h6>Upload Brochure</h6>
+                        <p>Drag & drop or click to upload property brochure (PDF)</p>
+                        <span style="font-size: 0.65rem; color: #6c757d;"><kbd>F14</kbd> Shortcut key</span>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="upload-cta" id="uploadVideo">
+                        <i class="bi bi-play-circle"></i>
+                        <h6>Upload Digital Content</h6>
+                        <p>Drag & drop or click to upload property video / 3D tour</p>
+                        <span style="font-size: 0.65rem; color: #6c757d;"><kbd>F15</kbd> Shortcut key</span>
+                    </div>
+                </div>
+
+                <!-- ===== QUICK ACTIONS ===== -->
+                <div class="col-lg-12">
+                    <div class="section-card">
+                        <div class="section-header">
+                            <h6><i class="bi bi-lightning-fill" style="color: #00695c; margin-right: 8px;"></i>Quick Actions</h6>
+                        </div>
+                        <div class="section-body">
+                            <div class="row g-2">
+                                <div class="col-md-2 col-4">
+                                    <a href="add-new-listing-page.html" class="quick-action-btn">
+                                        <i class="bi bi-plus-circle"></i>
+                                        <span>Add Listing</span>
+                                    </a>
+                                </div>
+                                <div class="col-md-2 col-4">
+                                    <a href="#" class="quick-action-btn">
+                                        <i class="bi bi-calendar-plus"></i>
+                                        <span>Book Visit</span>
+                                    </a>
+                                </div>
+                                <div class="col-md-2 col-4">
+                                    <a href="#" class="quick-action-btn">
+                                        <i class="bi bi-file-earmark-pdf"></i>
+                                        <span>Upload Brochure</span>
+                                    </a>
+                                </div>
+                                <div class="col-md-2 col-4">
+                                    <a href="#" class="quick-action-btn">
+                                        <i class="bi bi-play-circle"></i>
+                                        <span>Upload Video</span>
+                                    </a>
+                                </div>
+                                <div class="col-md-2 col-4">
+                                    <a href="#" class="quick-action-btn">
+                                        <i class="bi bi-graph-up"></i>
+                                        <span>Analytics</span>
+                                    </a>
+                                </div>
+                                <div class="col-md-2 col-4">
+                                    <a href="#" class="quick-action-btn">
+                                        <i class="bi bi-megaphone"></i>
+                                        <span>Promote</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <!-- ===== LOGIN MODAL ===== -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 p-4" style="border: none; max-width: 460px; margin: 0 auto; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.15);">
+                <button type="button" class="btn-close position-absolute top-0 end-0 mt-3 me-3" data-bs-dismiss="modal" style="z-index: 10;"></button>
+                <div class="text-center mb-3">
+                    <h4 class="fw-bold" style="color: #006169;">South Window</h4>
+                    <p class="text-muted small">Your trusted property partner</p>
+                </div>
+                <ul class="nav nav-pills justify-content-center mb-3" style="gap: 10px;">
+                    <li class="nav-item">
+                        <button class="nav-link active rounded-pill px-4" id="loginTab" style="background: #006169; color: white; border: none; padding: 8px 28px;">Login</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link rounded-pill px-4" id="registerTab" style="background: transparent; color: #006169; border: 1px solid #006169; padding: 8px 28px;">Register</button>
+                    </li>
+                </ul>
+                <div id="loginForm">
+                    <div class="d-grid gap-2 mb-3">
+                        <button class="btn btn-outline-secondary rounded-pill py-2" style="border-color: #ddd; font-weight: 500;">
+                            <i class="bi bi-google me-2" style="color: #ea4335;"></i> Continue with Google
+                        </button>
+                        <button class="btn btn-outline-secondary rounded-pill py-2" style="border-color: #ddd; font-weight: 500;">
+                            <i class="bi bi-facebook me-2" style="color: #1877f2;"></i> Continue with Facebook
+                        </button>
+                    </div>
+                    <div class="text-center mb-3"><span class="text-muted small">OR</span></div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Email or Phone</label>
+                        <input type="text" class="form-control rounded-pill px-3" placeholder="Enter email or phone number" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Password</label>
+                        <input type="password" class="form-control rounded-pill px-3" placeholder="Enter your password" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="rememberMe">
+                            <label class="form-check-label small" for="rememberMe">Keep me signed in</label>
+                        </div>
+                        <a href="#" class="small text-decoration-none" style="color: #006169;">Forgot Password?</a>
+                    </div>
+                    <button class="btn btn-primary w-100 rounded-pill py-2" style="background: #006169; border: none; font-weight: 600;">Continue</button>
+                    <p class="text-center small text-muted mt-3">
+                        <a href="login.html" style="color: #006169; text-decoration: none; font-weight: 500;">Go to Login Page →</a>
+                        &nbsp;|&nbsp;
+                        <a href="register.html" style="color: #006169; text-decoration: none; font-weight: 500;">Go to Register Page →</a>
+                    </p>
+                </div>
+                <div id="registerForm" style="display: none;">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Full Name</label>
+                        <input type="text" class="form-control rounded-pill px-3" placeholder="Enter your full name" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Email</label>
+                        <input type="email" class="form-control rounded-pill px-3" placeholder="Enter your email" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Phone Number</label>
+                        <input type="tel" class="form-control rounded-pill px-3" placeholder="+880 1XXX XXXXXX" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Password</label>
+                        <input type="password" class="form-control rounded-pill px-3" placeholder="Create a password" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">User Type</label>
+                        <select class="form-select rounded-pill px-3" style="padding: 12px; border-color: #e0e0e0;">
+                            <option>Buyer</option>
+                            <option>Seller</option>
+                            <option>Broker</option>
+                            <option>Developer</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary w-100 rounded-pill py-2" style="background: #006169; border: none; font-weight: 600;">Create Account</button>
+                    <p class="text-center small text-muted mt-3">
+                        <a href="login.html" style="color: #006169; text-decoration: none; font-weight: 500;">Go to Login Page →</a>
+                        &nbsp;|&nbsp;
+                        <a href="register.html" style="color: #006169; text-decoration: none; font-weight: 500;">Go to Register Page →</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // ===== PROFILE DROPDOWN TOGGLE =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileBtn = document.getElementById('profileBtn');
+            const profileDropdown = document.getElementById('profileDropdown');
+
+            if (profileBtn && profileDropdown) {
+                profileBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    profileDropdown.classList.toggle('show');
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!profileBtn.contains(e.target) && !profileDropdown.contains(e.target)) {
+                        profileDropdown.classList.remove('show');
+                    }
+                });
+            }
+        });
+
+        // ===== SIDEBAR TOGGLE =====
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebar = document.getElementById('sidebar');
+
+        sidebarToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('collapsed');
+            if (window.innerWidth <= 992) {
+                sidebar.classList.toggle('open');
+            }
+        });
+
+        document.addEventListener('click', function(e) {
+            if (window.innerWidth <= 992) {
+                if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
+                    sidebar.classList.remove('open');
+                    sidebar.classList.add('collapsed');
+                }
+            }
+        });
+
+        // ===== UPLOAD CTA CLICK =====
+        document.getElementById('uploadBrochure').addEventListener('click', function() {
+            alert('Upload Brochure (F14) - PDF files only');
+        });
+
+        document.getElementById('uploadVideo').addEventListener('click', function() {
+            alert('Upload Digital Content (F15) - Video / 3D Tour files');
+        });
+
+        // ===== TAB SWITCHING =====
+        document.getElementById('loginTab').addEventListener('click', function() {
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('registerForm').style.display = 'none';
+            this.classList.add('active');
+            this.style.background = '#006169';
+            this.style.color = 'white';
+            document.getElementById('registerTab').classList.remove('active');
+            document.getElementById('registerTab').style.background = 'transparent';
+            document.getElementById('registerTab').style.color = '#006169';
+        });
+        
+        document.getElementById('registerTab').addEventListener('click', function() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+            this.classList.add('active');
+            this.style.background = '#006169';
+            this.style.color = 'white';
+            document.getElementById('loginTab').classList.remove('active');
+            document.getElementById('loginTab').style.background = 'transparent';
+            document.getElementById('loginTab').style.color = '#006169';
+        });
+
+        // ===== AUTO-HIGHLIGHT NAVBAR =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.navbar .nav-link');
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

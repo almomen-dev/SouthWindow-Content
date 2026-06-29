@@ -332,37 +332,67 @@
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light py-0">
+
+<!--  NAVBAR -->
+<div style="border-radius: 8px; box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08); overflow: hidden;">
+    
+    <!-- TOP: Green Gradient -->
+    <div style="background: linear-gradient(90deg, #ffffff 0%, #ffffff 20%, #00695c 45%, #00695c 55%, #ffffff 80%, #ffffff 100%); padding: 8px 0;">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand fw-bold text-primary d-flex align-items-center" href="index.html">
-                <img src="assets/logo1.png" alt="South Window Logo" style="height: 60px; width: auto; margin-right: 10px;">
-                South Window
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="property-listing.html">Properties</a></li>
-                </ul>
-                <form class="d-flex">
-                    <button class="btn btn-outline-dark" type="submit">
-                        <i class="bi-heart-fill me-1"></i>
-                        Favorites
-                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                    </button>
-                    <button class="btn btn-outline-primary ms-2" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">
-                        <i class="bi-person me-1"></i>
-                        Login/Register
-                    </button>
-                </form>
+            <div class="text-center">
+                <span style="color: #ffffff; font-weight: 500; font-size: 15px; text-shadow: 0 1px 4px rgba(0,0,0,0.3);">
+                    <i class="bi bi-calendar3 me-1"></i> Wednesday, 10 August 2026
+                </span>
             </div>
         </div>
+    </div>
+    
+    <!-- BOTTOM: White Navbar -->
+    <nav class="navbar navbar-expand-lg" style="background: #ffffff; padding: 0; min-height: 32px;">
+        <div class="container px-4 px-lg-5">
+            
+            <!-- LEFT: Logo -->
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html" style="font-size: 1rem; padding: 2px 0; color: #004d40 !important;">
+                <img src="assets/logo1.png" alt="South Window Logo" style="height: 26px; width: auto; margin-right: 6px;">
+                South Window
+            </a>
+            
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" style="background: rgba(0,77,64,0.08); padding: 2px 5px;">
+                <span class="navbar-toggler-icon" style="width: 18px; height: 18px;"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarMain">
+                
+                <!-- CENTER: Nav Links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="gap: 4px;">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about-us.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="property-listing.html">Properties</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                
+                <!-- RIGHT: Login Button -->
+                <button class="btn rounded-pill px-4" style="background: #00695c; color: white !important; border: 1px solid #00695c; font-weight: 700; font-size: 16px; padding: 6px 22px;" data-bs-toggle="modal" data-bs-target="#loginModal">
+                    <i class="bi bi-person-fill me-1"></i> Login/Register
+                </button>
+                
+            </div>
+            
+        </div>
     </nav>
+    
+</div>
+
+
+
 
     <!-- ====== LOGIN/REGISTER MODAL (FIXED - ADDED) ====== -->
     <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">

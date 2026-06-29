@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="South Window - Visit Booking" />
+    <meta name="author" content="South Window" />
+    <title>Visit Booking - South Window</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/mystyle.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #f0f2f5;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar-custom {
+            background: #ffffff !important;
+            padding: 0 !important;
+            min-height: 50px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08) !important;
+            border-radius: 0 !important;
+            position: relative;
+            z-index: 1050 !important;
+            overflow: visible !important;
+        }
+
+        .navbar-custom .navbar-brand {
+            color: #004d40 !important;
+            font-size: 1.3rem !important;
+        }
+
+        .navbar-custom .navbar-brand img {
+            height: 34px !important;
+            width: auto !important;
+        }
+
+        .navbar-custom .navbar-nav .nav-link {
+            padding: 8px 22px !important;
+            font-size: 15px !important;
+            color: #004d40 !important;
+            border-radius: 30px !important;
+            transition: all 0.3s ease !important;
+            font-weight: 500 !important;
+            background: transparent !important;
+        }
+
+        .navbar-custom .navbar-nav .nav-link:hover {
+            background: rgba(0, 105, 92, 0.08) !important;
+            color: #004d40 !important;
+        }
+
+        .navbar-custom .navbar-nav .nav-link.active {
+            color: #00695c !important;
+            background: rgba(0, 105, 92, 0.08) !important;
+            font-weight: 600 !important;
+            box-shadow: none !important;
+        }
+
+        .top-gradient {
+            background: linear-gradient(90deg, #ffffff 0%, #ffffff 20%, #00695c 45%, #00695c 55%, #ffffff 80%, #ffffff 100%);
+            padding: 8px 0;
+        }
+
+        .top-gradient .date-text {
+            color: #ffffff;
+            font-weight: 500;
+            font-size: 15px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+        }
+
+        /* ===== NOTIFICATION & PROFILE ===== */
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            overflow: visible !important;
+        }
+
+        .nav-icons .notification-btn {
+            position: relative;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #1a2a3a;
+            font-size: 1.1rem;
+        }
+
+        .nav-icons .notification-btn:hover {
+            background: #e9ecef;
+        }
+
+        .nav-icons .notification-btn .badge-dot {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 8px;
+            height: 8px;
+            background: #dc3545;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        .nav-icons .profile-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 4px 12px 4px 4px;
+            border-radius: 30px;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #1a2a3a;
+        }
+
+        .nav-icons .profile-btn:hover {
+            background: #e9ecef;
+        }
+
+        .nav-icons .profile-btn .avatar-sm {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #00695c;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.75rem;
+        }
+
+        .nav-icons .profile-btn span {
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* ===== PROFILE DROPDOWN ===== */
+        .profile-dropdown-menu {
+            position: absolute !important;
+            top: calc(100% + 8px) !important;
+            right: 0 !important;
+            left: auto !important;
+            background: white !important;
+            border-radius: 16px !important;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15) !important;
+            border: 1px solid #e9ecef !important;
+            min-width: 240px !important;
+            padding: 8px 0 !important;
+            display: none !important;
+            z-index: 9999 !important;
+        }
+
+        .profile-dropdown-menu.show {
+            display: block !important;
+        }
+
+        .profile-dropdown-menu .dropdown-header {
+            padding: 12px 20px 16px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .profile-dropdown-menu .dropdown-header .user-name {
+            font-weight: 700;
+            color: #1a2a3a;
+            font-size: 0.95rem;
+        }
+
+        .profile-dropdown-menu .dropdown-header .user-email {
+            color: #6c757d;
+            font-size: 0.8rem;
+        }
+
+        .profile-dropdown-menu .dropdown-header .user-role {
+            font-size: 0.7rem;
+            color: #00695c;
+            font-weight: 600;
+        }
+
+        .profile-dropdown-menu .dropdown-item {
+            padding: 10px 20px;
+            color: #6c757d;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .profile-dropdown-menu .dropdown-item:hover {
+            background: rgba(0,105,92,0.06);
+            color: #00695c;
+        }
+
+        .profile-dropdown-menu .dropdown-item i {
+            font-size: 1rem;
+            width: 20px;
+        }
+
+        .profile-dropdown-menu .dropdown-divider {
+            height: 1px;
+            background: #e9ecef;
+            margin: 6px 0;
+        }
+
+        .profile-dropdown-menu .dropdown-item.danger {
+            color: #dc3545;
+        }
+
+        .profile-dropdown-menu .dropdown-item.danger:hover {
+            background: #fce4ec;
+            color: #c62828;
+        }
+
+        /* ===== PAGE HEADER ===== */
+        .page-header {
+            background: white;
+            padding: 24px 30px;
+            border-bottom: 1px solid #e9ecef;
+            margin-top: 20px;
+        }
+
+        .page-header h4 {
+            font-weight: 800;
+            color: #1a2a3a;
+            margin-bottom: 4px;
+        }
+
+        .page-header p {
+            color: #6c757d;
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        /* ===== VIEW SWITCHER ===== */
+        .view-switcher {
+            display: flex;
+            gap: 6px;
+            background: #f8f9fa;
+            padding: 4px;
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
+        }
+
+        .view-switcher .btn-view {
+            padding: 6px 16px;
+            border-radius: 8px;
+            border: none;
+            background: transparent;
+            color: #6c757d;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .view-switcher .btn-view.active {
+            background: #00695c;
+            color: white;
+            box-shadow: 0 2px 10px rgba(0,105,92,0.2);
+        }
+
+        .view-switcher .btn-view:hover:not(.active) {
+            background: rgba(0,105,92,0.06);
+        }
+
+        /* ===== CALENDAR ===== */
+        .calendar-container {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #e9ecef;
+            padding: 24px;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .calendar-header .month-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #1a2a3a;
+        }
+
+        .calendar-header .nav-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid #e9ecef;
+            background: white;
+            color: #6c757d;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .calendar-header .nav-btn:hover {
+            background: #00695c;
+            color: white;
+            border-color: #00695c;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+        }
+
+        .calendar-grid .day-name {
+            text-align: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #6c757d;
+            padding: 8px 0;
+            text-transform: uppercase;
+        }
+
+        .calendar-grid .day-cell {
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #1a2a3a;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            min-height: 50px;
+            border: 2px solid transparent;
+        }
+
+        .calendar-grid .day-cell:hover {
+            background: rgba(0,105,92,0.04);
+            border-color: #00695c;
+        }
+
+        .calendar-grid .day-cell.selected {
+            background: #00695c;
+            color: white;
+            border-color: #00695c;
+            box-shadow: 0 4px 15px rgba(0,105,92,0.25);
+        }
+
+        .calendar-grid .day-cell.has-booking {
+            background: rgba(0,169,150,0.08);
+            border-color: #00a896;
+        }
+
+        .calendar-grid .day-cell.has-booking::after {
+            content: '';
+            position: absolute;
+            bottom: 6px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #00a896;
+        }
+
+        .calendar-grid .day-cell.past {
+            color: #adb5bd;
+            cursor: not-allowed;
+        }
+
+        .calendar-grid .day-cell.past:hover {
+            background: transparent;
+            border-color: transparent;
+        }
+
+        .calendar-grid .day-cell .day-number {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .calendar-grid .day-cell .day-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            margin-top: 2px;
+        }
+
+        .calendar-grid .day-cell .day-dot.available {
+            background: #00a896;
+        }
+
+        .calendar-grid .day-cell .day-dot.booked {
+            background: #dc3545;
+        }
+
+        /* ===== TIME SLOTS ===== */
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .time-slots .time-slot {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
+            background: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #1a2a3a;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .time-slots .time-slot:hover {
+            border-color: #00695c;
+            background: rgba(0,105,92,0.04);
+        }
+
+        .time-slots .time-slot.selected {
+            background: #00695c;
+            color: white;
+            border-color: #00695c;
+        }
+
+        .time-slots .time-slot.unavailable {
+            background: #f8f9fa;
+            color: #adb5bd;
+            cursor: not-allowed;
+            border-color: #e9ecef;
+        }
+
+        .time-slots .time-slot.unavailable:hover {
+            background: #f8f9fa;
+            border-color: #e9ecef;
+        }
+
+        /* ===== BOOKING CARD ===== */
+        .booking-card {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #e9ecef;
+            padding: 20px 24px;
+            transition: all 0.3s ease;
+        }
+
+        .booking-card:hover {
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+        }
+
+        .booking-card .property-image {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+
+        .booking-card .booking-info h6 {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #1a2a3a;
+            margin-bottom: 2px;
+        }
+
+        .booking-card .booking-info p {
+            color: #6c757d;
+            font-size: 0.8rem;
+            margin-bottom: 2px;
+        }
+
+        .booking-card .booking-status {
+            font-size: 0.6rem;
+            padding: 3px 14px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .booking-status.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .booking-status.confirmed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .booking-status.completed {
+            background: #cce5ff;
+            color: #004085;
+        }
+
+        .booking-status.cancelled {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .booking-card .booking-actions .btn-sm {
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .booking-card .booking-actions .btn-reschedule {
+            background: #00695c;
+            color: white;
+        }
+
+        .booking-card .booking-actions .btn-reschedule:hover {
+            background: #004d40;
+        }
+
+        .booking-card .booking-actions .btn-cancel {
+            background: #dc3545;
+            color: white;
+        }
+
+        .booking-card .booking-actions .btn-cancel:hover {
+            background: #c62828;
+        }
+
+        /* ===== AVAILABILITY MANAGER ===== */
+        .availability-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .availability-item:last-child {
+            border-bottom: none;
+        }
+
+        .availability-item .avail-day {
+            font-weight: 600;
+            color: #1a2a3a;
+            min-width: 80px;
+        }
+
+        .availability-item .avail-time {
+            color: #6c757d;
+            font-size: 0.85rem;
+        }
+
+        .availability-item .avail-toggle {
+            margin-left: auto;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            background: #ced4da;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .toggle-switch.active {
+            background: #00695c;
+        }
+
+        .toggle-switch .toggle-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        }
+
+        .toggle-switch.active .toggle-slider {
+            left: 22px;
+        }
+
+        /* ===== CONFIRMATION MODAL ===== */
+        .confirmation-modal .modal-content {
+            border-radius: 20px;
+            border: none;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+        }
+
+        .confirmation-modal .success-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #00a896;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+        }
+
+        .confirmation-modal .success-icon i {
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        /* ===== SHORTCUT KEYS ===== */
+        .shortcut-keys {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .shortcut-keys kbd {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 2px 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #1a2a3a;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .calendar-grid .day-cell {
+                min-height: 40px;
+                font-size: 0.7rem;
+            }
+            .calendar-grid .day-cell .day-number {
+                font-size: 0.75rem;
+            }
+            .time-slots {
+                grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+            }
+            .page-header {
+                padding: 16px 20px;
+            }
+            .booking-card .property-image {
+                width: 60px;
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .nav-icons .profile-btn span {
+                display: none;
+            }
+            .nav-icons .profile-btn {
+                padding: 4px 6px;
+            }
+            .view-switcher .btn-view {
+                font-size: 0.7rem;
+                padding: 4px 12px;
+            }
+            .calendar-grid {
+                gap: 2px;
+            }
+            .calendar-grid .day-cell {
+                min-height: 35px;
+                border-radius: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <div style="border-radius: 0; box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08); overflow: hidden;">
+
+        <div class="top-gradient">
+            <div class="container px-4 px-lg-5">
+                <div class="text-center">
+                    <span class="date-text">
+                        <i class="bi bi-calendar3 me-1"></i> Wednesday, 10 August 2026
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg navbar-custom">
+            <div class="container px-4 px-lg-5" style="overflow: visible !important;">
+
+                <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
+                    <img src="assets/logo1.png" alt="South Window Logo" style="height: 26px; width: auto; margin-right: 6px;">
+                    South Window
+                </a>
+
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" style="background: rgba(0,77,64,0.08); padding: 2px 5px;">
+                    <span class="navbar-toggler-icon" style="width: 18px; height: 18px;"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarMain" style="overflow: visible !important;">
+
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="gap: 4px;">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="property-listing.html">Properties</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="seller-dashboard.html">Dashboard</a></li>
+                    </ul>
+
+                    <div class="nav-icons" style="overflow: visible !important;">
+                        <div class="notification-btn">
+                            <i class="bi bi-bell"></i>
+                            <span class="badge-dot"></span>
+                        </div>
+
+                        <div class="profile-btn" id="profileBtn">
+                            <div class="avatar-sm">JD</div>
+                            <span>John Doe</span>
+                            <i class="bi bi-chevron-down" style="font-size: 0.7rem; color: #6c757d;"></i>
+                        </div>
+
+                        <div class="profile-dropdown-menu" id="profileDropdown">
+                            <div class="dropdown-header">
+                                <div class="user-name">John Doe</div>
+                                <div class="user-email">john.doe@email.com</div>
+                                <div class="user-role">● Verified Seller</div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item"><i class="bi bi-person"></i> My Profile</a>
+                            <a href="#" class="dropdown-item"><i class="bi bi-gear"></i> Settings</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item danger"><i class="bi bi-box-arrow-right"></i> Logout</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </nav>
+
+    </div>
+
+    <!-- ===== PAGE HEADER ===== -->
+    <div class="page-header">
+        <div class="d-flex justify-content-between align-items-center flex-wrap">
+            <div>
+                <h4><i class="bi bi-calendar-check" style="color: #00695c;"></i> Visit Booking</h4>
+                <p>Schedule and manage property visits</p>
+                <span class="text-muted" style="font-size: 0.85rem;"><kbd>F5</kbd> Shortcut key for quick booking</span>
+            </div>
+            <div class="view-switcher">
+                <button class="btn-view active" id="calendarViewBtn"><i class="bi bi-calendar3"></i> Calendar</button>
+                <button class="btn-view" id="listViewBtn"><i class="bi bi-list-ul"></i> List</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <section style="padding: 30px 20px;">
+        <div class="container">
+
+            <div class="row g-4">
+
+                <!-- ===== LEFT: CALENDAR & TIME SLOTS ===== -->
+                <div class="col-lg-8">
+                    <div class="calendar-container">
+
+                        <!-- Calendar Header -->
+                        <div class="calendar-header">
+                            <button class="nav-btn" id="prevMonth"><i class="bi bi-chevron-left"></i></button>
+                            <span class="month-title" id="monthTitle">August 2026</span>
+                            <button class="nav-btn" id="nextMonth"><i class="bi bi-chevron-right"></i></button>
+                        </div>
+
+                        <!-- Calendar Grid -->
+                        <div class="calendar-grid" id="calendarGrid">
+                            <div class="day-name">Sun</div>
+                            <div class="day-name">Mon</div>
+                            <div class="day-name">Tue</div>
+                            <div class="day-name">Wed</div>
+                            <div class="day-name">Thu</div>
+                            <div class="day-name">Fri</div>
+                            <div class="day-name">Sat</div>
+                        </div>
+
+                        <!-- Time Slots -->
+                        <div style="margin-top: 24px;">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h6 class="fw-bold" style="color: #1a2a3a;">Available Time Slots</h6>
+                                <span style="font-size: 0.7rem; color: #6c757d;">Selected: <span id="selectedDateDisplay">Aug 10, 2026</span></span>
+                            </div>
+                            <div class="time-slots" id="timeSlots">
+                                <div class="time-slot">9:00 AM</div>
+                                <div class="time-slot">10:00 AM</div>
+                                <div class="time-slot selected">11:00 AM</div>
+                                <div class="time-slot">12:00 PM</div>
+                                <div class="time-slot unavailable">1:00 PM</div>
+                                <div class="time-slot">2:00 PM</div>
+                                <div class="time-slot">3:00 PM</div>
+                                <div class="time-slot unavailable">4:00 PM</div>
+                                <div class="time-slot">5:00 PM</div>
+                            </div>
+                        </div>
+
+                        <!-- Book Visit Button -->
+                        <div class="mt-3">
+                            <button class="btn btn-primary rounded-pill px-5 py-2" style="background: #00695c; border: none; font-weight: 600;" data-bs-toggle="modal" data-bs-target="#confirmModal">
+                                <i class="bi bi-check-circle"></i> Book Visit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== RIGHT: UPCOMING BOOKINGS (Buyer Side) / AVAILABILITY (Seller Side) ===== -->
+                <div class="col-lg-4">
+
+                    <!-- Seller: Availability Manager -->
+                    <div class="card border-0 shadow-sm rounded-4 mb-4">
+                        <div class="card-body p-4">
+                            <h6 class="fw-bold mb-3"><i class="bi bi-clock" style="color: #00695c;"></i> Availability Manager</h6>
+                            <div class="availability-item">
+                                <span class="avail-day">Monday</span>
+                                <span class="avail-time">9:00 AM - 6:00 PM</span>
+                                <div class="avail-toggle">
+                                    <div class="toggle-switch active" onclick="this.classList.toggle('active')">
+                                        <div class="toggle-slider"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="availability-item">
+                                <span class="avail-day">Tuesday</span>
+                                <span class="avail-time">9:00 AM - 6:00 PM</span>
+                                <div class="avail-toggle">
+                                    <div class="toggle-switch active" onclick="this.classList.toggle('active')">
+                                        <div class="toggle-slider"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="availability-item">
+                                <span class="avail-day">Wednesday</span>
+                                <span class="avail-time">9:00 AM - 6:00 PM</span>
+                                <div class="avail-toggle">
+                                    <div class="toggle-switch active" onclick="this.classList.toggle('active')">
+                                        <div class="toggle-slider"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="availability-item">
+                                <span class="avail-day">Thursday</span>
+                                <span class="avail-time">9:00 AM - 6:00 PM</span>
+                                <div class="avail-toggle">
+                                    <div class="toggle-switch active" onclick="this.classList.toggle('active')">
+                                        <div class="toggle-slider"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="availability-item">
+                                <span class="avail-day">Friday</span>
+                                <span class="avail-time">Closed</span>
+                                <div class="avail-toggle">
+                                    <div class="toggle-switch" onclick="this.classList.toggle('active')">
+                                        <div class="toggle-slider"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="availability-item">
+                                <span class="avail-day">Saturday</span>
+                                <span class="avail-time">10:00 AM - 4:00 PM</span>
+                                <div class="avail-toggle">
+                                    <div class="toggle-switch active" onclick="this.classList.toggle('active')">
+                                        <div class="toggle-slider"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="availability-item">
+                                <span class="avail-day">Sunday</span>
+                                <span class="avail-time">10:00 AM - 4:00 PM</span>
+                                <div class="avail-toggle">
+                                    <div class="toggle-switch active" onclick="this.classList.toggle('active')">
+                                        <div class="toggle-slider"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Upcoming Bookings -->
+                    <div class="card border-0 shadow-sm rounded-4">
+                        <div class="card-body p-4">
+                            <h6 class="fw-bold mb-3"><i class="bi bi-calendar-check" style="color: #00695c;"></i> Upcoming Bookings</h6>
+                            <div class="booking-card mb-3 p-3">
+                                <div class="d-flex gap-3 align-items-center">
+                                    <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=100&h=80&fit=crop" alt="Property" class="property-image">
+                                    <div class="booking-info flex-grow-1">
+                                        <h6>Luxury Apartment</h6>
+                                        <p>Aug 15, 2026 · 10:00 AM</p>
+                                        <p style="font-size: 0.7rem; color: #6c757d;">Buyer: Mr. Rahim</p>
+                                    </div>
+                                    <span class="booking-status confirmed">Confirmed</span>
+                                </div>
+                            </div>
+                            <div class="booking-card mb-3 p-3">
+                                <div class="d-flex gap-3 align-items-center">
+                                    <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=100&h=80&fit=crop" alt="Property" class="property-image">
+                                    <div class="booking-info flex-grow-1">
+                                        <h6>Family Home</h6>
+                                        <p>Aug 18, 2026 · 2:30 PM</p>
+                                        <p style="font-size: 0.7rem; color: #6c757d;">Buyer: Ms. Karim</p>
+                                    </div>
+                                    <span class="booking-status pending">Pending</span>
+                                </div>
+                            </div>
+                            <div class="booking-card p-3">
+                                <div class="d-flex gap-3 align-items-center">
+                                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=100&h=80&fit=crop" alt="Property" class="property-image">
+                                    <div class="booking-info flex-grow-1">
+                                        <h6>Commercial Shop</h6>
+                                        <p>Aug 22, 2026 · 11:00 AM</p>
+                                        <p style="font-size: 0.7rem; color: #6c757d;">Buyer: Mr. Khan</p>
+                                    </div>
+                                    <span class="booking-status pending">Pending</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== CONFIRMATION MODAL ===== -->
+    <div class="modal fade confirmation-modal" id="confirmModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-4">
+                <button type="button" class="btn-close position-absolute top-0 end-0 mt-3 me-3" data-bs-dismiss="modal"></button>
+                <div class="text-center py-3">
+                    <div class="success-icon">
+                        <i class="bi bi-check-lg"></i>
+                    </div>
+                    <h4 class="fw-bold mt-3">Booking Confirmed!</h4>
+                    <p class="text-muted">Your visit has been scheduled successfully.</p>
+                    <div class="bg-light p-3 rounded-4 text-start mt-3">
+                        <p class="mb-1"><strong>Property:</strong> Luxury Apartment</p>
+                        <p class="mb-1"><strong>Date:</strong> August 15, 2026</p>
+                        <p class="mb-0"><strong>Time:</strong> 10:00 AM</p>
+                    </div>
+                    <div class="d-flex gap-2 mt-3">
+                        <button class="btn btn-outline-secondary rounded-pill flex-grow-1" data-bs-dismiss="modal">Close</button>
+                        <button class="btn btn-primary rounded-pill flex-grow-1" style="background: #00695c; border: none;" onclick="window.location.href='buyer-dashboard.html'">Go to Dashboard</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== LOGIN MODAL ===== -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 p-4" style="border: none; max-width: 460px; margin: 0 auto; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.15);">
+                <button type="button" class="btn-close position-absolute top-0 end-0 mt-3 me-3" data-bs-dismiss="modal" style="z-index: 10;"></button>
+                <div class="text-center mb-3">
+                    <h4 class="fw-bold" style="color: #006169;">South Window</h4>
+                    <p class="text-muted small">Your trusted property partner</p>
+                </div>
+                <ul class="nav nav-pills justify-content-center mb-3" style="gap: 10px;">
+                    <li class="nav-item">
+                        <button class="nav-link active rounded-pill px-4" id="loginTab" style="background: #006169; color: white; border: none; padding: 8px 28px;">Login</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link rounded-pill px-4" id="registerTab" style="background: transparent; color: #006169; border: 1px solid #006169; padding: 8px 28px;">Register</button>
+                    </li>
+                </ul>
+                <div id="loginForm">
+                    <div class="d-grid gap-2 mb-3">
+                        <button class="btn btn-outline-secondary rounded-pill py-2" style="border-color: #ddd; font-weight: 500;">
+                            <i class="bi bi-google me-2" style="color: #ea4335;"></i> Continue with Google
+                        </button>
+                        <button class="btn btn-outline-secondary rounded-pill py-2" style="border-color: #ddd; font-weight: 500;">
+                            <i class="bi bi-facebook me-2" style="color: #1877f2;"></i> Continue with Facebook
+                        </button>
+                    </div>
+                    <div class="text-center mb-3"><span class="text-muted small">OR</span></div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Email or Phone</label>
+                        <input type="text" class="form-control rounded-pill px-3" placeholder="Enter email or phone number" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Password</label>
+                        <input type="password" class="form-control rounded-pill px-3" placeholder="Enter your password" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="rememberMe">
+                            <label class="form-check-label small" for="rememberMe">Keep me signed in</label>
+                        </div>
+                        <a href="#" class="small text-decoration-none" style="color: #006169;">Forgot Password?</a>
+                    </div>
+                    <button class="btn btn-primary w-100 rounded-pill py-2" style="background: #006169; border: none; font-weight: 600;">Continue</button>
+                    <p class="text-center small text-muted mt-3">
+                        <a href="login.html" style="color: #006169; text-decoration: none; font-weight: 500;">Go to Login Page →</a>
+                        &nbsp;|&nbsp;
+                        <a href="register.html" style="color: #006169; text-decoration: none; font-weight: 500;">Go to Register Page →</a>
+                    </p>
+                </div>
+                <div id="registerForm" style="display: none;">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Full Name</label>
+                        <input type="text" class="form-control rounded-pill px-3" placeholder="Enter your full name" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Email</label>
+                        <input type="email" class="form-control rounded-pill px-3" placeholder="Enter your email" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Phone Number</label>
+                        <input type="tel" class="form-control rounded-pill px-3" placeholder="+880 1XXX XXXXXX" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Password</label>
+                        <input type="password" class="form-control rounded-pill px-3" placeholder="Create a password" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">User Type</label>
+                        <select class="form-select rounded-pill px-3" style="padding: 12px; border-color: #e0e0e0;">
+                            <option>Buyer</option>
+                            <option>Seller</option>
+                            <option>Broker</option>
+                            <option>Developer</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary w-100 rounded-pill py-2" style="background: #006169; border: none; font-weight: 600;">Create Account</button>
+                    <p class="text-center small text-muted mt-3">
+                        <a href="login.html" style="color: #006169; text-decoration: none; font-weight: 500;">Go to Login Page →</a>
+                        &nbsp;|&nbsp;
+                        <a href="register.html" style="color: #006169; text-decoration: none; font-weight: 500;">Go to Register Page →</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // ===== PROFILE DROPDOWN TOGGLE =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileBtn = document.getElementById('profileBtn');
+            const profileDropdown = document.getElementById('profileDropdown');
+
+            if (profileBtn && profileDropdown) {
+                profileBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    profileDropdown.classList.toggle('show');
+                });
+
+                document.addEventListener('click', function(e) {
+                    if (!profileBtn.contains(e.target) && !profileDropdown.contains(e.target)) {
+                        profileDropdown.classList.remove('show');
+                    }
+                });
+            }
+        });
+
+        // ===== CALENDAR =====
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
+        let selectedDate = new Date();
+
+        function renderCalendar(month, year) {
+            const grid = document.getElementById('calendarGrid');
+            const monthTitle = document.getElementById('monthTitle');
+            
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            monthTitle.textContent = monthNames[month] + ' ' + year;
+
+            // Clear existing days (keep day names)
+            const dayNames = grid.querySelectorAll('.day-name');
+            grid.innerHTML = '';
+            dayNames.forEach(name => grid.appendChild(name));
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const today = new Date();
+
+            // Empty cells for days before first day
+            for (let i = 0; i < firstDay; i++) {
+                const empty = document.createElement('div');
+                empty.className = 'day-cell';
+                grid.appendChild(empty);
+            }
+
+            // Days of the month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const cell = document.createElement('div');
+                cell.className = 'day-cell';
+                
+                const dateObj = new Date(year, month, day);
+                const isPast = dateObj < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+                const isToday = dateObj.getDate() === today.getDate() && dateObj.getMonth() === today.getMonth() && dateObj.getFullYear() === today.getFullYear();
+                
+                if (isPast) {
+                    cell.classList.add('past');
+                }
+                
+                if (isToday) {
+                    cell.classList.add('selected');
+                }
+
+                // Random bookings for demo
+                if ((day % 5 === 0 || day % 7 === 0) && !isPast) {
+                    cell.classList.add('has-booking');
+                }
+
+                cell.innerHTML = `<span class="day-number">${day}</span>`;
+                
+                cell.addEventListener('click', function() {
+                    if (this.classList.contains('past')) return;
+                    document.querySelectorAll('.day-cell').forEach(c => c.classList.remove('selected'));
+                    this.classList.add('selected');
+                    
+                    const selectedDay = this.querySelector('.day-number').textContent;
+                    document.getElementById('selectedDateDisplay').textContent = monthNames[month] + ' ' + selectedDay + ', ' + year;
+                });
+
+                grid.appendChild(cell);
+            }
+        }
+
+        document.getElementById('prevMonth').addEventListener('click', function() {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            renderCalendar(currentMonth, currentYear);
+        });
+
+        document.getElementById('nextMonth').addEventListener('click', function() {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            renderCalendar(currentMonth, currentYear);
+        });
+
+        // ===== TIME SLOT SELECTION =====
+        document.querySelectorAll('.time-slot').forEach(slot => {
+            slot.addEventListener('click', function() {
+                if (this.classList.contains('unavailable')) return;
+                document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
+        // ===== VIEW SWITCHER =====
+        document.getElementById('calendarViewBtn').addEventListener('click', function() {
+            this.classList.add('active');
+            document.getElementById('listViewBtn').classList.remove('active');
+            // Show calendar view
+        });
+
+        document.getElementById('listViewBtn').addEventListener('click', function() {
+            this.classList.add('active');
+            document.getElementById('calendarViewBtn').classList.remove('active');
+            // Show list view
+        });
+
+        // ===== TAB SWITCHING =====
+        document.getElementById('loginTab').addEventListener('click', function() {
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('registerForm').style.display = 'none';
+            this.classList.add('active');
+            this.style.background = '#006169';
+            this.style.color = 'white';
+            document.getElementById('registerTab').classList.remove('active');
+            document.getElementById('registerTab').style.background = 'transparent';
+            document.getElementById('registerTab').style.color = '#006169';
+        });
+        
+        document.getElementById('registerTab').addEventListener('click', function() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+            this.classList.add('active');
+            this.style.background = '#006169';
+            this.style.color = 'white';
+            document.getElementById('loginTab').classList.remove('active');
+            document.getElementById('loginTab').style.background = 'transparent';
+            document.getElementById('loginTab').style.color = '#006169';
+        });
+
+        // ===== AUTO-HIGHLIGHT NAVBAR =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.navbar .nav-link');
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+
+        // ===== INITIAL RENDER =====
+        renderCalendar(currentMonth, currentYear);
+    </script>
+</body>
+</html>
