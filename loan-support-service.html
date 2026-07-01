@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="South Window - Loan Support Service" />
+    <meta name="author" content="South Window" />
+    <title>Loan Support Service - South Window</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/mystyle.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #f0f2f5;
+        }
+
+        .navbar-custom {
+            background: #ffffff !important;
+            padding: 0 !important;
+            min-height: 50px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08) !important;
+            border-radius: 0 !important;
+            position: relative;
+            z-index: 1050 !important;
+            overflow: visible !important;
+        }
+
+        .navbar-custom .navbar-brand {
+            color: #004d40 !important;
+            font-size: 1.3rem !important;
+        }
+        .navbar-custom .navbar-brand img {
+            height: 34px !important;
+            width: auto !important;
+        }
+
+        .navbar-custom .navbar-nav .nav-link {
+            padding: 8px 22px !important;
+            font-size: 15px !important;
+            color: #004d40 !important;
+            border-radius: 30px !important;
+            transition: all 0.3s ease !important;
+            font-weight: 500 !important;
+            background: transparent !important;
+        }
+
+        .navbar-custom .navbar-nav .nav-link:hover {
+            background: rgba(0, 105, 92, 0.08) !important;
+            color: #004d40 !important;
+        }
+
+        .navbar-custom .navbar-nav .nav-link.active {
+            color: #00695c !important;
+            background: rgba(0, 105, 92, 0.08) !important;
+            font-weight: 600 !important;
+            box-shadow: none !important;
+        }
+
+        .top-gradient {
+            background: linear-gradient(90deg, #ffffff 0%, #ffffff 20%, #00695c 45%, #00695c 55%, #ffffff 80%, #ffffff 100%);
+            padding: 8px 0;
+        }
+
+        .top-gradient .date-text {
+            color: #ffffff;
+            font-weight: 500;
+            font-size: 15px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            overflow: visible !important;
+        }
+
+        .nav-icons .notification-btn {
+            position: relative;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #1a2a3a;
+            font-size: 1.1rem;
+        }
+
+        .nav-icons .notification-btn:hover {
+            background: #e9ecef;
+        }
+
+        .nav-icons .notification-btn .badge-dot {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 8px;
+            height: 8px;
+            background: #dc3545;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        .nav-icons .profile-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 4px 12px 4px 4px;
+            border-radius: 30px;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #1a2a3a;
+        }
+
+        .nav-icons .profile-btn:hover {
+            background: #e9ecef;
+        }
+
+        .nav-icons .profile-btn .avatar-sm {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #00695c;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.75rem;
+        }
+
+        .nav-icons .profile-btn span {
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .profile-dropdown-menu {
+            position: absolute !important;
+            top: calc(100% + 8px) !important;
+            right: 0 !important;
+            left: auto !important;
+            background: white !important;
+            border-radius: 16px !important;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15) !important;
+            border: 1px solid #e9ecef !important;
+            min-width: 240px !important;
+            padding: 8px 0 !important;
+            display: none !important;
+            z-index: 9999 !important;
+        }
+
+        .profile-dropdown-menu.show {
+            display: block !important;
+        }
+
+        .profile-dropdown-menu .dropdown-header {
+            padding: 12px 20px 16px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .profile-dropdown-menu .dropdown-header .user-name {
+            font-weight: 700;
+            color: #1a2a3a;
+            font-size: 0.95rem;
+        }
+
+        .profile-dropdown-menu .dropdown-header .user-email {
+            color: #6c757d;
+            font-size: 0.8rem;
+        }
+
+        .profile-dropdown-menu .dropdown-header .user-role {
+            font-size: 0.7rem;
+            color: #00695c;
+            font-weight: 600;
+        }
+
+        .profile-dropdown-menu .dropdown-item {
+            padding: 10px 20px;
+            color: #6c757d;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .profile-dropdown-menu .dropdown-item:hover {
+            background: rgba(0,105,92,0.06);
+            color: #00695c;
+        }
+
+        .profile-dropdown-menu .dropdown-item i {
+            font-size: 1rem;
+            width: 20px;
+        }
+
+        .profile-dropdown-menu .dropdown-divider {
+            height: 1px;
+            background: #e9ecef;
+            margin: 6px 0;
+        }
+
+        .profile-dropdown-menu .dropdown-item.danger {
+            color: #dc3545;
+        }
+
+        .profile-dropdown-menu .dropdown-item.danger:hover {
+            background: #fce4ec;
+            color: #c62828;
+        }
+
+        /* ===== PAGE HEADER ===== */
+        .page-header {
+            background: white;
+            padding: 24px 30px;
+            border-bottom: 1px solid #e9ecef;
+            margin-top: 20px;
+        }
+
+        .page-header h4 {
+            font-weight: 800;
+            color: #1a2a3a;
+            margin-bottom: 4px;
+        }
+
+        .page-header p {
+            color: #6c757d;
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        .badge-result {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: #f8f9fa;
+            color: #6c757d;
+            border: 1px solid #e9ecef;
+        }
+
+        /* ===== HERO ===== */
+        .support-hero {
+            background: linear-gradient(135deg, #00695c 0%, #004d40 100%);
+            padding: 50px 0;
+            border-radius: 0 0 30px 30px;
+            color: white;
+            text-align: center;
+        }
+
+        .support-hero h1 {
+            font-weight: 800;
+            font-size: 2.2rem;
+        }
+
+        .support-hero p {
+            opacity: 0.85;
+            font-size: 1.05rem;
+        }
+
+        /* ===== PROCESS STEPS ===== */
+        .process-step {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,105,92,0.08);
+            border-color: #00695c;
+        }
+
+        .process-step .step-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(0,105,92,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            color: #00695c;
+            font-size: 1.5rem;
+        }
+
+        .process-step .step-number {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #00695c;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .process-step h6 {
+            font-weight: 700;
+            color: #1a2a3a;
+        }
+
+        .process-step p {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-bottom: 0;
+        }
+
+        /* ===== BANK LOGOS ===== */
+        .partner-bank {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #e9ecef;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .partner-bank:hover {
+            border-color: #00695c;
+            box-shadow: 0 4px 20px rgba(0,105,92,0.06);
+        }
+
+        .partner-bank .bank-icon {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+        }
+
+        .partner-bank h6 {
+            font-weight: 700;
+            color: #1a2a3a;
+            font-size: 0.9rem;
+        }
+
+        .partner-bank p {
+            font-size: 0.75rem;
+            color: #6c757d;
+            margin-bottom: 0;
+        }
+
+        /* ===== CHECKLIST ===== */
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .checklist-item .check-icon {
+            color: #00a896;
+            font-size: 1.2rem;
+        }
+
+        .checklist-item .check-label {
+            font-size: 0.9rem;
+            color: #1a2a3a;
+        }
+
+        .checklist-item .check-label .badge-doc {
+            font-size: 0.6rem;
+            padding: 2px 10px;
+            border-radius: 20px;
+            margin-left: 8px;
+        }
+
+        .badge-doc.required {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .badge-doc.optional {
+            background: #cce5ff;
+            color: #004085;
+        }
+
+        /* ===== ENQUIRY FORM ===== */
+        .enquiry-card {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #e9ecef;
+            padding: 30px;
+        }
+
+        .enquiry-card .form-label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #1a2a3a;
+        }
+
+        .enquiry-card .form-control,
+        .enquiry-card .form-select {
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            padding: 10px 14px;
+        }
+
+        .enquiry-card .form-control:focus,
+        .enquiry-card .form-select:focus {
+            border-color: #00695c;
+            box-shadow: 0 0 0 0.2rem rgba(0,105,92,0.1);
+        }
+
+        /* ===== FAQ ===== */
+        .faq-item {
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .faq-item .faq-question {
+            padding: 16px 20px;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: #1a2a3a;
+        }
+
+        .faq-item .faq-question:hover {
+            background: #f8f9fa;
+        }
+
+        .faq-item .faq-question .faq-icon {
+            transition: all 0.3s ease;
+        }
+
+        .faq-item .faq-question .faq-icon.open {
+            transform: rotate(180deg);
+        }
+
+        .faq-item .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: #fafbfc;
+        }
+
+        .faq-item .faq-answer.open {
+            padding: 16px 20px;
+            max-height: 500px;
+        }
+
+        .faq-item .faq-answer p {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 0;
+        }
+
+        /* ===== CTA ===== */
+        .cta-support {
+            background: linear-gradient(135deg, #00695c, #004d40);
+            border-radius: 16px;
+            padding: 40px;
+            color: white;
+            text-align: center;
+        }
+
+        .cta-support h3 {
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .cta-support p {
+            opacity: 0.85;
+            margin-bottom: 20px;
+        }
+
+        .cta-support .btn-cta {
+            background: white;
+            color: #00695c;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .cta-support .btn-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .support-hero h1 {
+                font-size: 1.6rem;
+            }
+            .process-step {
+                padding: 15px;
+            }
+            .enquiry-card {
+                padding: 20px;
+            }
+            .cta-support {
+                padding: 25px 20px;
+            }
+            .page-header {
+                padding: 16px 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .nav-icons .profile-btn span {
+                display: none;
+            }
+            .nav-icons .profile-btn {
+                padding: 4px 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <div style="border-radius: 0; box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08); overflow: hidden;">
+
+        <div class="top-gradient">
+            <div class="container px-4 px-lg-5">
+                <div class="text-center">
+                    <span class="date-text">
+                        <i class="bi bi-calendar3 me-1"></i> Wednesday, 10 August 2026
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg navbar-custom">
+            <div class="container px-4 px-lg-5" style="overflow: visible !important;">
+
+                <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
+                    <img src="assets/logo1.png" alt="South Window Logo" style="height: 26px; width: auto; margin-right: 6px;">
+                    South Window
+                </a>
+
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" style="background: rgba(0,77,64,0.08); padding: 2px 5px;">
+                    <span class="navbar-toggler-icon" style="width: 18px; height: 18px;"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarMain" style="overflow: visible !important;">
+
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="gap: 4px;">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="property-listing.html">Properties</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="loan-support.html">Loan Support</a></li>
+                    </ul>
+
+                    <div class="nav-icons" style="overflow: visible !important;">
+                        <div class="notification-btn">
+                            <i class="bi bi-bell"></i>
+                            <span class="badge-dot"></span>
+                        </div>
+
+                        <div class="profile-btn" id="profileBtn">
+                            <div class="avatar-sm">JD</div>
+                            <span>John Doe</span>
+                            <i class="bi bi-chevron-down" style="font-size: 0.7rem; color: #6c757d;"></i>
+                        </div>
+
+                        <div class="profile-dropdown-menu" id="profileDropdown">
+                            <div class="dropdown-header">
+                                <div class="user-name">John Doe</div>
+                                <div class="user-email">john.doe@email.com</div>
+                                <div class="user-role">● Verified Buyer</div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item"><i class="bi bi-person"></i> My Profile</a>
+                            <a href="#" class="dropdown-item"><i class="bi bi-gear"></i> Settings</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item danger"><i class="bi bi-box-arrow-right"></i> Logout</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </nav>
+
+    </div>
+
+    <!-- ===== PAGE HEADER ===== -->
+    <div class="page-header">
+        <div class="d-flex justify-content-between align-items-center flex-wrap">
+            <div>
+                <h4><i class="bi bi-headset" style="color: #00695c;"></i> Loan Support Service</h4>
+                <p>Get expert assistance for your home loan</p>
+            </div>
+            <span class="badge-result"><kbd>F19</kbd> Loan Support</span>
+        </div>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section class="support-hero">
+        <div class="container">
+            <h1><i class="bi bi-building"></i> We Make Home Loans Easy</h1>
+            <p>Get expert guidance from loan specialists to find the best deal</p>
+        </div>
+    </section>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <section style="padding: 40px 20px;">
+        <div class="container">
+
+            <!-- ===== PROCESS STEPS ===== -->
+            <h5 class="fw-bold mb-4"><i class="bi bi-steps" style="color: #00695c;"></i> How It Works</h5>
+            <div class="row g-3 mb-5">
+                <div class="col-md-3 col-6">
+                    <div class="process-step">
+                        <span class="step-number">Step 1</span>
+                        <div class="step-icon"><i class="bi bi-file-text"></i></div>
+                        <h6>Apply Online</h6>
+                        <p>Fill in your details and property information</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="process-step">
+                        <span class="step-number">Step 2</span>
+                        <div class="step-icon"><i class="bi bi-person-check"></i></div>
+                        <h6>Get Assessed</h6>
+                        <p>Our experts evaluate your eligibility</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="process-step">
+                        <span class="step-number">Step 3</span>
+                        <div class="step-icon"><i class="bi bi-bank"></i></div>
+                        <h6>Bank Matching</h6>
+                        <p>We find the best bank for your needs</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="process-step">
+                        <span class="step-number">Step 4</span>
+                        <div class="step-icon"><i class="bi bi-check-circle"></i></div>
+                        <h6>Loan Approval</h6>
+                        <p>Get your loan approved quickly</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== PARTNER BANKS ===== -->
+            <h5 class="fw-bold mb-4"><i class="bi bi-bank2" style="color: #00695c;"></i> Our Partner Banks</h5>
+            <div class="row g-3 mb-5">
+                <div class="col-md-2 col-4">
+                    <div class="partner-bank">
+                        <div class="bank-icon">🏦</div>
+                        <h6>Brac Bank</h6>
+                        <p>9.5% · 20 yrs</p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-4">
+                    <div class="partner-bank">
+                        <div class="bank-icon">🏦</div>
+                        <h6>DBBL</h6>
+                        <p>9.0% · 25 yrs</p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-4">
+                    <div class="partner-bank">
+                        <div class="bank-icon">🏦</div>
+                        <h6>City Bank</h6>
+                        <p>10.0% · 20 yrs</p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-4">
+                    <div class="partner-bank">
+                        <div class="bank-icon">🏦</div>
+                        <h6>Standard Chartered</h6>
+                        <p>9.75% · 20 yrs</p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-4">
+                    <div class="partner-bank">
+                        <div class="bank-icon">🏦</div>
+                        <h6>HSBC</h6>
+                        <p>9.25% · 25 yrs</p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-4">
+                    <div class="partner-bank">
+                        <div class="bank-icon">🏦</div>
+                        <h6>Eastern Bank</h6>
+                        <p>9.8% · 20 yrs</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== CHECKLIST + ENQUIRY ===== -->
+            <div class="row g-4">
+
+                <!-- ===== DOCUMENT CHECKLIST ===== -->
+                <div class="col-lg-6">
+                    <div class="enquiry-card">
+                        <h5 class="fw-bold mb-3"><i class="bi bi-list-check" style="color: #00695c;"></i> Document Checklist</h5>
+                        <p class="text-muted small">Prepare these documents for a smooth loan process</p>
+                        <div class="checklist-item">
+                            <span class="check-icon"><i class="bi bi-check-circle-fill"></i></span>
+                            <span class="check-label">National ID / Passport <span class="badge-doc required">Required</span></span>
+                        </div>
+                        <div class="checklist-item">
+                            <span class="check-icon"><i class="bi bi-check-circle-fill"></i></span>
+                            <span class="check-label">Tax Identification Number (TIN) <span class="badge-doc required">Required</span></span>
+                        </div>
+                        <div class="checklist-item">
+                            <span class="check-icon"><i class="bi bi-check-circle-fill"></i></span>
+                            <span class="check-label">Salary Certificate / Income Proof <span class="badge-doc required">Required</span></span>
+                        </div>
+                        <div class="checklist-item">
+                            <span class="check-icon"><i class="bi bi-check-circle-fill"></i></span>
+                            <span class="check-label">Bank Statements (Last 6 months) <span class="badge-doc required">Required</span></span>
+                        </div>
+                        <div class="checklist-item">
+                            <span class="check-icon"><i class="bi bi-check-circle-fill"></i></span>
+                            <span class="check-label">Property Title Deed <span class="badge-doc required">Required</span></span>
+                        </div>
+                        <div class="checklist-item">
+                            <span class="check-icon"><i class="bi bi-check-circle-fill"></i></span>
+                            <span class="check-label">Property Valuation Report <span class="badge-doc optional">Optional</span></span>
+                        </div>
+                        <div class="checklist-item">
+                            <span class="check-icon"><i class="bi bi-check-circle-fill"></i></span>
+                            <span class="check-label">Credit Report <span class="badge-doc optional">Optional</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== ENQUIRY FORM ===== -->
+                <div class="col-lg-6">
+                    <div class="enquiry-card">
+                        <h5 class="fw-bold mb-3"><i class="bi bi-envelope" style="color: #00695c;"></i> Enquire Now</h5>
+                        <p class="text-muted small">Our loan expert will contact you within 24 hours</p>
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label class="form-label">Full Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" placeholder="Enter your full name">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Email Address <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" placeholder="Enter your email">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Phone Number <span class="text-danger">*</span></label>
+                                <input type="tel" class="form-control" placeholder="+880 1XXX XXXXXX">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Loan Amount (BDT)</label>
+                                <select class="form-select">
+                                    <option value="">Select amount range</option>
+                                    <option>Up to 10,00,000</option>
+                                    <option>10,00,000 - 25,00,000</option>
+                                    <option>25,00,000 - 50,00,000</option>
+                                    <option>50,00,000 - 1,00,00,000</option>
+                                    <option>1,00,00,000+</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Message</label>
+                                <textarea class="form-control" rows="2" placeholder="Tell us about your requirement..."></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary rounded-pill w-100 py-2" style="background: #00695c; border: none; font-weight: 600;" onclick="alert('Thank you! Our loan expert will contact you within 24 hours.')">
+                                    <i class="bi bi-send"></i> Submit Enquiry
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ===== FAQ ===== -->
+            <div class="mt-5">
+                <h5 class="fw-bold mb-4"><i class="bi bi-question-circle" style="color: #00695c;"></i> Frequently Asked Questions</h5>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What documents are required for a home loan?</span>
+                        <span class="faq-icon"><i class="bi bi-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You will need: National ID/Passport, TIN, Salary Certificate/Income Proof, Bank Statements (last 6 months), and Property Title Deed. Additional documents may be required based on bank policy.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What is the maximum loan amount I can get?</span>
+                        <span class="faq-icon"><i class="bi bi-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The maximum loan amount depends on your income, existing liabilities, and property value. Typically, banks offer up to 80-90% of the property value, subject to your repayment capacity.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What is the loan processing time?</span>
+                        <span class="faq-icon"><i class="bi bi-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Typically, loan processing takes 5-15 working days from the date of complete document submission. This includes document verification, property valuation, and credit assessment.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What is the interest rate for home loans?</span>
+                        <span class="faq-icon"><i class="bi bi-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Interest rates vary by bank and typically range from 9% to 12% per annum. The exact rate depends on your profile, loan amount, tenure, and the bank's policy. Our experts will help you find the best rate.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Can I prepay my home loan?</span>
+                        <span class="faq-icon"><i class="bi bi-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, most banks allow prepayment with minimal charges. Some banks may have a lock-in period of 1-3 years. Check with your bank for specific terms and prepayment fees.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== CTA ===== -->
+            <div class="mt-5">
+                <div class="cta-support">
+                    <h3>Ready to Get Your Loan?</h3>
+                    <p>Our experts are here to guide you through the entire process</p>
+                    <button class="btn-cta" onclick="document.querySelector('.enquiry-card').scrollIntoView({ behavior: 'smooth' })">
+                        <i class="bi bi-send"></i> Get Started Now
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== LOGIN MODAL ===== -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 p-4" style="border: none; max-width: 460px; margin: 0 auto; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.15);">
+                <button type="button" class="btn-close position-absolute top-0 end-0 mt-3 me-3" data-bs-dismiss="modal" style="z-index: 10;"></button>
+                <div class="text-center mb-3">
+                    <h4 class="fw-bold" style="color: #006169;">South Window</h4>
+                    <p class="text-muted small">Your trusted property partner</p>
+                </div>
+                <ul class="nav nav-pills justify-content-center mb-3" style="gap: 10px;">
+                    <li class="nav-item">
+                        <button class="nav-link active rounded-pill px-4" id="loginTab" style="background: #006169; color: white; border: none; padding: 8px 28px;">Login</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link rounded-pill px-4" id="registerTab" style="background: transparent; color: #006169; border: 1px solid #006169; padding: 8px 28px;">Register</button>
+                    </li>
+                </ul>
+                <div id="loginForm">
+                    <div class="d-grid gap-2 mb-3">
+                        <button class="btn btn-outline-secondary rounded-pill py-2" style="border-color: #ddd; font-weight: 500;">
+                            <i class="bi bi-google me-2" style="color: #ea4335;"></i> Continue with Google
+                        </button>
+                        <button class="btn btn-outline-secondary rounded-pill py-2" style="border-color: #ddd; font-weight: 500;">
+                            <i class="bi bi-facebook me-2" style="color: #1877f2;"></i> Continue with Facebook
+                        </button>
+                    </div>
+                    <div class="text-center mb-3"><span class="text-muted small">OR</span></div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Email or Phone</label>
+                        <input type="text" class="form-control rounded-pill px-3" placeholder="Enter email or phone number" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Password</label>
+                        <input type="password" class="form-control rounded-pill px-3" placeholder="Enter your password" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="rememberMe">
+                            <label class="form-check-label small" for="rememberMe">Keep me signed in</label>
+                        </div>
+                        <a href="#" class="small text-decoration-none" style="color: #006169;">Forgot Password?</a>
+                    </div>
+                    <button class="btn btn-primary w-100 rounded-pill py-2" style="background: #006169; border: none; font-weight: 600;">Continue</button>
+                    <p class="text-center small text-muted mt-3">
+                        <a href="login.html" style="color: #006169; text-decoration: none; font-weight: 500;">Go to Login Page →</a>
+                        &nbsp;|&nbsp;
+                        <a href="register.html" style="color: #006169; text-decoration: none; font-weight: 500;">Go to Register Page →</a>
+                    </p>
+                </div>
+                <div id="registerForm" style="display: none;">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Full Name</label>
+                        <input type="text" class="form-control rounded-pill px-3" placeholder="Enter your full name" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Email</label>
+                        <input type="email" class="form-control rounded-pill px-3" placeholder="Enter your email" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Phone Number</label>
+                        <input type="tel" class="form-control rounded-pill px-3" placeholder="+880 1XXX XXXXXX" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Password</label>
+                        <input type="password" class="form-control rounded-pill px-3" placeholder="Create a password" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">User Type</label>
+                        <select class="form-select rounded-pill px-3" style="padding: 12px; border-color: #e0e0e0;">
+                            <option>Buyer</option>
+                            <option>Seller</option>
+                            <option>Broker</option>
+                            <option>Developer</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary w-100 rounded-pill py-2" style="background: #006169; border: none; font-weight: 600;">Create Account</button>
+                    <p class="text-center small text-muted mt-3">
+                        <a href="login.html" style="color: #006169; text-decoration: none; font-weight: 500;">Go to Login Page →</a>
+                        &nbsp;|&nbsp;
+                        <a href="register.html" style="color: #006169; text-decoration: none; font-weight: 500;">Go to Register Page →</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // ===== PROFILE DROPDOWN =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileBtn = document.getElementById('profileBtn');
+            const profileDropdown = document.getElementById('profileDropdown');
+
+            if (profileBtn && profileDropdown) {
+                profileBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    profileDropdown.classList.toggle('show');
+                });
+
+                document.addEventListener('click', function(e) {
+                    if (!profileBtn.contains(e.target) && !profileDropdown.contains(e.target)) {
+                        profileDropdown.classList.remove('show');
+                    }
+                });
+            }
+        });
+
+        // ===== FAQ TOGGLE =====
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('.faq-icon i');
+
+            // Close all other FAQs
+            document.querySelectorAll('.faq-answer').forEach(el => {
+                if (el !== answer) {
+                    el.classList.remove('open');
+                    el.previousElementSibling.querySelector('.faq-icon i').className = 'bi bi-chevron-down';
+                }
+            });
+
+            answer.classList.toggle('open');
+            if (answer.classList.contains('open')) {
+                icon.className = 'bi bi-chevron-up';
+            } else {
+                icon.className = 'bi bi-chevron-down';
+            }
+        }
+
+        // ===== TAB SWITCHING =====
+        document.getElementById('loginTab').addEventListener('click', function() {
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('registerForm').style.display = 'none';
+            this.classList.add('active');
+            this.style.background = '#006169';
+            this.style.color = 'white';
+            document.getElementById('registerTab').classList.remove('active');
+            document.getElementById('registerTab').style.background = 'transparent';
+            document.getElementById('registerTab').style.color = '#006169';
+        });
+
+        document.getElementById('registerTab').addEventListener('click', function() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+            this.classList.add('active');
+            this.style.background = '#006169';
+            this.style.color = 'white';
+            document.getElementById('loginTab').classList.remove('active');
+            document.getElementById('loginTab').style.background = 'transparent';
+            document.getElementById('loginTab').style.color = '#006169';
+        });
+
+        // ===== AUTO-HIGHLIGHT NAVBAR =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.navbar .nav-link');
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            // F19 Shortcut
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'F19') {
+                    e.preventDefault();
+                    document.querySelector('.support-hero').scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
