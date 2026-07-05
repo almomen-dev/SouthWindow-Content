@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="South Window - Testimonial Submission" />
+    <meta name="author" content="South Window" />
+    <title>Testimonial Submission - South Window</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/mystyle.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        body {
+            background: #f0f2f5;
+        }
+
+        .navbar-custom {
+            background: #ffffff !important;
+            padding: 0 !important;
+            min-height: 50px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08) !important;
+            border-radius: 0 !important;
+            position: relative;
+            z-index: 1050 !important;
+            overflow: visible !important;
+        }
+        .navbar-custom .navbar-brand {
+            color: #004d40 !important;
+            font-size: 1.3rem !important;
+        }
+        .navbar-custom .navbar-brand img {
+            height: 34px !important;
+            width: auto !important;
+        }
+        .navbar-custom .navbar-nav .nav-link {
+            padding: 8px 22px !important;
+            font-size: 15px !important;
+            color: #004d40 !important;
+            border-radius: 30px !important;
+            transition: all 0.3s ease !important;
+            font-weight: 500 !important;
+            background: transparent !important;
+        }
+        .navbar-custom .navbar-nav .nav-link:hover {
+            background: rgba(0, 105, 92, 0.08) !important;
+            color: #004d40 !important;
+        }
+        .navbar-custom .navbar-nav .nav-link.active {
+            color: #00695c !important;
+            background: rgba(0, 105, 92, 0.08) !important;
+            font-weight: 600 !important;
+            box-shadow: none !important;
+        }
+
+        .top-gradient {
+            background: linear-gradient(90deg, #ffffff 0%, #ffffff 20%, #00695c 45%, #00695c 55%, #ffffff 80%, #ffffff 100%);
+            padding: 8px 0;
+        }
+        .top-gradient .date-text {
+            color: #ffffff;
+            font-weight: 500;
+            font-size: 15px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            overflow: visible !important;
+        }
+        .nav-icons .notification-btn {
+            position: relative;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #1a2a3a;
+            font-size: 1.1rem;
+        }
+        .nav-icons .notification-btn:hover {
+            background: #e9ecef;
+        }
+        .nav-icons .notification-btn .badge-dot {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 8px;
+            height: 8px;
+            background: #dc3545;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+        .nav-icons .profile-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 4px 12px 4px 4px;
+            border-radius: 30px;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #1a2a3a;
+        }
+        .nav-icons .profile-btn:hover {
+            background: #e9ecef;
+        }
+        .nav-icons .profile-btn .avatar-sm {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #00695c;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.75rem;
+        }
+        .nav-icons .profile-btn span {
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .profile-dropdown-menu {
+            position: absolute !important;
+            top: calc(100% + 8px) !important;
+            right: 0 !important;
+            left: auto !important;
+            background: white !important;
+            border-radius: 16px !important;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15) !important;
+            border: 1px solid #e9ecef !important;
+            min-width: 240px !important;
+            padding: 8px 0 !important;
+            display: none !important;
+            z-index: 9999 !important;
+        }
+        .profile-dropdown-menu.show {
+            display: block !important;
+        }
+        .profile-dropdown-menu .dropdown-header {
+            padding: 12px 20px 16px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .profile-dropdown-menu .dropdown-header .user-name {
+            font-weight: 700;
+            color: #1a2a3a;
+            font-size: 0.95rem;
+        }
+        .profile-dropdown-menu .dropdown-header .user-email {
+            color: #6c757d;
+            font-size: 0.8rem;
+        }
+        .profile-dropdown-menu .dropdown-header .user-role {
+            font-size: 0.7rem;
+            color: #00695c;
+            font-weight: 600;
+        }
+        .profile-dropdown-menu .dropdown-item {
+            padding: 10px 20px;
+            color: #6c757d;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .profile-dropdown-menu .dropdown-item:hover {
+            background: rgba(0,105,92,0.06);
+            color: #00695c;
+        }
+        .profile-dropdown-menu .dropdown-item i {
+            font-size: 1rem;
+            width: 20px;
+        }
+        .profile-dropdown-menu .dropdown-divider {
+            height: 1px;
+            background: #e9ecef;
+            margin: 6px 0;
+        }
+        .profile-dropdown-menu .dropdown-item.danger {
+            color: #dc3545;
+        }
+        .profile-dropdown-menu .dropdown-item.danger:hover {
+            background: #fce4ec;
+            color: #c62828;
+        }
+
+        .page-header {
+            background: white;
+            padding: 24px 30px;
+            border-bottom: 1px solid #e9ecef;
+            margin-top: 20px;
+        }
+        .page-header h4 {
+            font-weight: 800;
+            color: #1a2a3a;
+            margin-bottom: 4px;
+        }
+        .page-header p {
+            color: #6c757d;
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        .badge-result {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: #f8f9fa;
+            color: #6c757d;
+            border: 1px solid #e9ecef;
+        }
+
+        .form-container {
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e9ecef;
+            padding: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.05);
+        }
+        .form-container .form-label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #1a2a3a;
+        }
+        .form-container .form-control,
+        .form-container .form-select {
+            border-radius: 12px;
+            border: 2px solid #e9ecef;
+            padding: 10px 14px;
+            transition: all 0.3s ease;
+        }
+        .form-container .form-control:focus,
+        .form-container .form-select:focus {
+            border-color: #00695c;
+            box-shadow: 0 0 0 0.2rem rgba(0,105,92,0.1);
+        }
+        .form-container .form-control::placeholder {
+            color: #adb5bd;
+        }
+
+        .star-rating {
+            display: flex;
+            flex-direction: row-reverse;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+        .star-rating input {
+            display: none;
+        }
+        .star-rating label {
+            font-size: 2.5rem;
+            color: #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .star-rating label:hover,
+        .star-rating label:hover ~ label,
+        .star-rating input:checked ~ label {
+            color: #ffc107;
+        }
+
+        .upload-area {
+            border: 2px dashed #e9ecef;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: #fafbfc;
+        }
+        .upload-area:hover {
+            border-color: #00695c;
+            background: rgba(0,105,92,0.02);
+        }
+        .upload-area i {
+            font-size: 2.5rem;
+            color: #00695c;
+        }
+        .upload-area p {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+        .upload-area .small-text {
+            font-size: 0.75rem;
+            color: #adb5bd;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #00695c, #00a896);
+            border: none;
+            border-radius: 12px;
+            padding: 14px;
+            font-weight: 700;
+            width: 100%;
+            color: white;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,105,92,0.25);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .success-message {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .success-message .icon {
+            font-size: 4rem;
+            color: #00a896;
+            margin-bottom: 16px;
+        }
+        .success-message h4 {
+            font-weight: 700;
+            color: #1a2a3a;
+        }
+        .success-message p {
+            color: #6c757d;
+        }
+
+        .footer-custom {
+            background: #00695c;
+            padding: 20px 0;
+            border-top: 2px solid #004d40;
+        }
+
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 16px 20px;
+            }
+            .form-container {
+                padding: 20px;
+            }
+            .star-rating label {
+                font-size: 2rem;
+            }
+        }
+        @media (max-width: 576px) {
+            .nav-icons .profile-btn span {
+                display: none;
+            }
+            .nav-icons .profile-btn {
+                padding: 4px 6px;
+            }
+            .star-rating label {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <div style="border-radius: 0; box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08); overflow: hidden;">
+
+        <div class="top-gradient">
+            <div class="container px-4 px-lg-5">
+                <div class="text-center">
+                    <span class="date-text">
+                        <i class="bi bi-calendar3 me-1"></i> Wednesday, 10 August 2026
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg navbar-custom">
+            <div class="container px-4 px-lg-5" style="overflow: visible !important;">
+
+                <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
+                    <img src="assets/logo1.png" alt="South Window Logo" style="height: 26px; width: auto; margin-right: 6px;">
+                    South Window
+                </a>
+
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" style="background: rgba(0,77,64,0.08); padding: 2px 5px;">
+                    <span class="navbar-toggler-icon" style="width: 18px; height: 18px;"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarMain" style="overflow: visible !important;">
+
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="gap: 4px;">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about-us.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="property-listing.html">Properties</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    </ul>
+
+                    <div class="nav-icons" style="overflow: visible !important;">
+                        <div class="notification-btn">
+                            <i class="bi bi-bell"></i>
+                            <span class="badge-dot"></span>
+                        </div>
+
+                        <div class="profile-btn" id="profileBtn">
+                            <div class="avatar-sm">JD</div>
+                            <span>John Doe</span>
+                            <i class="bi bi-chevron-down" style="font-size: 0.7rem; color: #6c757d;"></i>
+                        </div>
+
+                        <div class="profile-dropdown-menu" id="profileDropdown">
+                            <div class="dropdown-header">
+                                <div class="user-name">John Doe</div>
+                                <div class="user-email">john.doe@email.com</div>
+                                <div class="user-role">● Verified Buyer</div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item"><i class="bi bi-person"></i> My Profile</a>
+                            <a href="#" class="dropdown-item"><i class="bi bi-gear"></i> Settings</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item danger"><i class="bi bi-box-arrow-right"></i> Logout</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </nav>
+
+    </div>
+
+    <!-- ===== PAGE HEADER ===== -->
+    <div class="page-header">
+        <div class="d-flex justify-content-between align-items-center flex-wrap">
+            <div>
+                <h4><i class="bi bi-star" style="color: #ffc107;"></i> Share Your Experience</h4>
+                <p>Help others by sharing your property buying journey</p>
+            </div>
+            <span class="badge-result"><kbd>F16</kbd> Testimonials</span>
+        </div>
+    </div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <section style="padding: 24px 20px 40px;">
+        <div class="container">
+
+            <div id="formWrapper">
+                <div class="form-container">
+
+                    <form id="testimonialForm" onsubmit="return submitTestimonial(event)">
+
+                        <!-- Step Indicator -->
+                        <div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 24px; flex-wrap: wrap;">
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span style="background: #00695c; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem;">1</span>
+                                <span style="font-weight: 600; color: #1a2a3a; font-size: 0.8rem;">Rating</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span style="background: #e9ecef; color: #6c757d; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem;">2</span>
+                                <span style="font-weight: 600; color: #6c757d; font-size: 0.8rem;">Review</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span style="background: #e9ecef; color: #6c757d; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem;">3</span>
+                                <span style="font-weight: 600; color: #6c757d; font-size: 0.8rem;">Media</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span style="background: #e9ecef; color: #6c757d; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem;">4</span>
+                                <span style="font-weight: 600; color: #6c757d; font-size: 0.8rem;">Submit</span>
+                            </div>
+                        </div>
+
+                        <!-- ===== 1. STAR RATING ===== -->
+                        <div class="mb-4">
+                            <label class="form-label">Overall Rating <span class="text-danger">*</span></label>
+                            <div class="star-rating" id="starRating">
+                                <input type="radio" name="rating" id="star5" value="5">
+                                <label for="star5" title="5 Stars"><i class="bi bi-star-fill"></i></label>
+                                <input type="radio" name="rating" id="star4" value="4">
+                                <label for="star4" title="4 Stars"><i class="bi bi-star-fill"></i></label>
+                                <input type="radio" name="rating" id="star3" value="3">
+                                <label for="star3" title="3 Stars"><i class="bi bi-star-fill"></i></label>
+                                <input type="radio" name="rating" id="star2" value="2">
+                                <label for="star2" title="2 Stars"><i class="bi bi-star-fill"></i></label>
+                                <input type="radio" name="rating" id="star1" value="1">
+                                <label for="star1" title="1 Star"><i class="bi bi-star-fill"></i></label>
+                                <span style="margin-left: 12px; font-weight: 600; color: #1a2a3a; font-size: 0.95rem;" id="ratingLabel">Select Rating</span>
+                            </div>
+                        </div>
+
+                        <!-- ===== 2. WRITTEN REVIEW ===== -->
+                        <div class="mb-4">
+                            <label class="form-label">Your Review <span class="text-danger">*</span></label>
+                            <textarea class="form-control" rows="4" placeholder="Share your experience with the property, seller, and overall journey..." required></textarea>
+                        </div>
+
+                        <!-- ===== 3. PROPERTY DETAILS ===== -->
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label">Property Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" placeholder="e.g. Luxury Apartment" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Transaction Date <span class="text-danger">*</span></label>
+                                <input type="date" class="form-control" value="2026-08-10" required>
+                            </div>
+                        </div>
+
+                        <!-- ===== 4. MEDIA UPLOAD ===== -->
+                        <div class="mb-4">
+                            <label class="form-label">Upload Audio / Video (Optional)</label>
+                            <div class="upload-area" onclick="document.getElementById('mediaUpload').click()">
+                                <i class="bi bi-cloud-upload"></i>
+                                <p>Click to upload audio/video testimonial</p>
+                                <span class="small-text">MP3, MP4, MOV · Max 2 minutes · Max 20MB</span>
+                                <input type="file" id="mediaUpload" style="display: none;" accept="audio/*,video/*">
+                            </div>
+                            <div id="fileInfo" style="display: none; margin-top: 8px; padding: 8px 16px; background: #f8f9fa; border-radius: 8px; border: 1px solid #e9ecef;">
+                                <i class="bi bi-check-circle" style="color: #00a896;"></i>
+                                <span id="fileName" style="font-size: 0.85rem; color: #1a2a3a;">file.mp3</span>
+                                <button type="button" class="btn btn-sm btn-outline-danger float-end" onclick="removeFile()" style="border: none; font-size: 0.7rem;">Remove</button>
+                            </div>
+                        </div>
+
+                        <!-- ===== 5. ANONYMOUS OPTION ===== -->
+                        <div class="mb-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="anonymousCheck">
+                                <label class="form-check-label" for="anonymousCheck">
+                                    <span style="font-weight: 600; color: #1a2a3a;">Submit Anonymously</span>
+                                    <p style="font-size: 0.8rem; color: #6c757d; margin-bottom: 0;">Your name and email will not be displayed publicly</p>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- ===== SUBMIT ===== -->
+                        <button type="submit" class="btn-submit" id="submitBtn">
+                            <i class="bi bi-send"></i> Submit Testimonial
+                        </button>
+
+                        <p class="text-center small text-muted mt-3">
+                            <i class="bi bi-shield-check"></i> Your testimonial will be reviewed before publishing
+                        </p>
+
+                    </form>
+
+                </div>
+            </div>
+
+            <!-- ===== SUCCESS MESSAGE ===== -->
+            <div id="successWrapper" style="display: none;">
+                <div class="form-container">
+                    <div class="success-message">
+                        <div class="icon"><i class="bi bi-check-circle-fill"></i></div>
+                        <h4>Thank You!</h4>
+                        <p>Your testimonial has been submitted successfully.<br>It will be reviewed and published shortly.</p>
+                        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 16px;">
+                            <a href="property-listing.html" class="btn btn-outline-primary rounded-pill px-4" style="border-color: #00695c; color: #00695c;">
+                                <i class="bi bi-arrow-left"></i> Browse Properties
+                            </a>
+                            <a href="index.html" class="btn btn-primary rounded-pill px-4" style="background: #00695c; border: none;">
+                                Go to Home
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== LOGIN MODAL ===== -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 p-4" style="border: none; max-width: 460px; margin: 0 auto; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.15);">
+                <button type="button" class="btn-close position-absolute top-0 end-0 mt-3 me-3" data-bs-dismiss="modal" style="z-index: 10;"></button>
+                <div class="text-center mb-3">
+                    <h4 class="fw-bold" style="color: #006169;">South Window</h4>
+                    <p class="text-muted small">Your trusted property partner</p>
+                </div>
+                <ul class="nav nav-pills justify-content-center mb-3" style="gap: 10px;">
+                    <li class="nav-item">
+                        <button class="nav-link active rounded-pill px-4" id="loginTab" style="background: #006169; color: white; border: none; padding: 8px 28px;">Login</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link rounded-pill px-4" id="registerTab" style="background: transparent; color: #006169; border: 1px solid #006169; padding: 8px 28px;">Register</button>
+                    </li>
+                </ul>
+                <div id="loginForm">
+                    <div class="d-grid gap-2 mb-3">
+                        <button class="btn btn-outline-secondary rounded-pill py-2" style="border-color: #ddd; font-weight: 500;">
+                            <i class="bi bi-google me-2" style="color: #ea4335;"></i> Continue with Google
+                        </button>
+                        <button class="btn btn-outline-secondary rounded-pill py-2" style="border-color: #ddd; font-weight: 500;">
+                            <i class="bi bi-facebook me-2" style="color: #1877f2;"></i> Continue with Facebook
+                        </button>
+                    </div>
+                    <div class="text-center mb-3"><span class="text-muted small">OR</span></div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Email or Phone</label>
+                        <input type="text" class="form-control rounded-pill px-3" placeholder="Enter email or phone number" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Password</label>
+                        <input type="password" class="form-control rounded-pill px-3" placeholder="Enter your password" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="rememberMe">
+                            <label class="form-check-label small" for="rememberMe">Keep me signed in</label>
+                        </div>
+                        <a href="#" class="small text-decoration-none" style="color: #006169;">Forgot Password?</a>
+                    </div>
+                    <button class="btn btn-primary w-100 rounded-pill py-2" style="background: #006169; border: none; font-weight: 600;">Continue</button>
+                    <p class="text-center small text-muted mt-3">
+                        <a href="login.html" style="color: #006169; text-decoration: none; font-weight: 500;">Go to Login Page →</a>
+                        &nbsp;|&nbsp;
+                        <a href="register.html" style="color: #006169; text-decoration: none; font-weight: 500;">Go to Register Page →</a>
+                    </p>
+                </div>
+                <div id="registerForm" style="display: none;">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Full Name</label>
+                        <input type="text" class="form-control rounded-pill px-3" placeholder="Enter your full name" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Email</label>
+                        <input type="email" class="form-control rounded-pill px-3" placeholder="Enter your email" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Phone Number</label>
+                        <input type="tel" class="form-control rounded-pill px-3" placeholder="+880 1XXX XXXXXX" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Password</label>
+                        <input type="password" class="form-control rounded-pill px-3" placeholder="Create a password" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">User Type</label>
+                        <select class="form-select rounded-pill px-3" style="padding: 12px; border-color: #e0e0e0;">
+                            <option>Buyer</option>
+                            <option>Seller</option>
+                            <option>Broker</option>
+                            <option>Developer</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary w-100 rounded-pill py-2" style="background: #006169; border: none; font-weight: 600;">Create Account</button>
+                    <p class="text-center small text-muted mt-3">
+                        <a href="login.html" style="color: #006169; text-decoration: none; font-weight: 500;">Go to Login Page →</a>
+                        &nbsp;|&nbsp;
+                        <a href="register.html" style="color: #006169; text-decoration: none; font-weight: 500;">Go to Register Page →</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer-custom">
+        <div class="container">
+            <p class="m-0 text-center text-white">
+                Copyright &copy; South Window 2024. All rights reserved.
+            </p>
+            <p class="m-0 text-center text-white-50 small mt-2">
+                Your trusted property partner in Bangladesh
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // ===== PROFILE DROPDOWN =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileBtn = document.getElementById('profileBtn');
+            const profileDropdown = document.getElementById('profileDropdown');
+            if (profileBtn && profileDropdown) {
+                profileBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    profileDropdown.classList.toggle('show');
+                });
+                document.addEventListener('click', function(e) {
+                    if (!profileBtn.contains(e.target) && !profileDropdown.contains(e.target)) {
+                        profileDropdown.classList.remove('show');
+                    }
+                });
+            }
+        });
+
+        // ===== STAR RATING =====
+        document.querySelectorAll('.star-rating input').forEach(input => {
+            input.addEventListener('change', function() {
+                const rating = this.value;
+                const label = document.getElementById('ratingLabel');
+                const stars = ['⭐', '⭐⭐', '⭐⭐⭐', '⭐⭐⭐⭐', '⭐⭐⭐⭐⭐'];
+                label.textContent = stars[rating - 1] + ' (' + rating + '/5)';
+            });
+        });
+
+        // ===== FILE UPLOAD =====
+        document.getElementById('mediaUpload').addEventListener('change', function() {
+            if (this.files.length > 0) {
+                const file = this.files[0];
+                const fileInfo = document.getElementById('fileInfo');
+                const fileName = document.getElementById('fileName');
+                
+                // Check file size (20MB max)
+                if (file.size > 20 * 1024 * 1024) {
+                    alert('File size exceeds 20MB limit. Please choose a smaller file.');
+                    this.value = '';
+                    fileInfo.style.display = 'none';
+                    return;
+                }
+                
+                fileName.textContent = file.name + ' (' + Math.round(file.size / 1024) + ' KB)';
+                fileInfo.style.display = 'block';
+            }
+        });
+
+        function removeFile() {
+            document.getElementById('mediaUpload').value = '';
+            document.getElementById('fileInfo').style.display = 'none';
+        }
+
+        // ===== SUBMIT TESTIMONIAL =====
+        function submitTestimonial(event) {
+            event.preventDefault();
+            
+            const form = document.getElementById('testimonialForm');
+            const rating = form.querySelector('input[name="rating"]:checked');
+            
+            if (!rating) {
+                alert('Please select a rating before submitting.');
+                return false;
+            }
+
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.innerHTML = '<i class="bi bi-spinner bi-spin"></i> Submitting...';
+            submitBtn.disabled = true;
+
+            // Simulate submission
+            setTimeout(function() {
+                document.getElementById('formWrapper').style.display = 'none';
+                document.getElementById('successWrapper').style.display = 'block';
+                
+                // Scroll to success message
+                document.querySelector('.form-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 1500);
+
+            return false;
+        }
+
+        // ===== TAB SWITCHING =====
+        document.getElementById('loginTab').addEventListener('click', function() {
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('registerForm').style.display = 'none';
+            this.classList.add('active');
+            this.style.background = '#006169';
+            this.style.color = 'white';
+            document.getElementById('registerTab').classList.remove('active');
+            document.getElementById('registerTab').style.background = 'transparent';
+            document.getElementById('registerTab').style.color = '#006169';
+        });
+        document.getElementById('registerTab').addEventListener('click', function() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+            this.classList.add('active');
+            this.style.background = '#006169';
+            this.style.color = 'white';
+            document.getElementById('loginTab').classList.remove('active');
+            document.getElementById('loginTab').style.background = 'transparent';
+            document.getElementById('loginTab').style.color = '#006169';
+        });
+
+        // ===== AUTO-HIGHLIGHT NAVBAR =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.navbar .nav-link');
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            // F16 Shortcut
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'F16') {
+                    e.preventDefault();
+                    document.querySelector('.form-container').scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -10,196 +10,350 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/mystyle.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* ===== PAGE HEADER ===== */
+        .page-header-section {
+            background: linear-gradient(135deg, #fafbfc 0%, #f0f2f5 100%);
+            padding: 30px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .page-header-section h2 {
+            font-weight: 800;
+            color: #1a2a3a;
+            font-size: 1.8rem;
+            margin-bottom: 4px;
+        }
+        .page-header-section p {
+            color: #6c757d;
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+        .page-header-section .property-count-badge {
+            background: #00695c;
+            color: white;
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* ===== FILTER SIDEBAR ===== */
         .filter-sidebar {
             background: white;
             border-radius: 16px;
             padding: 24px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid #e9ecef;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.04);
         }
         .filter-sidebar .filter-title {
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #1a2a3a;
-            margin-bottom: 16px;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f0f0f0;
         }
         .filter-sidebar .filter-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
         .filter-sidebar .filter-group label {
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             color: #1a2a3a;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         .filter-sidebar .filter-group .form-control,
         .filter-sidebar .filter-group .form-select {
             border-radius: 10px;
-            border-color: #e0e0e0;
-            padding: 10px 14px;
-            font-size: 0.9rem;
+            border-color: #e9ecef;
+            padding: 8px 14px;
+            font-size: 0.85rem;
+            background: #fafbfc;
+            transition: all 0.3s ease;
         }
         .filter-sidebar .filter-group .form-control:focus,
         .filter-sidebar .filter-group .form-select:focus {
-            border-color: #006169;
-            box-shadow: 0 0 0 0.2rem rgba(0, 97, 105, 0.1);
+            border-color: #00695c;
+            box-shadow: 0 0 0 3px rgba(0,105,92,0.08);
+            background: white;
         }
         .filter-sidebar .filter-group .form-check {
-            padding-left: 28px;
+            padding-left: 26px;
         }
         .filter-sidebar .filter-group .form-check-input:checked {
-            background-color: #006169;
-            border-color: #006169;
+            background-color: #00695c;
+            border-color: #00695c;
+        }
+        .filter-sidebar .filter-group .form-check-label {
+            font-size: 0.85rem;
+            color: #4a5a6a;
         }
         .filter-sidebar .btn-apply {
-            background: #006169;
+            background: #00695c;
             border: none;
             border-radius: 10px;
             padding: 10px;
             font-weight: 600;
             width: 100%;
             color: white;
+            transition: all 0.3s ease;
         }
         .filter-sidebar .btn-apply:hover {
-            background: #004d52;
+            background: #004d40;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,105,92,0.2);
         }
         .filter-sidebar .btn-reset {
             background: transparent;
-            border: 1px solid #e0e0e0;
+            border: 1px solid #e9ecef;
             border-radius: 10px;
             padding: 10px;
             font-weight: 600;
             width: 100%;
             color: #6c757d;
             margin-top: 8px;
+            transition: all 0.3s ease;
         }
         .filter-sidebar .btn-reset:hover {
-            background: #f5f5f5;
+            background: #f8f9fa;
+            border-color: #00695c;
+            color: #00695c;
         }
 
+        /* ===== PROPERTY CARDS ===== */
         .property-card {
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid #e9ecef;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
             background: white;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.02);
         }
         .property-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-            border-color: #006169;
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+            border-color: #00695c;
         }
-        .property-card .card-img-top {
+        .property-card .img-wrapper {
+            position: relative;
+            overflow: hidden;
             height: 220px;
+        }
+        .property-card .img-wrapper img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
+            transition: all 0.6s ease;
+        }
+        .property-card:hover .img-wrapper img {
+            transform: scale(1.05);
+        }
+        .property-card .img-wrapper .card-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            font-size: 0.6rem;
+            padding: 4px 14px;
+            border-radius: 30px;
+            z-index: 5;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+        .property-card .img-wrapper .card-badge.sale {
+            background: #00695c;
+            color: white;
+        }
+        .property-card .img-wrapper .card-badge.rent {
+            background: #f59e0b;
+            color: white;
+        }
+        .property-card .img-wrapper .card-badge.under-construction {
+            background: #7c3aed;
+            color: white;
+        }
+        .property-card .img-wrapper .wishlist-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.92);
+            border: none;
+            color: #dc3545;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .property-card .img-wrapper .wishlist-btn:hover {
+            transform: scale(1.1);
+        }
+        .property-card .img-wrapper .wishlist-btn.active {
+            background: #dc3545;
+            color: white;
         }
         .property-card .card-body {
-            padding: 16px;
+            padding: 16px 18px 14px !important;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
         .property-card .property-title {
-            font-weight: 600;
-            font-size: 1.05rem;
+            font-size: 0.95rem;
+            font-weight: 700;
             margin-bottom: 2px;
             color: #1a2a3a;
+            transition: all 0.3s ease;
+        }
+        .property-card:hover .property-title {
+            color: #00695c;
         }
         .property-card .property-location {
-            font-size: 0.85rem;
+            font-size: 0.78rem;
             color: #6c757d;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
-        .property-card .property-price {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: #006169;
-        }
-        .property-card .property-details {
-            font-size: 0.8rem;
-            color: #6c757d;
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        .property-card .property-details span i {
+        .property-card .property-location i {
+            color: #00695c;
             margin-right: 4px;
         }
-        .property-card .badge-tag {
+        .property-card .property-price {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #00695c;
+            margin-bottom: 4px;
+        }
+        .property-card .property-details {
             font-size: 0.7rem;
-            padding: 4px 12px;
-            border-radius: 20px;
+            color: #6c757d;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: auto;
+            padding-top: 8px;
+            border-top: 1px solid #f0f0f0;
+        }
+        .property-card .property-details span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .property-card .property-details span i {
+            color: #00695c;
+            font-size: 0.85rem;
+        }
+        .property-card .badge-tag {
+            font-size: 0.55rem;
+            padding: 2px 10px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
         }
         .property-card .badge-new-seller {
-            background: #8b5cf6;
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
             color: white;
-            font-size: 0.65rem;
-            padding: 2px 10px;
-            border-radius: 20px;
+            font-size: 0.5rem;
+            padding: 2px 8px;
+            border-radius: 30px;
+            flex-shrink: 0;
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
-        .property-card .card-badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 0.7rem;
-            padding: 4px 12px;
-            border-radius: 20px;
-            z-index: 5;
+        .property-card .seller-badges {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            margin-top: 2px;
         }
         .property-card .card-footer {
-            padding: 12px 16px;
-            background: transparent !important;
-            border-top: 1px solid #e9ecef;
+            padding: 10px 18px !important;
+            background: #fafbfc !important;
+            border-top: 1px solid #f0f0f0;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-shrink: 0;
         }
         .property-card .compare-checkbox {
             display: flex;
             align-items: center;
             gap: 4px;
-            font-size: 0.8rem;
+            font-size: 0.65rem;
             color: #6c757d;
         }
         .property-card .compare-checkbox input {
             cursor: pointer;
-            width: 16px;
-            height: 16px;
-            accent-color: #006169;
+            width: 14px;
+            height: 14px;
+            accent-color: #00695c;
             margin: 0;
         }
         .property-card .compare-checkbox label {
             margin: 0;
             cursor: pointer;
+            font-size: 0.65rem;
         }
         .property-card .card-footer .btn {
-            font-size: 0.8rem;
-            border-color: #006169;
-            color: #006169;
+            font-size: 0.65rem;
+            padding: 5px 16px;
+            background: #00695c;
+            color: white;
+            border: none;
             transition: all 0.3s ease;
+            border-radius: 30px;
+            font-weight: 600;
         }
         .property-card .card-footer .btn:hover {
-            background: #006169;
-            color: white;
+            background: #004d40;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,105,92,0.15);
         }
         .property-card.selected-for-compare {
-            border: 2px solid #006169;
-            box-shadow: 0 0 0 3px rgba(0,97,105,0.15);
+            border: 2px solid #00695c;
+            box-shadow: 0 0 0 4px rgba(0,105,92,0.08);
+        }
+        .property-card::after {
+            display: none;
+        }
+        .property-col {
+            overflow: hidden;
         }
 
+        /* ===== TOOLBAR ===== */
         .toolbar {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 10px;
             align-items: center;
             justify-content: space-between;
             background: white;
-            padding: 16px 20px;
+            padding: 14px 20px;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid #e9ecef;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.02);
             margin-bottom: 24px;
         }
         .toolbar .results-count {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #6c757d;
         }
         .toolbar .results-count strong {
@@ -207,57 +361,78 @@
         }
         .toolbar .view-toggle .btn {
             border-radius: 8px;
-            padding: 6px 12px;
-            border-color: #e0e0e0;
+            padding: 4px 10px;
+            border-color: #e9ecef;
             color: #6c757d;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
         }
         .toolbar .view-toggle .btn.active {
-            background: #006169;
+            background: #00695c;
             color: white;
-            border-color: #006169;
+            border-color: #00695c;
         }
-        .toolbar .view-toggle .btn:hover {
-            border-color: #006169;
-            color: #006169;
+        .toolbar .view-toggle .btn:hover:not(.active) {
+            border-color: #00695c;
+            color: #00695c;
         }
         .toolbar .sort-select {
             border-radius: 8px;
-            border-color: #e0e0e0;
-            padding: 6px 12px;
-            font-size: 0.9rem;
+            border-color: #e9ecef;
+            padding: 4px 12px;
+            font-size: 0.8rem;
+            background: #fafbfc;
         }
         .toolbar .sort-select:focus {
-            border-color: #006169;
-            box-shadow: 0 0 0 0.2rem rgba(0, 97, 105, 0.1);
+            border-color: #00695c;
+            box-shadow: 0 0 0 3px rgba(0,105,92,0.06);
+        }
+        .toolbar .btn-map {
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            padding: 4px 14px;
+            font-size: 0.8rem;
+            color: #6c757d;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        .toolbar .btn-map:hover {
+            border-color: #00695c;
+            color: #00695c;
         }
 
+        /* ===== PAGINATION ===== */
         .pagination-custom .page-link {
-            color: #006169;
-            border-color: #e0e0e0;
+            color: #00695c;
+            border-color: #e9ecef;
             border-radius: 8px;
             margin: 0 3px;
+            padding: 6px 14px;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
         }
         .pagination-custom .page-item.active .page-link {
-            background: #006169;
-            border-color: #006169;
+            background: #00695c;
+            border-color: #00695c;
             color: white;
         }
-        .pagination-custom .page-link:hover {
-            background: #006169;
-            color: white;
+        .pagination-custom .page-link:hover:not(.active) {
+            background: #f0f8f8;
+            border-color: #00695c;
         }
 
+        /* ===== COMPARE BAR ===== */
         .compare-bar {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
             background: white;
-            padding: 14px 24px;
-            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+            padding: 12px 24px;
+            box-shadow: 0 -8px 40px rgba(0,0,0,0.06);
             z-index: 1000;
             display: none;
-            border-top: 3px solid #006169;
+            border-top: 3px solid #00695c;
             transition: all 0.3s ease;
         }
         .compare-bar.show {
@@ -265,7 +440,7 @@
         }
         .compare-bar .compare-items {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             flex-wrap: wrap;
             align-items: center;
         }
@@ -275,126 +450,146 @@
             border-radius: 8px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 0.85rem;
+            gap: 6px;
+            font-size: 0.8rem;
             border: 1px solid #e9ecef;
         }
         .compare-bar .compare-item .remove-compare {
             cursor: pointer;
             color: #dc3545;
             font-weight: 700;
-        }
-        .compare-bar .compare-item .remove-compare:hover {
-            color: #a71d2a;
+            font-size: 1rem;
         }
         .compare-bar .btn-compare {
-            background: #006169;
+            background: #00695c;
             color: white;
             border: none;
-            padding: 8px 28px;
+            padding: 6px 24px;
             border-radius: 8px;
             font-weight: 600;
             margin-left: auto;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
         }
-        .compare-bar .btn-compare:hover {
-            background: #004d52;
+        .compare-bar .btn-compare:hover:not(:disabled) {
+            background: #004d40;
+            transform: translateY(-2px);
         }
         .compare-bar .btn-compare:disabled {
             background: #ccc;
             cursor: not-allowed;
         }
         .compare-bar .compare-count {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #6c757d;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             .filter-sidebar {
                 margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header-section {
+                padding: 20px 0;
+            }
+            .page-header-section h2 {
+                font-size: 1.4rem;
             }
             .toolbar {
                 flex-direction: column;
                 align-items: stretch;
+                padding: 14px 16px;
             }
             .toolbar .d-flex {
                 flex-wrap: wrap;
-                gap: 8px;
+                gap: 6px;
             }
             .compare-bar .compare-items {
-                gap: 8px;
+                gap: 6px;
             }
             .compare-bar .btn-compare {
                 margin-left: 0;
                 width: 100%;
+            }
+            .property-card .img-wrapper {
+                height: 170px;
+            }
+            .property-card .property-price {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .property-card .img-wrapper {
+                height: 140px;
+            }
+            .property-card .card-body {
+                padding: 12px 14px 10px !important;
+            }
+            .property-card .property-title {
+                font-size: 0.85rem;
+            }
+            .property-card .property-details {
+                font-size: 0.6rem;
+                gap: 6px;
+            }
+            .property-card .card-footer {
+                padding: 8px 14px !important;
+                flex-wrap: wrap;
+                gap: 4px;
+            }
+            .page-header-section .property-count-badge {
+                font-size: 0.7rem;
+                padding: 4px 12px;
             }
         }
     </style>
 </head>
 <body>
 
-
-<!--  NAVBAR -->
-<div style="border-radius: 8px; box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08); overflow: hidden;">
-    
-    <!-- TOP: Green Gradient -->
-    <div style="background: linear-gradient(90deg, #ffffff 0%, #ffffff 20%, #00695c 45%, #00695c 55%, #ffffff 80%, #ffffff 100%); padding: 8px 0;">
-        <div class="container px-4 px-lg-5">
-            <div class="text-center">
-                <span style="color: #ffffff; font-weight: 500; font-size: 15px; text-shadow: 0 1px 4px rgba(0,0,0,0.3);">
-                    <i class="bi bi-calendar3 me-1"></i> Wednesday, 10 August 2026
-                </span>
+    <!-- ===== NAVBAR ===== -->
+    <div style="border-radius: 8px; box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08); overflow: hidden;">
+        
+        <div style="background: linear-gradient(90deg, #ffffff 0%, #ffffff 20%, #00695c 45%, #00695c 55%, #ffffff 80%, #ffffff 100%); padding: 8px 0;">
+            <div class="container px-4 px-lg-5">
+                <div class="text-center">
+                    <span style="color: #ffffff; font-weight: 500; font-size: 15px; text-shadow: 0 1px 4px rgba(0,0,0,0.3);">
+                        <i class="bi bi-calendar3 me-1"></i> Wednesday, 10 August 2026
+                    </span>
+                </div>
             </div>
         </div>
-    </div>
-    
-    <!-- BOTTOM: White Navbar -->
-    <nav class="navbar navbar-expand-lg" style="background: #ffffff; padding: 0; min-height: 32px;">
-        <div class="container px-4 px-lg-5">
-            
-            <!-- LEFT: Logo -->
-            <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html" style="font-size: 1rem; padding: 2px 0; color: #004d40 !important;">
-                <img src="assets/logo1.png" alt="South Window Logo" style="height: 26px; width: auto; margin-right: 6px;">
-                South Window
-            </a>
-            
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" style="background: rgba(0,77,64,0.08); padding: 2px 5px;">
-                <span class="navbar-toggler-icon" style="width: 18px; height: 18px;"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarMain">
+        
+        <nav class="navbar navbar-expand-lg" style="background: #ffffff; padding: 0; min-height: 32px;">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html" style="font-size: 1rem; padding: 2px 0; color: #004d40 !important;">
+                    <img src="assets/logo1.png" alt="South Window Logo" style="height: 26px; width: auto; margin-right: 6px;">
+                    South Window
+                </a>
                 
-                <!-- CENTER: Nav Links -->
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="gap: 4px;">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about-us.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="property-listing.html">Properties</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
-                </ul>
-                
-                <!-- RIGHT: Login Button -->
-                <button class="btn rounded-pill px-4" style="background: #00695c; color: white !important; border: 1px solid #00695c; font-weight: 700; font-size: 16px; padding: 6px 22px;" data-bs-toggle="modal" data-bs-target="#loginModal">
-                    <i class="bi bi-person-fill me-1"></i> Login/Register
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" style="background: rgba(0,77,64,0.08); padding: 2px 5px;">
+                    <span class="navbar-toggler-icon" style="width: 18px; height: 18px;"></span>
                 </button>
                 
+                <div class="collapse navbar-collapse" id="navbarMain">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="gap: 4px;">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about-us.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="property-listing.html">Properties</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    </ul>
+                    
+                    <button class="btn rounded-pill px-4" style="background: #00695c; color: white !important; border: 1px solid #00695c; font-weight: 700; font-size: 16px; padding: 6px 22px;" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        <i class="bi bi-person-fill me-1"></i> Login/Register
+                    </button>
+                </div>
             </div>
-            
-        </div>
-    </nav>
-    
-</div>
+        </nav>
+    </div>
 
-
-
-
-    <!-- ====== LOGIN/REGISTER MODAL (FIXED - ADDED) ====== -->
+    <!-- ===== LOGIN MODAL ===== -->
     <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content rounded-4 p-4" style="border: none; max-width: 460px; margin: 0 auto; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.15);">
@@ -480,24 +675,31 @@
         </div>
     </div>
 
-    <!-- ====== PAGE HEADER ====== -->
-    <section class="py-4 bg-light border-bottom">
+    <!-- ===== PAGE HEADER ===== -->
+    <section class="page-header-section">
         <div class="container px-4 px-lg-5">
-            <h2 class="fw-bold" style="color: #1a2a3a;">Browse Properties</h2>
-            <p class="text-muted">Find your dream home from thousands of listings</p>
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h2>Browse Properties</h2>
+                    <p>Find your dream home from thousands of listings</p>
+                </div>
+                <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                    <span class="property-count-badge"><i class="bi bi-building me-1"></i> 24 Properties</span>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- ====== MAIN CONTENT ====== -->
+    <!-- ===== MAIN CONTENT ===== -->
     <section class="py-4">
         <div class="container px-4 px-lg-5">
 
             <div class="row g-4">
 
-                <!-- ====== FILTER SIDEBAR ====== -->
+                <!-- ===== FILTER SIDEBAR ===== -->
                 <div class="col-lg-3">
                     <div class="filter-sidebar">
-                        <div class="filter-title">🔍 Filters</div>
+                        <div class="filter-title"><i class="bi bi-sliders2 me-2"></i>Filters</div>
 
                         <div class="filter-group">
                             <label>Property Type</label>
@@ -576,7 +778,7 @@
                     </div>
                 </div>
 
-                <!-- ====== PROPERTY LISTINGS ====== -->
+                <!-- ===== PROPERTY LISTINGS ===== -->
                 <div class="col-lg-9">
 
                     <div class="toolbar">
@@ -588,9 +790,7 @@
                                 <button class="btn active" id="gridView"><i class="bi bi-grid-3x3-gap-fill"></i></button>
                                 <button class="btn" id="listView"><i class="bi bi-list-ul"></i></button>
                             </div>
-                            <button class="btn btn-outline-secondary" style="border-radius: 8px; border-color: #e0e0e0; padding: 6px 12px;">
-                                <i class="bi bi-map"></i> Map View
-                            </button>
+                            <button class="btn-map"><i class="bi bi-map"></i> Map View</button>
                             <select class="sort-select">
                                 <option>Sort by: Newest</option>
                                 <option>Price: Low to High</option>
@@ -605,25 +805,28 @@
 
                         <!-- CARD 1 -->
                         <div class="col-md-6 col-xl-4 property-col" data-id="1">
-                            <div class="card property-card h-100 position-relative">
-                                <img src="https://placehold.co/600x400/e0e0e0/666?text=Luxury+Apartment" class="card-img-top" alt="Property">
-                                <span class="card-badge badge bg-primary">For Sale</span>
+                            <div class="card property-card h-100">
+                                <div class="img-wrapper">
+                                    <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&h=400&fit=crop" alt="Property">
+                                    <span class="card-badge sale">For Sale</span>
+                                    <button class="wishlist-btn" onclick="toggleWishlist(this)"><i class="bi bi-heart"></i></button>
+                                </div>
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between align-items-start">
                                         <h6 class="property-title">Luxury Apartment</h6>
-                                        <span class="badge-new-seller">New Seller</span>
+                                        <span class="badge-new-seller">New</span>
                                     </div>
                                     <p class="property-location"><i class="bi bi-geo-alt"></i> Bashundhara, Dhaka</p>
                                     <div class="property-price">BDT 1.2 Cr</div>
-                                    <div class="property-details mt-2">
+                                    <div class="seller-badges">
+                                        <span class="badge-tag bg-success text-white">Direct Owner</span>
+                                        <span class="badge-tag bg-info text-white">Verified</span>
+                                    </div>
+                                    <div class="property-details">
                                         <span><i class="bi bi-door-open"></i> 3 Beds</span>
                                         <span><i class="bi bi-droplet"></i> 2 Baths</span>
                                         <span><i class="bi bi-car-front"></i> 2 Parking</span>
                                         <span><i class="bi bi-arrows-expand"></i> 1,500 sqft</span>
-                                    </div>
-                                    <div class="mt-2 d-flex gap-1 flex-wrap">
-                                        <span class="badge-tag bg-success text-white">Direct Owner</span>
-                                        <span class="badge-tag bg-info text-white">Verified</span>
                                     </div>
                                 </div>
                                 <div class="card-footer">
@@ -631,28 +834,31 @@
                                         <input type="checkbox" class="compare-check" data-id="1" data-title="Luxury Apartment" data-price="BDT 1.2 Cr" data-location="Bashundhara" data-beds="3" data-baths="2" data-area="1,500 sqft">
                                         <label>Compare</label>
                                     </div>
-                                    <a href="property-detail.html?id=1" class="btn btn-sm btn-outline-primary rounded-pill px-3">View Details →</a>
+                                    <a href="property-detail.html?id=1" class="btn">View Details →</a>
                                 </div>
                             </div>
                         </div>
 
                         <!-- CARD 2 -->
                         <div class="col-md-6 col-xl-4 property-col" data-id="2">
-                            <div class="card property-card h-100 position-relative">
-                                <img src="https://placehold.co/600x400/e0e0e0/666?text=Family+Home" class="card-img-top" alt="Property">
-                                <span class="card-badge badge bg-danger">For Rent</span>
+                            <div class="card property-card h-100">
+                                <div class="img-wrapper">
+                                    <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&h=400&fit=crop" alt="Property">
+                                    <span class="card-badge rent">For Rent</span>
+                                    <button class="wishlist-btn" onclick="toggleWishlist(this)"><i class="bi bi-heart"></i></button>
+                                </div>
                                 <div class="card-body">
                                     <h6 class="property-title">Family Home</h6>
                                     <p class="property-location"><i class="bi bi-geo-alt"></i> Dhanmondi, Dhaka</p>
                                     <div class="property-price">BDT 2.5 Cr</div>
-                                    <div class="property-details mt-2">
+                                    <div class="seller-badges">
+                                        <span class="badge-tag bg-warning text-dark">Verified Broker</span>
+                                    </div>
+                                    <div class="property-details">
                                         <span><i class="bi bi-door-open"></i> 4 Beds</span>
                                         <span><i class="bi bi-droplet"></i> 3 Baths</span>
                                         <span><i class="bi bi-car-front"></i> 1 Parking</span>
                                         <span><i class="bi bi-arrows-expand"></i> 2,200 sqft</span>
-                                    </div>
-                                    <div class="mt-2 d-flex gap-1 flex-wrap">
-                                        <span class="badge-tag bg-warning text-dark">Verified Broker</span>
                                     </div>
                                 </div>
                                 <div class="card-footer">
@@ -660,27 +866,30 @@
                                         <input type="checkbox" class="compare-check" data-id="2" data-title="Family Home" data-price="BDT 2.5 Cr" data-location="Dhanmondi" data-beds="4" data-baths="3" data-area="2,200 sqft">
                                         <label>Compare</label>
                                     </div>
-                                    <a href="property-detail.html?id=2" class="btn btn-sm btn-outline-primary rounded-pill px-3">View Details →</a>
+                                    <a href="property-detail.html?id=2" class="btn">View Details →</a>
                                 </div>
                             </div>
                         </div>
 
                         <!-- CARD 3 -->
                         <div class="col-md-6 col-xl-4 property-col" data-id="3">
-                            <div class="card property-card h-100 position-relative">
-                                <img src="https://placehold.co/600x400/e0e0e0/666?text=Commercial+Shop" class="card-img-top" alt="Property">
-                                <span class="card-badge badge bg-primary">For Sale</span>
+                            <div class="card property-card h-100">
+                                <div class="img-wrapper">
+                                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=400&fit=crop" alt="Property">
+                                    <span class="card-badge sale">For Sale</span>
+                                    <button class="wishlist-btn" onclick="toggleWishlist(this)"><i class="bi bi-heart"></i></button>
+                                </div>
                                 <div class="card-body">
                                     <h6 class="property-title">Commercial Shop</h6>
                                     <p class="property-location"><i class="bi bi-geo-alt"></i> Gulshan, Dhaka</p>
                                     <div class="property-price">BDT 3.8 Cr</div>
-                                    <div class="property-details mt-2">
-                                        <span><i class="bi bi-shop"></i> 2,500 sqft</span>
-                                        <span><i class="bi bi-building"></i> Ground Floor</span>
-                                    </div>
-                                    <div class="mt-2 d-flex gap-1 flex-wrap">
+                                    <div class="seller-badges">
                                         <span class="badge-tag bg-success text-white">Direct Owner</span>
                                         <span class="badge-tag bg-info text-white">Verified</span>
+                                    </div>
+                                    <div class="property-details">
+                                        <span><i class="bi bi-shop"></i> 2,500 sqft</span>
+                                        <span><i class="bi bi-building"></i> Ground Floor</span>
                                     </div>
                                 </div>
                                 <div class="card-footer">
@@ -688,26 +897,29 @@
                                         <input type="checkbox" class="compare-check" data-id="3" data-title="Commercial Shop" data-price="BDT 3.8 Cr" data-location="Gulshan" data-beds="-" data-baths="-" data-area="2,500 sqft">
                                         <label>Compare</label>
                                     </div>
-                                    <a href="property-detail.html?id=3" class="btn btn-sm btn-outline-primary rounded-pill px-3">View Details →</a>
+                                    <a href="property-detail.html?id=3" class="btn">View Details →</a>
                                 </div>
                             </div>
                         </div>
 
                         <!-- CARD 4 -->
                         <div class="col-md-6 col-xl-4 property-col" data-id="4">
-                            <div class="card property-card h-100 position-relative">
-                                <img src="https://placehold.co/600x400/e0e0e0/666?text=Residential+Land" class="card-img-top" alt="Property">
-                                <span class="card-badge badge bg-primary">For Sale</span>
+                            <div class="card property-card h-100">
+                                <div class="img-wrapper">
+                                    <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&h=400&fit=crop" alt="Property">
+                                    <span class="card-badge sale">For Sale</span>
+                                    <button class="wishlist-btn" onclick="toggleWishlist(this)"><i class="bi bi-heart"></i></button>
+                                </div>
                                 <div class="card-body">
                                     <h6 class="property-title">Residential Land</h6>
                                     <p class="property-location"><i class="bi bi-geo-alt"></i> Uttara, Dhaka</p>
                                     <div class="property-price">BDT 1.8 Cr</div>
-                                    <div class="property-details mt-2">
-                                        <span><i class="bi bi-grid"></i> 10 Katha</span>
-                                        <span><i class="bi bi-tree"></i> Freehold Land</span>
-                                    </div>
-                                    <div class="mt-2 d-flex gap-1 flex-wrap">
+                                    <div class="seller-badges">
                                         <span class="badge-tag bg-warning text-dark">Verified Broker</span>
+                                    </div>
+                                    <div class="property-details">
+                                        <span><i class="bi bi-grid"></i> 10 Katha</span>
+                                        <span><i class="bi bi-tree"></i> Freehold</span>
                                     </div>
                                 </div>
                                 <div class="card-footer">
@@ -715,28 +927,31 @@
                                         <input type="checkbox" class="compare-check" data-id="4" data-title="Residential Land" data-price="BDT 1.8 Cr" data-location="Uttara" data-beds="-" data-baths="-" data-area="10 Katha">
                                         <label>Compare</label>
                                     </div>
-                                    <a href="property-detail.html?id=4" class="btn btn-sm btn-outline-primary rounded-pill px-3">View Details →</a>
+                                    <a href="property-detail.html?id=4" class="btn">View Details →</a>
                                 </div>
                             </div>
                         </div>
 
                         <!-- CARD 5 -->
                         <div class="col-md-6 col-xl-4 property-col" data-id="5">
-                            <div class="card property-card h-100 position-relative">
-                                <img src="https://placehold.co/600x400/e0e0e0/666?text=Premium+Apartment" class="card-img-top" alt="Property">
-                                <span class="card-badge badge bg-danger">For Rent</span>
+                            <div class="card property-card h-100">
+                                <div class="img-wrapper">
+                                    <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&h=400&fit=crop" alt="Property">
+                                    <span class="card-badge rent">For Rent</span>
+                                    <button class="wishlist-btn" onclick="toggleWishlist(this)"><i class="bi bi-heart"></i></button>
+                                </div>
                                 <div class="card-body">
                                     <h6 class="property-title">Premium Apartment</h6>
                                     <p class="property-location"><i class="bi bi-geo-alt"></i> Banani, Dhaka</p>
                                     <div class="property-price">BDT 85,000/month</div>
-                                    <div class="property-details mt-2">
+                                    <div class="seller-badges">
+                                        <span class="badge-tag bg-success text-white">Direct Owner</span>
+                                    </div>
+                                    <div class="property-details">
                                         <span><i class="bi bi-door-open"></i> 3 Beds</span>
                                         <span><i class="bi bi-droplet"></i> 3 Baths</span>
                                         <span><i class="bi bi-car-front"></i> 2 Parking</span>
                                         <span><i class="bi bi-arrows-expand"></i> 1,800 sqft</span>
-                                    </div>
-                                    <div class="mt-2 d-flex gap-1 flex-wrap">
-                                        <span class="badge-tag bg-success text-white">Direct Owner</span>
                                     </div>
                                 </div>
                                 <div class="card-footer">
@@ -744,26 +959,29 @@
                                         <input type="checkbox" class="compare-check" data-id="5" data-title="Premium Apartment" data-price="BDT 85,000/month" data-location="Banani" data-beds="3" data-baths="3" data-area="1,800 sqft">
                                         <label>Compare</label>
                                     </div>
-                                    <a href="property-detail.html?id=5" class="btn btn-sm btn-outline-primary rounded-pill px-3">View Details →</a>
+                                    <a href="property-detail.html?id=5" class="btn">View Details →</a>
                                 </div>
                             </div>
                         </div>
 
                         <!-- CARD 6 -->
                         <div class="col-md-6 col-xl-4 property-col" data-id="6">
-                            <div class="card property-card h-100 position-relative">
-                                <img src="https://placehold.co/600x400/e0e0e0/666?text=New+Project" class="card-img-top" alt="Property">
-                                <span class="card-badge badge bg-primary">Under Construction</span>
+                            <div class="card property-card h-100">
+                                <div class="img-wrapper">
+                                    <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&h=400&fit=crop" alt="Property">
+                                    <span class="card-badge under-construction">Under Construction</span>
+                                    <button class="wishlist-btn" onclick="toggleWishlist(this)"><i class="bi bi-heart"></i></button>
+                                </div>
                                 <div class="card-body">
                                     <h6 class="property-title">New Project</h6>
                                     <p class="property-location"><i class="bi bi-geo-alt"></i> Purbachal, Dhaka</p>
                                     <div class="property-price">Starting BDT 75 Lakh</div>
-                                    <div class="property-details mt-2">
+                                    <div class="seller-badges">
+                                        <span class="badge-tag bg-dark text-white">Developer</span>
+                                    </div>
+                                    <div class="property-details">
                                         <span><i class="bi bi-building"></i> Upcoming</span>
                                         <span><i class="bi bi-calendar"></i> Handover 2026</span>
-                                    </div>
-                                    <div class="mt-2 d-flex gap-1 flex-wrap">
-                                        <span class="badge-tag bg-dark text-white">Developer</span>
                                     </div>
                                 </div>
                                 <div class="card-footer">
@@ -771,7 +989,7 @@
                                         <input type="checkbox" class="compare-check" data-id="6" data-title="New Project" data-price="Starting BDT 75 Lakh" data-location="Purbachal" data-beds="-" data-baths="-" data-area="-">
                                         <label>Compare</label>
                                     </div>
-                                    <a href="property-detail.html?id=6" class="btn btn-sm btn-outline-primary rounded-pill px-3">View Details →</a>
+                                    <a href="property-detail.html?id=6" class="btn">View Details →</a>
                                 </div>
                             </div>
                         </div>
@@ -795,7 +1013,7 @@
         </div>
     </section>
 
-    <!-- ====== FLOATING COMPARE BAR ====== -->
+    <!-- ===== COMPARE BAR ===== -->
     <div class="compare-bar" id="compareBar">
         <div class="container px-4 px-lg-5">
             <div class="d-flex flex-wrap align-items-center gap-3">
@@ -806,7 +1024,7 @@
         </div>
     </div>
 
-    <!-- ====== FOOTER ====== -->
+    <!-- ===== FOOTER ===== -->
     <footer class="py-5 bg-dark">
         <div class="container">
             <p class="m-0 text-center text-white">Copyright &copy; South Window 2024. All rights reserved.</p>
@@ -814,9 +1032,8 @@
         </div>
     </footer>
 
-    <!-- ====== TAB SWITCHING SCRIPT ====== -->
     <script>
-        // Tab switching for Login/Register modal
+        // ===== TAB SWITCHING =====
         document.getElementById('loginTab').addEventListener('click', function() {
             document.getElementById('loginForm').style.display = 'block';
             document.getElementById('registerForm').style.display = 'none';
@@ -838,10 +1055,19 @@
             document.getElementById('loginTab').style.background = 'transparent';
             document.getElementById('loginTab').style.color = '#006169';
         });
-    </script>
 
-    <!-- ====== COMPARE FUNCTIONALITY ====== -->
-    <script>
+        // ===== WISHLIST TOGGLE =====
+        function toggleWishlist(btn) {
+            btn.classList.toggle('active');
+            const icon = btn.querySelector('i');
+            if (btn.classList.contains('active')) {
+                icon.className = 'bi bi-heart-fill';
+            } else {
+                icon.className = 'bi bi-heart';
+            }
+        }
+
+        // ===== COMPARE FUNCTIONALITY =====
         let selectedCompare = [];
 
         document.querySelectorAll('.compare-check').forEach(checkbox => {
@@ -917,7 +1143,7 @@
             }
         });
 
-        // Grid / List View
+        // ===== GRID / LIST VIEW =====
         document.getElementById('gridView').addEventListener('click', function() {
             this.classList.add('active');
             document.getElementById('listView').classList.remove('active');

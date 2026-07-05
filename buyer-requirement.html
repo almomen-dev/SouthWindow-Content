@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="South Window - Buyer Requirement Board" />
+    <meta name="author" content="South Window" />
+    <title>Buyer Requirement Board - South Window</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/mystyle.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        body {
+            background: #f0f2f5;
+        }
+
+        .navbar-custom {
+            background: #ffffff !important;
+            padding: 0 !important;
+            min-height: 50px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08) !important;
+            border-radius: 0 !important;
+            position: relative;
+            z-index: 1050 !important;
+            overflow: visible !important;
+        }
+        .navbar-custom .navbar-brand {
+            color: #004d40 !important;
+            font-size: 1.3rem !important;
+        }
+        .navbar-custom .navbar-brand img {
+            height: 34px !important;
+            width: auto !important;
+        }
+        .navbar-custom .navbar-nav .nav-link {
+            padding: 8px 22px !important;
+            font-size: 15px !important;
+            color: #004d40 !important;
+            border-radius: 30px !important;
+            transition: all 0.3s ease !important;
+            font-weight: 500 !important;
+            background: transparent !important;
+        }
+        .navbar-custom .navbar-nav .nav-link:hover {
+            background: rgba(0, 105, 92, 0.08) !important;
+            color: #004d40 !important;
+        }
+        .navbar-custom .navbar-nav .nav-link.active {
+            color: #00695c !important;
+            background: rgba(0, 105, 92, 0.08) !important;
+            font-weight: 600 !important;
+            box-shadow: none !important;
+        }
+
+        .top-gradient {
+            background: linear-gradient(90deg, #ffffff 0%, #ffffff 20%, #00695c 45%, #00695c 55%, #ffffff 80%, #ffffff 100%);
+            padding: 8px 0;
+        }
+        .top-gradient .date-text {
+            color: #ffffff;
+            font-weight: 500;
+            font-size: 15px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            overflow: visible !important;
+        }
+        .nav-icons .notification-btn {
+            position: relative;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #1a2a3a;
+            font-size: 1.1rem;
+        }
+        .nav-icons .notification-btn:hover {
+            background: #e9ecef;
+        }
+        .nav-icons .notification-btn .badge-dot {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 8px;
+            height: 8px;
+            background: #dc3545;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+        .nav-icons .profile-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 4px 12px 4px 4px;
+            border-radius: 30px;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #1a2a3a;
+        }
+        .nav-icons .profile-btn:hover {
+            background: #e9ecef;
+        }
+        .nav-icons .profile-btn .avatar-sm {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #00695c;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.75rem;
+        }
+        .nav-icons .profile-btn span {
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .profile-dropdown-menu {
+            position: absolute !important;
+            top: calc(100% + 8px) !important;
+            right: 0 !important;
+            left: auto !important;
+            background: white !important;
+            border-radius: 16px !important;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15) !important;
+            border: 1px solid #e9ecef !important;
+            min-width: 240px !important;
+            padding: 8px 0 !important;
+            display: none !important;
+            z-index: 9999 !important;
+        }
+        .profile-dropdown-menu.show {
+            display: block !important;
+        }
+        .profile-dropdown-menu .dropdown-header {
+            padding: 12px 20px 16px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .profile-dropdown-menu .dropdown-header .user-name {
+            font-weight: 700;
+            color: #1a2a3a;
+            font-size: 0.95rem;
+        }
+        .profile-dropdown-menu .dropdown-header .user-email {
+            color: #6c757d;
+            font-size: 0.8rem;
+        }
+        .profile-dropdown-menu .dropdown-header .user-role {
+            font-size: 0.7rem;
+            color: #00695c;
+            font-weight: 600;
+        }
+        .profile-dropdown-menu .dropdown-item {
+            padding: 10px 20px;
+            color: #6c757d;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .profile-dropdown-menu .dropdown-item:hover {
+            background: rgba(0,105,92,0.06);
+            color: #00695c;
+        }
+        .profile-dropdown-menu .dropdown-item i {
+            font-size: 1rem;
+            width: 20px;
+        }
+        .profile-dropdown-menu .dropdown-divider {
+            height: 1px;
+            background: #e9ecef;
+            margin: 6px 0;
+        }
+        .profile-dropdown-menu .dropdown-item.danger {
+            color: #dc3545;
+        }
+        .profile-dropdown-menu .dropdown-item.danger:hover {
+            background: #fce4ec;
+            color: #c62828;
+        }
+
+        .page-header {
+            background: white;
+            padding: 24px 30px;
+            border-bottom: 1px solid #e9ecef;
+            margin-top: 20px;
+        }
+        .page-header h4 {
+            font-weight: 800;
+            color: #1a2a3a;
+            margin-bottom: 4px;
+        }
+        .page-header p {
+            color: #6c757d;
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        .badge-result {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: #f8f9fa;
+            color: #6c757d;
+            border: 1px solid #e9ecef;
+        }
+
+        .stat-card {
+            border-radius: 16px;
+            padding: 20px 24px;
+            color: white;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: none;
+        }
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+        }
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+        .stat-card .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+        }
+        .stat-card .stat-label {
+            opacity: 0.85;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .stat-card .stat-icon {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.2rem;
+            opacity: 0.2;
+        }
+
+        .stat-card.green {
+            background: linear-gradient(135deg, #00695c, #00a896);
+        }
+        .stat-card.blue {
+            background: linear-gradient(135deg, #1a237e, #3949ab);
+        }
+        .stat-card.orange {
+            background: linear-gradient(135deg, #e65100, #f57c00);
+        }
+        .stat-card.purple {
+            background: linear-gradient(135deg, #4a148c, #7b1fa2);
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e9ecef;
+            padding: 24px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.05);
+        }
+
+        .post-form .form-control,
+        .post-form .form-select {
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            padding: 10px 14px;
+        }
+        .post-form .form-control:focus,
+        .post-form .form-select:focus {
+            border-color: #00695c;
+            box-shadow: 0 0 0 0.2rem rgba(0,105,92,0.1);
+        }
+
+        .requirement-card {
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e9ecef;
+            padding: 20px 24px;
+            transition: all 0.3s ease;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+        }
+        .requirement-card:hover {
+            border-color: #00695c;
+            box-shadow: 0 8px 30px rgba(0,105,92,0.08);
+            transform: translateY(-2px);
+        }
+        .requirement-card .req-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        .requirement-card .req-header .req-user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .requirement-card .req-header .req-user .user-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00695c, #00a896);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .requirement-card .req-header .req-user .user-name {
+            font-weight: 700;
+            color: #1a2a3a;
+            font-size: 0.95rem;
+        }
+        .requirement-card .req-header .req-user .user-time {
+            font-size: 0.7rem;
+            color: #adb5bd;
+        }
+        .requirement-card .req-header .req-badge {
+            font-size: 0.6rem;
+            padding: 3px 14px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        .req-badge.active {
+            background: #d4edda;
+            color: #155724;
+        }
+        .req-badge.urgent {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .req-badge.closed {
+            background: #e9ecef;
+            color: #6c757d;
+        }
+
+        .requirement-card .req-title {
+            font-weight: 700;
+            color: #1a2a3a;
+            font-size: 1.05rem;
+            margin-top: 10px;
+        }
+        .requirement-card .req-details {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        .requirement-card .req-details .detail-item {
+            font-size: 0.8rem;
+            color: #6c757d;
+            background: #f8f9fa;
+            padding: 4px 14px;
+            border-radius: 20px;
+            border: 1px solid #e9ecef;
+        }
+        .requirement-card .req-details .detail-item i {
+            color: #00695c;
+            margin-right: 4px;
+        }
+        .requirement-card .req-details .detail-item strong {
+            color: #1a2a3a;
+        }
+
+        .requirement-card .req-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px solid #f0f0f0;
+            flex-wrap: wrap;
+        }
+        .requirement-card .req-footer .req-actions {
+            display: flex;
+            gap: 8px;
+        }
+        .requirement-card .req-footer .req-actions .btn-match {
+            padding: 6px 20px;
+            border-radius: 30px;
+            border: none;
+            background: #00695c;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .requirement-card .req-footer .req-actions .btn-match:hover {
+            background: #004d40;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,105,92,0.25);
+        }
+        .requirement-card .req-footer .req-actions .btn-report {
+            padding: 6px 16px;
+            border-radius: 30px;
+            border: 1px solid #dc3545;
+            color: #dc3545;
+            background: transparent;
+            font-size: 0.7rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .requirement-card .req-footer .req-actions .btn-report:hover {
+            background: #dc3545;
+            color: white;
+        }
+
+        .requirement-card .req-footer .req-stats {
+            display: flex;
+            gap: 16px;
+            font-size: 0.7rem;
+            color: #6c757d;
+        }
+        .requirement-card .req-footer .req-stats span i {
+            margin-right: 4px;
+        }
+
+        .filter-btn-group {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .filter-btn-group .filter-btn {
+            padding: 6px 18px;
+            border-radius: 20px;
+            border: 1px solid #e9ecef;
+            background: white;
+            color: #6c757d;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .filter-btn-group .filter-btn:hover {
+            border-color: #00695c;
+            color: #00695c;
+        }
+        .filter-btn-group .filter-btn.active {
+            background: #00695c;
+            color: white;
+            border-color: #00695c;
+            box-shadow: 0 4px 15px rgba(0,105,92,0.25);
+        }
+
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .toolbar .results-count {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        .toolbar .results-count strong {
+            color: #1a2a3a;
+        }
+        .toolbar .form-select {
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            padding: 8px 14px;
+            font-size: 0.85rem;
+        }
+
+        .role-banner {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 12px;
+            padding: 12px 20px;
+            border-left: 4px solid #00695c;
+            margin-bottom: 20px;
+        }
+
+        .footer-custom {
+            background: #00695c;
+            padding: 20px 0;
+            border-top: 2px solid #004d40;
+        }
+
+        /* ===== SELLER VIEW ===== */
+        .seller-view .requirement-card {
+            cursor: default;
+        }
+        .seller-view .requirement-card:hover {
+            transform: translateY(-2px);
+        }
+
+        /* ===== ROLE TOGGLE BUTTONS ===== */
+        .role-toggle {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .role-toggle .btn-role {
+            padding: 4px 16px;
+            border-radius: 20px;
+            border: 1px solid #e9ecef;
+            background: white;
+            color: #6c757d;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .role-toggle .btn-role:hover {
+            border-color: #00695c;
+            color: #00695c;
+        }
+        .role-toggle .btn-role.active {
+            background: #00695c;
+            color: white;
+            border-color: #00695c;
+        }
+
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 16px 20px;
+            }
+            .stat-card .stat-number {
+                font-size: 1.5rem;
+            }
+            .requirement-card .req-footer {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+            .toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+        @media (max-width: 576px) {
+            .nav-icons .profile-btn span {
+                display: none;
+            }
+            .nav-icons .profile-btn {
+                padding: 4px 6px;
+            }
+            .requirement-card .req-header {
+                flex-direction: column;
+                gap: 6px;
+            }
+            .role-toggle {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <div style="border-radius: 0; box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08); overflow: hidden;">
+
+        <div class="top-gradient">
+            <div class="container px-4 px-lg-5">
+                <div class="text-center">
+                    <span class="date-text">
+                        <i class="bi bi-calendar3 me-1"></i> Wednesday, 10 August 2026
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg navbar-custom">
+            <div class="container px-4 px-lg-5" style="overflow: visible !important;">
+
+                <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
+                    <img src="assets/logo1.png" alt="South Window Logo" style="height: 26px; width: auto; margin-right: 6px;">
+                    South Window
+                </a>
+
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" style="background: rgba(0,77,64,0.08); padding: 2px 5px;">
+                    <span class="navbar-toggler-icon" style="width: 18px; height: 18px;"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarMain" style="overflow: visible !important;">
+
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="gap: 4px;">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about-us.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="property-listing.html">Properties</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    </ul>
+
+                    <div class="nav-icons" style="overflow: visible !important;">
+                        <div class="notification-btn">
+                            <i class="bi bi-bell"></i>
+                            <span class="badge-dot"></span>
+                        </div>
+
+                        <div class="profile-btn" id="profileBtn">
+                            <div class="avatar-sm">JD</div>
+                            <span>John Doe</span>
+                            <i class="bi bi-chevron-down" style="font-size: 0.7rem; color: #6c757d;"></i>
+                        </div>
+
+                        <div class="profile-dropdown-menu" id="profileDropdown">
+                            <div class="dropdown-header">
+                                <div class="user-name">John Doe</div>
+                                <div class="user-email">john.doe@email.com</div>
+                                <div class="user-role">● Verified Buyer</div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item"><i class="bi bi-person"></i> My Profile</a>
+                            <a href="#" class="dropdown-item"><i class="bi bi-gear"></i> Settings</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item danger"><i class="bi bi-box-arrow-right"></i> Logout</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </nav>
+
+    </div>
+
+    <!-- ===== PAGE HEADER ===== -->
+    <div class="page-header">
+        <div class="d-flex justify-content-between align-items-center flex-wrap">
+            <div>
+                <h4><i class="bi bi-clipboard" style="color: #00695c;"></i> Buyer Requirement Board</h4>
+                <p id="pageSubtitle">Post your property requirements or find matching buyers</p>
+            </div>
+            <div class="d-flex gap-2 flex-wrap">
+                <span class="badge-result"><kbd>F13</kbd> Buyer Board</span>
+                <div class="role-toggle">
+                    <button class="btn-role active" onclick="setRole('buyer')" id="roleBuyer">👤 Buyer</button>
+                    <button class="btn-role" onclick="setRole('seller')" id="roleSeller">🏢 Seller</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== STATS ROW ===== -->
+    <section style="padding: 24px 20px 0;">
+        <div class="container">
+            <div class="row g-3">
+                <div class="col-md-3 col-6">
+                    <div class="stat-card green">
+                        <div class="stat-icon"><i class="bi bi-clipboard"></i></div>
+                        <div class="stat-number">48</div>
+                        <div class="stat-label">Active Requirements</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-card blue">
+                        <div class="stat-icon"><i class="bi bi-check-circle"></i></div>
+                        <div class="stat-number">156</div>
+                        <div class="stat-label">Matches Made</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-card orange">
+                        <div class="stat-icon"><i class="bi bi-clock"></i></div>
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Posted Today</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-card purple">
+                        <div class="stat-icon"><i class="bi bi-people"></i></div>
+                        <div class="stat-number">342</div>
+                        <div class="stat-label">Total Buyers</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <section style="padding: 24px 20px;">
+        <div class="container">
+
+            <!-- ===== ROLE BANNER ===== -->
+            <div class="role-banner" id="roleBanner">
+                <div class="d-flex align-items-center gap-3">
+                    <i class="bi bi-info-circle" style="color: #00695c; font-size: 1.2rem;"></i>
+                    <span id="roleMessage" style="color: #1a2a3a; font-size: 0.9rem;">
+                        <strong>👋 Welcome!</strong> You are viewing as a <strong id="userRoleDisplay">Buyer</strong>.
+                        <span id="roleActionText">Post your requirements to connect with sellers.</span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="row g-4">
+
+                <!-- ===== LEFT: POST FORM ===== -->
+                <div class="col-lg-4" id="postFormWrapper">
+                    <div class="section-card">
+                        <h5 class="fw-bold mb-3"><i class="bi bi-pencil-square" style="color: #00695c;"></i> Post Requirement</h5>
+                        <p class="text-muted small">Tell sellers what you're looking for</p>
+                        <form class="post-form" onsubmit="return postRequirement(event)">
+
+                            <!-- ===== TITLE FIELD (NEW) ===== -->
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold small">Requirement Title <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="reqTitle" placeholder="e.g. Looking for 3 BHK Apartment in Bashundhara" required>
+                                <small class="text-muted" style="font-size: 0.7rem;">
+                                    <i class="bi bi-magic"></i> Auto-generated from fields below
+                                </small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold small">Area <span class="text-danger">*</span></label>
+                                <select class="form-select" id="reqArea" onchange="generateTitle()" required>
+                                    <option value="">Select Area</option>
+                                    <option>Bashundhara</option>
+                                    <option>Dhanmondi</option>
+                                    <option>Gulshan</option>
+                                    <option>Uttara</option>
+                                    <option>Banani</option>
+                                    <option>Mirpur</option>
+                                    <option>Purbachal</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold small">Property Type <span class="text-danger">*</span></label>
+                                <select class="form-select" id="reqType" onchange="generateTitle()" required>
+                                    <option value="">Select Type</option>
+                                    <option>Apartment</option>
+                                    <option>House</option>
+                                    <option>Villa</option>
+                                    <option>Land</option>
+                                    <option>Commercial Shop</option>
+                                    <option>Office</option>
+                                </select>
+                            </div>
+
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <label class="form-label fw-semibold small">Min Budget <span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">BDT</span>
+                                        <input type="text" class="form-control" placeholder="Min" required>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label fw-semibold small">Max Budget</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">BDT</span>
+                                        <input type="text" class="form-control" placeholder="Max">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 mt-2">
+                                <label class="form-label fw-semibold small">Bedrooms</label>
+                                <select class="form-select" id="reqBeds" onchange="generateTitle()">
+                                    <option value="">Any</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5+</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold small">Purchase Deadline</label>
+                                <input type="date" class="form-control">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold small">Additional Details</label>
+                                <textarea class="form-control" rows="2" placeholder="e.g. Preferred floor, security, parking..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary rounded-pill w-100" style="background: #00695c; border: none; font-weight: 600;">
+                                <i class="bi bi-send"></i> Post Requirement
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- ===== RIGHT: BOARD ===== -->
+                <div class="col-lg-8" id="boardWrapper">
+
+                    <!-- ===== FILTERS ===== -->
+                    <div class="section-card mb-4">
+                        <div class="toolbar">
+                            <div class="results-count">
+                                Showing <strong>12</strong> active requirements
+                            </div>
+                            <div class="d-flex gap-2 flex-wrap">
+                                <select class="form-select" style="width: 140px;">
+                                    <option>All Areas</option>
+                                    <option>Bashundhara</option>
+                                    <option>Dhanmondi</option>
+                                    <option>Gulshan</option>
+                                    <option>Uttara</option>
+                                </select>
+                                <select class="form-select" style="width: 140px;">
+                                    <option>All Budgets</option>
+                                    <option>Up to BDT 50L</option>
+                                    <option>BDT 50L - 1Cr</option>
+                                    <option>BDT 1Cr - 3Cr</option>
+                                    <option>BDT 3Cr+</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="filter-btn-group mt-3">
+                            <button class="filter-btn active" onclick="filterBoard('all', this)">All</button>
+                            <button class="filter-btn" onclick="filterBoard('active', this)">Active</button>
+                            <button class="filter-btn" onclick="filterBoard('urgent', this)">Urgent</button>
+                            <button class="filter-btn" onclick="filterBoard('closed', this)">Closed</button>
+                        </div>
+                    </div>
+
+                    <!-- ===== REQUIREMENT CARDS ===== -->
+                    <div id="boardContainer">
+
+                        <!-- Card 1 -->
+                        <div class="requirement-card" data-status="active">
+                            <div class="req-header">
+                                <div class="req-user">
+                                    <div class="user-avatar">MR</div>
+                                    <div>
+                                        <div class="user-name">Md. Rahim</div>
+                                        <div class="user-time"><i class="bi bi-clock"></i> Posted 2 days ago</div>
+                                    </div>
+                                </div>
+                                <span class="req-badge active">Active</span>
+                            </div>
+                            <div class="req-title"> Looking for 3 BHK Apartment in Bashundhara</div>
+                            <div class="req-details">
+                                <span class="detail-item"><i class="bi bi-geo-alt"></i> <strong>Bashundhara</strong></span>
+                                <span class="detail-item"><i class="bi bi-tag"></i> <strong>BDT 1.2 Cr</strong></span>
+                                <span class="detail-item"><i class="bi bi-door-open"></i> <strong>3</strong> Beds</span>
+                                <span class="detail-item"><i class="bi bi-calendar3"></i> Oct 2026</span>
+                            </div>
+                            <div class="req-footer">
+                                <div class="req-stats">
+                                    <span><i class="bi bi-eye"></i> 45 views</span>
+                                    <span><i class="bi bi-handshake"></i> 8 matches</span>
+                                </div>
+                                <div class="req-actions">
+                                    <a href="#" class="btn-match" onclick="return matchRequirement(this)"><i class="bi bi-handshake"></i> Match</a>
+                                    <button class="btn-report" onclick="return reportRequirement(this)"><i class="bi bi-flag"></i> Report</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="requirement-card" data-status="urgent">
+                            <div class="req-header">
+                                <div class="req-user">
+                                    <div class="user-avatar">SK</div>
+                                    <div>
+                                        <div class="user-name">Sultana Karim</div>
+                                        <div class="user-time"><i class="bi bi-clock"></i> Posted 5 hours ago</div>
+                                    </div>
+                                </div>
+                                <span class="req-badge urgent">Urgent</span>
+                            </div>
+                            <div class="req-title"> Urgent: Family Home in Dhanmondi</div>
+                            <div class="req-details">
+                                <span class="detail-item"><i class="bi bi-geo-alt"></i> <strong>Dhanmondi</strong></span>
+                                <span class="detail-item"><i class="bi bi-tag"></i> <strong>BDT 2.5 Cr</strong></span>
+                                <span class="detail-item"><i class="bi bi-door-open"></i> <strong>4</strong> Beds</span>
+                                <span class="detail-item"><i class="bi bi-calendar3"></i> Aug 2026</span>
+                            </div>
+                            <div class="req-footer">
+                                <div class="req-stats">
+                                    <span><i class="bi bi-eye"></i> 120 views</span>
+                                    <span><i class="bi bi-handshake"></i> 15 matches</span>
+                                </div>
+                                <div class="req-actions">
+                                    <a href="#" class="btn-match" onclick="return matchRequirement(this)"><i class="bi bi-handshake"></i> Match</a>
+                                    <button class="btn-report" onclick="return reportRequirement(this)"><i class="bi bi-flag"></i> Report</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="requirement-card" data-status="active">
+                            <div class="req-header">
+                                <div class="req-user">
+                                    <div class="user-avatar">MK</div>
+                                    <div>
+                                        <div class="user-name">Md. Khan</div>
+                                        <div class="user-time"><i class="bi bi-clock"></i> Posted 3 days ago</div>
+                                    </div>
+                                </div>
+                                <span class="req-badge active">Active</span>
+                            </div>
+                            <div class="req-title"> Commercial Shop in Gulshan</div>
+                            <div class="req-details">
+                                <span class="detail-item"><i class="bi bi-geo-alt"></i> <strong>Gulshan</strong></span>
+                                <span class="detail-item"><i class="bi bi-tag"></i> <strong>BDT 3.8 Cr</strong></span>
+                                <span class="detail-item"><i class="bi bi-shop"></i> <strong>2,500</strong> sqft</span>
+                                <span class="detail-item"><i class="bi bi-calendar3"></i> Dec 2026</span>
+                            </div>
+                            <div class="req-footer">
+                                <div class="req-stats">
+                                    <span><i class="bi bi-eye"></i> 68 views</span>
+                                    <span><i class="bi bi-handshake"></i> 12 matches</span>
+                                </div>
+                                <div class="req-actions">
+                                    <a href="#" class="btn-match" onclick="return matchRequirement(this)"><i class="bi bi-handshake"></i> Match</a>
+                                    <button class="btn-report" onclick="return reportRequirement(this)"><i class="bi bi-flag"></i> Report</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="requirement-card" data-status="closed">
+                            <div class="req-header">
+                                <div class="req-user">
+                                    <div class="user-avatar">MH</div>
+                                    <div>
+                                        <div class="user-name">Mr. Hussain</div>
+                                        <div class="user-time"><i class="bi bi-clock"></i> Posted 1 week ago</div>
+                                    </div>
+                                </div>
+                                <span class="req-badge closed">Closed</span>
+                            </div>
+                            <div class="req-title"> Found: Premium Villa in Uttara</div>
+                            <div class="req-details">
+                                <span class="detail-item"><i class="bi bi-geo-alt"></i> <strong>Uttara</strong></span>
+                                <span class="detail-item"><i class="bi bi-tag"></i> <strong>BDT 4.2 Cr</strong></span>
+                                <span class="detail-item"><i class="bi bi-door-open"></i> <strong>5</strong> Beds</span>
+                                <span class="detail-item"><i class="bi bi-calendar3"></i> Jul 2026</span>
+                            </div>
+                            <div class="req-footer">
+                                <div class="req-stats">
+                                    <span><i class="bi bi-eye"></i> 200 views</span>
+                                    <span><i class="bi bi-handshake"></i> 25 matches</span>
+                                </div>
+                                <div class="req-actions">
+                                    <button class="btn-report" onclick="return reportRequirement(this)"><i class="bi bi-flag"></i> Report</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 5 -->
+                        <div class="requirement-card" data-status="active">
+                            <div class="req-header">
+                                <div class="req-user">
+                                    <div class="user-avatar">FS</div>
+                                    <div>
+                                        <div class="user-name">Fatima Sultana</div>
+                                        <div class="user-time"><i class="bi bi-clock"></i> Posted 1 day ago</div>
+                                    </div>
+                                </div>
+                                <span class="req-badge active">Active</span>
+                            </div>
+                            <div class="req-title"> Land for Sale in Purbachal</div>
+                            <div class="req-details">
+                                <span class="detail-item"><i class="bi bi-geo-alt"></i> <strong>Purbachal</strong></span>
+                                <span class="detail-item"><i class="bi bi-tag"></i> <strong>BDT 1.8 Cr</strong></span>
+                                <span class="detail-item"><i class="bi bi-grid"></i> <strong>10</strong> Katha</span>
+                                <span class="detail-item"><i class="bi bi-calendar3"></i> Sep 2026</span>
+                            </div>
+                            <div class="req-footer">
+                                <div class="req-stats">
+                                    <span><i class="bi bi-eye"></i> 34 views</span>
+                                    <span><i class="bi bi-handshake"></i> 5 matches</span>
+                                </div>
+                                <div class="req-actions">
+                                    <a href="#" class="btn-match" onclick="return matchRequirement(this)"><i class="bi bi-handshake"></i> Match</a>
+                                    <button class="btn-report" onclick="return reportRequirement(this)"><i class="bi bi-flag"></i> Report</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 6 -->
+                        <div class="requirement-card" data-status="urgent">
+                            <div class="req-header">
+                                <div class="req-user">
+                                    <div class="user-avatar">MA</div>
+                                    <div>
+                                        <div class="user-name">Mr. Ahmed</div>
+                                        <div class="user-time"><i class="bi bi-clock"></i> Posted 2 hours ago</div>
+                                    </div>
+                                </div>
+                                <span class="req-badge urgent">Urgent</span>
+                            </div>
+                            <div class="req-title"> Looking for Office Space in Banani</div>
+                            <div class="req-details">
+                                <span class="detail-item"><i class="bi bi-geo-alt"></i> <strong>Banani</strong></span>
+                                <span class="detail-item"><i class="bi bi-tag"></i> <strong>BDT 85K/month</strong></span>
+                                <span class="detail-item"><i class="bi bi-building"></i> <strong>1,800</strong> sqft</span>
+                                <span class="detail-item"><i class="bi bi-calendar3"></i> Aug 2026</span>
+                            </div>
+                            <div class="req-footer">
+                                <div class="req-stats">
+                                    <span><i class="bi bi-eye"></i> 56 views</span>
+                                    <span><i class="bi bi-handshake"></i> 10 matches</span>
+                                </div>
+                                <div class="req-actions">
+                                    <a href="#" class="btn-match" onclick="return matchRequirement(this)"><i class="bi bi-handshake"></i> Match</a>
+                                    <button class="btn-report" onclick="return reportRequirement(this)"><i class="bi bi-flag"></i> Report</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== LOGIN MODAL ===== -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 p-4" style="border: none; max-width: 460px; margin: 0 auto; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.15);">
+                <button type="button" class="btn-close position-absolute top-0 end-0 mt-3 me-3" data-bs-dismiss="modal" style="z-index: 10;"></button>
+                <div class="text-center mb-3">
+                    <h4 class="fw-bold" style="color: #006169;">South Window</h4>
+                    <p class="text-muted small">Your trusted property partner</p>
+                </div>
+                <ul class="nav nav-pills justify-content-center mb-3" style="gap: 10px;">
+                    <li class="nav-item">
+                        <button class="nav-link active rounded-pill px-4" id="loginTab" style="background: #006169; color: white; border: none; padding: 8px 28px;">Login</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link rounded-pill px-4" id="registerTab" style="background: transparent; color: #006169; border: 1px solid #006169; padding: 8px 28px;">Register</button>
+                    </li>
+                </ul>
+                <div id="loginForm">
+                    <div class="d-grid gap-2 mb-3">
+                        <button class="btn btn-outline-secondary rounded-pill py-2" style="border-color: #ddd; font-weight: 500;">
+                            <i class="bi bi-google me-2" style="color: #ea4335;"></i> Continue with Google
+                        </button>
+                        <button class="btn btn-outline-secondary rounded-pill py-2" style="border-color: #ddd; font-weight: 500;">
+                            <i class="bi bi-facebook me-2" style="color: #1877f2;"></i> Continue with Facebook
+                        </button>
+                    </div>
+                    <div class="text-center mb-3"><span class="text-muted small">OR</span></div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Email or Phone</label>
+                        <input type="text" class="form-control rounded-pill px-3" placeholder="Enter email or phone number" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Password</label>
+                        <input type="password" class="form-control rounded-pill px-3" placeholder="Enter your password" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="rememberMe">
+                            <label class="form-check-label small" for="rememberMe">Keep me signed in</label>
+                        </div>
+                        <a href="#" class="small text-decoration-none" style="color: #006169;">Forgot Password?</a>
+                    </div>
+                    <button class="btn btn-primary w-100 rounded-pill py-2" style="background: #006169; border: none; font-weight: 600;">Continue</button>
+                    <p class="text-center small text-muted mt-3">
+                        <a href="login.html" style="color: #006169; text-decoration: none; font-weight: 500;">Go to Login Page →</a>
+                        &nbsp;|&nbsp;
+                        <a href="register.html" style="color: #006169; text-decoration: none; font-weight: 500;">Go to Register Page →</a>
+                    </p>
+                </div>
+                <div id="registerForm" style="display: none;">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Full Name</label>
+                        <input type="text" class="form-control rounded-pill px-3" placeholder="Enter your full name" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Email</label>
+                        <input type="email" class="form-control rounded-pill px-3" placeholder="Enter your email" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Phone Number</label>
+                        <input type="tel" class="form-control rounded-pill px-3" placeholder="+880 1XXX XXXXXX" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Password</label>
+                        <input type="password" class="form-control rounded-pill px-3" placeholder="Create a password" style="padding: 12px; border-color: #e0e0e0;">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">User Type</label>
+                        <select class="form-select rounded-pill px-3" style="padding: 12px; border-color: #e0e0e0;">
+                            <option>Buyer</option>
+                            <option>Seller</option>
+                            <option>Broker</option>
+                            <option>Developer</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary w-100 rounded-pill py-2" style="background: #006169; border: none; font-weight: 600;">Create Account</button>
+                    <p class="text-center small text-muted mt-3">
+                        <a href="login.html" style="color: #006169; text-decoration: none; font-weight: 500;">Go to Login Page →</a>
+                        &nbsp;|&nbsp;
+                        <a href="register.html" style="color: #006169; text-decoration: none; font-weight: 500;">Go to Register Page →</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer-custom">
+        <div class="container">
+            <p class="m-0 text-center text-white">
+                Copyright &copy; South Window 2024. All rights reserved.
+            </p>
+            <p class="m-0 text-center text-white-50 small mt-2">
+                Your trusted property partner in Bangladesh
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // ============================================================
+        // 1. TITLE AUTO-GENERATION
+        // ============================================================
+        function generateTitle() {
+            const area = document.getElementById('reqArea').value;
+            const type = document.getElementById('reqType').value;
+            const beds = document.getElementById('reqBeds').value;
+            const titleInput = document.getElementById('reqTitle');
+
+            if (area && type) {
+                let title = 'Looking for ';
+
+                if (beds && beds !== '' && beds !== 'Any') {
+                    title += beds + ' BHK ';
+                }
+
+                title += type + ' ';
+                title += 'in ' + area;
+
+                titleInput.value = title;
+            } else {
+                titleInput.value = '';
+                titleInput.placeholder = 'e.g. Looking for 3 BHK Apartment in Bashundhara';
+            }
+        }
+
+        // ============================================================
+        // 2. ROLE DETECTION (URL + localStorage)
+        // ============================================================
+        function getRole() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('role') || localStorage.getItem('userRole') || 'buyer';
+        }
+
+        function setRole(role) {
+            localStorage.setItem('userRole', role);
+            const url = new URL(window.location);
+            url.searchParams.set('role', role);
+            window.history.pushState({}, '', url);
+            applyRoleView(role);
+            updateRoleButtons(role);
+        }
+
+        function updateRoleButtons(role) {
+            document.querySelectorAll('.btn-role').forEach(btn => btn.classList.remove('active'));
+            if (role === 'buyer') {
+                document.getElementById('roleBuyer').classList.add('active');
+            } else {
+                document.getElementById('roleSeller').classList.add('active');
+            }
+        }
+
+        // ============================================================
+        // 3. APPLY ROLE-BASED VIEW
+        // ============================================================
+        function applyRoleView(role) {
+            const postForm = document.getElementById('postFormWrapper');
+            const roleDisplay = document.getElementById('userRoleDisplay');
+            const roleActionText = document.getElementById('roleActionText');
+            const pageSubtitle = document.getElementById('pageSubtitle');
+            const boardWrapper = document.getElementById('boardWrapper');
+
+            if (role === 'seller') {
+                if (postForm) postForm.style.display = 'none';
+                if (roleDisplay) {
+                    roleDisplay.textContent = 'Seller';
+                    roleDisplay.style.color = '#00695c';
+                }
+                if (roleActionText) {
+                    roleActionText.textContent = 'Browse buyer requirements and click "Match" to connect.';
+                }
+                if (pageSubtitle) {
+                    pageSubtitle.textContent = 'Browse buyer requirements and find matching opportunities';
+                }
+                if (boardWrapper) {
+                    boardWrapper.className = 'col-lg-12';
+                }
+
+                document.querySelectorAll('.requirement-card').forEach(card => {
+                    if (card.dataset.status === 'closed') {
+                        const matchBtn = card.querySelector('.btn-match');
+                        if (matchBtn) matchBtn.style.display = 'none';
+                    }
+                });
+
+            } else {
+                if (postForm) postForm.style.display = 'block';
+                if (roleDisplay) {
+                    roleDisplay.textContent = 'Buyer';
+                    roleDisplay.style.color = '#00695c';
+                }
+                if (roleActionText) {
+                    roleActionText.textContent = 'Post your requirements to connect with sellers.';
+                }
+                if (pageSubtitle) {
+                    pageSubtitle.textContent = 'Post your property requirements or find matching buyers';
+                }
+                if (boardWrapper) {
+                    boardWrapper.className = 'col-lg-8';
+                }
+
+                document.querySelectorAll('.requirement-card').forEach(card => {
+                    const matchBtn = card.querySelector('.btn-match');
+                    if (matchBtn) matchBtn.style.display = '';
+                });
+            }
+
+            updateRoleButtons(role);
+        }
+
+        // ============================================================
+        // 4. INITIALIZE
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const role = getRole();
+            applyRoleView(role);
+
+            const profileBtn = document.getElementById('profileBtn');
+            const profileDropdown = document.getElementById('profileDropdown');
+            if (profileBtn && profileDropdown) {
+                profileBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    profileDropdown.classList.toggle('show');
+                });
+                document.addEventListener('click', function(e) {
+                    if (!profileBtn.contains(e.target) && !profileDropdown.contains(e.target)) {
+                        profileDropdown.classList.remove('show');
+                    }
+                });
+            }
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'F13') {
+                    e.preventDefault();
+                    document.querySelector('.section-card').scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // ============================================================
+        // 5. FILTER BOARD
+        // ============================================================
+        function filterBoard(type, button) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            const cards = document.querySelectorAll('.requirement-card');
+            cards.forEach(card => {
+                if (type === 'all' || card.dataset.status === type) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // ============================================================
+        // 6. MATCH & REPORT FUNCTIONS
+        // ============================================================
+        function matchRequirement(element) {
+            element.textContent = ' Matched!';
+            element.style.background = '#28a745';
+            element.style.cursor = 'default';
+            alert('🎉 Contact details shared! The buyer will reach out to you shortly.');
+            return false;
+        }
+
+        function reportRequirement(element) {
+            element.textContent = ' Reported';
+            element.style.background = '#dc3545';
+            element.style.color = 'white';
+            element.style.cursor = 'default';
+            alert('🚫 Report submitted to admin. We will review this post.');
+            return false;
+        }
+
+        // ============================================================
+        // 7. POST REQUIREMENT
+        // ============================================================
+        function postRequirement(event) {
+            event.preventDefault();
+            const title = document.getElementById('reqTitle').value;
+            if (!title) {
+                alert('Please enter a requirement title');
+                return false;
+            }
+            alert(' Requirement "' + title + '" posted successfully!');
+            return false;
+        }
+
+        // ============================================================
+        // 8. TAB SWITCHING
+        // ============================================================
+        document.getElementById('loginTab').addEventListener('click', function() {
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('registerForm').style.display = 'none';
+            this.classList.add('active');
+            this.style.background = '#006169';
+            this.style.color = 'white';
+            document.getElementById('registerTab').classList.remove('active');
+            document.getElementById('registerTab').style.background = 'transparent';
+            document.getElementById('registerTab').style.color = '#006169';
+        });
+        document.getElementById('registerTab').addEventListener('click', function() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+            this.classList.add('active');
+            this.style.background = '#006169';
+            this.style.color = 'white';
+            document.getElementById('loginTab').classList.remove('active');
+            document.getElementById('loginTab').style.background = 'transparent';
+            document.getElementById('loginTab').style.color = '#006169';
+        });
+
+        // ============================================================
+        // 9. AUTO-HIGHLIGHT NAVBAR
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.navbar .nav-link');
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

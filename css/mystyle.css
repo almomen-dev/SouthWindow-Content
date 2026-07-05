@@ -335,69 +335,87 @@ select:hover {
     color: white !important;
 }
 
-/* ====== PROPERTY CARDS ====== */
+/* ====== PROPERTY CARDS - FIXED NO OVERLAP ====== */
 .property-card {
-    transition: all 0.4s ease;
+    transition: all 0.3s ease;
     overflow: hidden;
     border-radius: 16px !important;
     border: 1px solid #e9ecef !important;
     background: white !important;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .property-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08) !important;
     border-color: #006169 !important;
 }
 
-.property-card img {
-    height: 180px;
+.property-card .card-img-top {
+    height: 200px;
     object-fit: cover;
-    transition: all 0.4s ease;
-}
-
-.property-card:hover img {
-    transform: scale(1.03);
+    width: 100%;
+    flex-shrink: 0;
 }
 
 .property-card .card-body {
     padding: 16px !important;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
-.property-card .card-title {
+.property-card .property-title {
     font-size: 0.95rem;
     font-weight: 600;
     margin-bottom: 2px;
+    color: #1a2a3a;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.property-card .card-text {
+.property-card .property-location {
     font-size: 0.8rem;
     color: #6c757d;
+    margin-bottom: 4px;
 }
 
-.property-card .price {
+.property-card .property-price {
     font-size: 1.1rem;
     font-weight: 700;
     color: #006169;
 }
 
+.property-card .property-details {
+    font-size: 0.7rem;
+    color: #6c757d;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: auto;
+    padding-top: 6px;
+}
+
+.property-card .property-details span i {
+    margin-right: 3px;
+}
+
 .property-card .badge-tag {
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     padding: 2px 10px;
     border-radius: 20px;
 }
 
-.property-card .feature-icons {
-    font-size: 0.75rem;
-    color: #6c757d;
-}
-
-.property-card .feature-icons span {
-    margin-right: 8px;
+.property-card .badge-new-seller {
+    background: #8b5cf6;
+    color: white;
+    font-size: 0.6rem;
+    padding: 2px 10px;
+    border-radius: 20px;
 }
 
 .property-card .card-badge {
@@ -410,22 +428,65 @@ select:hover {
     z-index: 5;
 }
 
-/* Dark overlay on property images */
-.property-card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 180px;
-    background: rgba(0, 0, 0, 0.3);
-    pointer-events: none;
-    transition: all 0.4s ease;
-    z-index: 1;
+.property-card .card-footer {
+    padding: 10px 16px !important;
+    background: transparent !important;
+    border-top: 1px solid #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
 }
 
-.property-card:hover::after {
-    background: rgba(0, 0, 0, 0.1);
+.property-card .compare-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.7rem;
+    color: #6c757d;
+}
+
+.property-card .compare-checkbox input {
+    cursor: pointer;
+    width: 14px;
+    height: 14px;
+    accent-color: #006169;
+    margin: 0;
+}
+
+.property-card .compare-checkbox label {
+    margin: 0;
+    cursor: pointer;
+    font-size: 0.7rem;
+}
+
+.property-card .card-footer .btn {
+    font-size: 0.7rem;
+    padding: 4px 14px;
+    border-color: #006169;
+    color: #006169;
+    transition: all 0.3s ease;
+    border-radius: 20px;
+}
+
+.property-card .card-footer .btn:hover {
+    background: #006169;
+    color: white;
+}
+
+.property-card.selected-for-compare {
+    border: 2px solid #006169;
+    box-shadow: 0 0 0 3px rgba(0,97,105,0.15);
+}
+
+/* ====== FIX GRID OVERFLOW ====== */
+.property-col {
+    overflow: hidden;
+}
+
+/* ====== NO DARK OVERLAY ON PROPERTY IMAGES ====== */
+.property-card::after {
+    display: none;
 }
 
 /* ====== CAROUSEL CONTROLS ====== */
@@ -543,5 +604,9 @@ section .lead {
     
     section h2 {
         font-size: 1.6rem !important;
+    }
+    
+    .property-card .card-img-top {
+        height: 150px;
     }
 }
