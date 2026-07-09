@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="South Window - Event Registration Confirmation" />
+    <meta name="author" content="South Window" />
+    <title>Registration Confirmed - South Window</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        body {
+            background: #f0f2f5;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar-custom {
+            background: #ffffff !important;
+            padding: 0 !important;
+            min-height: 50px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08) !important;
+            border-radius: 0 !important;
+            position: relative;
+            z-index: 1050 !important;
+            overflow: visible !important;
+        }
+        .navbar-custom .navbar-brand {
+            color: #004d40 !important;
+            font-size: 1.3rem !important;
+        }
+        .navbar-custom .navbar-brand img {
+            height: 34px !important;
+            width: auto !important;
+        }
+        .navbar-custom .navbar-nav .nav-link {
+            padding: 8px 22px !important;
+            font-size: 15px !important;
+            color: #004d40 !important;
+            border-radius: 30px !important;
+            transition: all 0.3s ease !important;
+            font-weight: 500 !important;
+            background: transparent !important;
+        }
+        .navbar-custom .navbar-nav .nav-link:hover {
+            background: rgba(0, 105, 92, 0.08) !important;
+            color: #004d40 !important;
+        }
+        .navbar-custom .navbar-nav .nav-link.active {
+            color: #00695c !important;
+            background: rgba(0, 105, 92, 0.08) !important;
+            font-weight: 600 !important;
+            box-shadow: none !important;
+        }
+
+        .top-gradient {
+            background: linear-gradient(90deg, #ffffff 0%, #ffffff 20%, #00695c 45%, #00695c 55%, #ffffff 80%, #ffffff 100%);
+            padding: 8px 0;
+        }
+        .top-gradient .date-text {
+            color: #ffffff;
+            font-weight: 500;
+            font-size: 15px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+        }
+
+        /* ===== CONFIRMATION HERO ===== */
+        .confirmation-hero {
+            background: linear-gradient(135deg, #00695c 0%, #004d40 100%);
+            padding: 60px 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .confirmation-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+        }
+        .confirmation-hero .checkmark {
+            font-size: 4rem;
+            color: #4caf50;
+            background: rgba(76, 175, 80, 0.15);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            border: 3px solid #4caf50;
+            animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .confirmation-hero h1 {
+            color: white;
+            font-weight: 900;
+            font-size: 2.5rem;
+        }
+        .confirmation-hero p {
+            color: rgba(255,255,255,0.85);
+            font-size: 1.1rem;
+        }
+        .confirmation-hero .registered-badge {
+            display: inline-block;
+            background: rgba(76, 175, 80, 0.2);
+            color: #4caf50;
+            padding: 6px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+
+        /* ===== EVENT SUMMARY CARD ===== */
+        .event-summary-card {
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e9ecef;
+            padding: 30px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        .event-summary-card:hover {
+            box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+        }
+        .event-summary-card .event-icon {
+            font-size: 3rem;
+            margin-bottom: 8px;
+        }
+        .event-summary-card .event-title {
+            font-weight: 800;
+            color: #1a2a3a;
+            font-size: 1.3rem;
+        }
+        .event-summary-card .event-detail {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .event-summary-card .event-detail:last-child {
+            border-bottom: none;
+        }
+        .event-summary-card .event-detail .detail-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(0,105,92,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00695c;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .event-summary-card .event-detail .detail-label {
+            font-size: 0.8rem;
+            color: #6c757d;
+            font-weight: 500;
+        }
+        .event-summary-card .event-detail .detail-value {
+            font-weight: 600;
+            color: #1a2a3a;
+            font-size: 0.95rem;
+        }
+        .event-summary-card .registration-id {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 12px 16px;
+            text-align: center;
+            margin-top: 12px;
+        }
+        .event-summary-card .registration-id .id-label {
+            font-size: 0.7rem;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .event-summary-card .registration-id .id-number {
+            font-weight: 800;
+            color: #00695c;
+            font-size: 1.1rem;
+            font-family: monospace;
+            letter-spacing: 2px;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-calendar {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            border-radius: 12px;
+            border: 2px solid #e9ecef;
+            background: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            color: #1a2a3a;
+            text-decoration: none;
+        }
+        .btn-calendar:hover {
+            border-color: #00695c;
+            color: #00695c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,105,92,0.1);
+        }
+        .btn-calendar.google {
+            border-color: #ea4335;
+            color: #ea4335;
+        }
+        .btn-calendar.google:hover {
+            background: #ea4335;
+            color: white;
+        }
+        .btn-calendar.outlook {
+            border-color: #0072c6;
+            color: #0072c6;
+        }
+        .btn-calendar.outlook:hover {
+            background: #0072c6;
+            color: white;
+        }
+
+        .btn-share {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            color: white;
+            text-decoration: none;
+        }
+        .btn-share:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            color: white;
+        }
+        .btn-share.facebook { background: #1877f2; }
+        .btn-share.twitter { background: #000000; }
+        .btn-share.linkedin { background: #0a66c2; }
+        .btn-share.whatsapp { background: #25d366; }
+        .btn-share.copy { background: #6c757d; }
+
+        .btn-primary-custom {
+            background: #00695c;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 32px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            color: white;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary-custom:hover {
+            background: #004d40;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,105,92,0.3);
+            color: white;
+        }
+
+        .btn-outline-custom {
+            border: 2px solid #00695c;
+            color: #00695c;
+            border-radius: 12px;
+            padding: 12px 32px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: transparent;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-outline-custom:hover {
+            background: #00695c;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* ===== SECTION CARD ===== */
+        .section-card {
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e9ecef;
+            padding: 24px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.05);
+        }
+        .section-card .section-title {
+            font-weight: 800;
+            color: #1a2a3a;
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+        }
+        .section-card .section-title i {
+            color: #00695c;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer-custom {
+            background: #00695c;
+            padding: 20px 0;
+            border-top: 2px solid #004d40;
+        }
+
+        /* ===== SUCCESS MODAL ===== */
+        .success-modal .modal-content {
+            border-radius: 24px;
+            border: none;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.2);
+            overflow: hidden;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+        .success-modal .modal-header {
+            border-bottom: none;
+            padding: 30px 30px 0 30px;
+            background: linear-gradient(135deg, #00695c, #004d40);
+            text-align: center;
+            display: block;
+        }
+        .success-modal .modal-header .btn-close {
+            position: absolute;
+            right: 16px;
+            top: 16px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            padding: 8px;
+            opacity: 0.8;
+        }
+        .success-modal .modal-header .btn-close:hover {
+            opacity: 1;
+            background: rgba(255,255,255,0.3);
+        }
+        .success-modal .modal-header .checkmark-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(76, 175, 80, 0.2);
+            border: 3px solid #4caf50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+        }
+        .success-modal .modal-header .checkmark-circle i {
+            font-size: 2.5rem;
+            color: #4caf50;
+        }
+        .success-modal .modal-header h4 {
+            color: white;
+            font-weight: 800;
+            font-size: 1.4rem;
+        }
+        .success-modal .modal-header p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+        .success-modal .modal-body {
+            padding: 24px 30px 30px;
+        }
+        .success-modal .modal-body .reg-id {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 10px 16px;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .success-modal .modal-body .reg-id .label {
+            font-size: 0.65rem;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .success-modal .modal-body .reg-id .id {
+            font-weight: 800;
+            color: #00695c;
+            font-size: 1rem;
+            font-family: monospace;
+            letter-spacing: 1px;
+        }
+        .success-modal .modal-body .event-mini {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 0;
+        }
+        .success-modal .modal-body .event-mini .icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(0,105,92,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00695c;
+            flex-shrink: 0;
+        }
+        .success-modal .modal-body .event-mini .text .title {
+            font-weight: 600;
+            color: #1a2a3a;
+            font-size: 0.9rem;
+        }
+        .success-modal .modal-body .event-mini .text .sub {
+            font-size: 0.75rem;
+            color: #6c757d;
+        }
+        .success-modal .modal-footer {
+            border-top: none;
+            padding: 0 30px 30px;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .success-modal .modal-footer .btn-sm-custom {
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .success-modal .modal-footer .btn-sm-custom:hover {
+            transform: translateY(-2px);
+        }
+        .success-modal .modal-footer .btn-sm-custom.primary {
+            background: #00695c;
+            color: white;
+        }
+        .success-modal .modal-footer .btn-sm-custom.primary:hover {
+            background: #004d40;
+            box-shadow: 0 4px 15px rgba(0,105,92,0.3);
+        }
+        .success-modal .modal-footer .btn-sm-custom.outline {
+            background: transparent;
+            color: #00695c;
+            border: 2px solid #00695c;
+        }
+        .success-modal .modal-footer .btn-sm-custom.outline:hover {
+            background: #00695c;
+            color: white;
+        }
+        .success-modal .modal-footer .btn-sm-custom.google-btn {
+            background: #ea4335;
+            color: white;
+        }
+        .success-modal .modal-footer .btn-sm-custom.google-btn:hover {
+            background: #d33426;
+            box-shadow: 0 4px 15px rgba(234,67,53,0.3);
+        }
+        .success-modal .modal-footer .btn-sm-custom.share-btn {
+            background: #1877f2;
+            color: white;
+        }
+        .success-modal .modal-footer .btn-sm-custom.share-btn:hover {
+            background: #0d65d9;
+            box-shadow: 0 4px 15px rgba(24,119,242,0.3);
+        }
+        .success-modal .modal-footer .btn-sm-custom.whatsapp-btn {
+            background: #25d366;
+            color: white;
+        }
+        .success-modal .modal-footer .btn-sm-custom.whatsapp-btn:hover {
+            background: #1da851;
+            box-shadow: 0 4px 15px rgba(37,211,102,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .confirmation-hero h1 {
+                font-size: 1.8rem;
+            }
+            .confirmation-hero .checkmark {
+                width: 70px;
+                height: 70px;
+                font-size: 2.5rem;
+            }
+            .event-summary-card {
+                padding: 20px;
+            }
+            .success-modal .modal-content {
+                margin: 16px;
+            }
+            .success-modal .modal-header {
+                padding: 20px 20px 0 20px;
+            }
+            .success-modal .modal-body {
+                padding: 16px 20px 20px;
+            }
+            .success-modal .modal-footer {
+                padding: 0 20px 20px;
+            }
+        }
+        @media (max-width: 576px) {
+            .btn-calendar {
+                width: 100%;
+                justify-content: center;
+            }
+            .btn-share {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <div style="border-radius: 0; box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08); overflow: hidden;">
+        <div class="top-gradient">
+            <div class="container px-4 px-lg-5">
+                <div class="text-center">
+                    <span class="date-text">
+                        <i class="bi bi-calendar3 me-1"></i> Thursday, 15 October 2026
+                    </span>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-custom">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
+                    <img src="assets/logo1.png" alt="South Window Logo" style="height: 26px; width: auto; margin-right: 6px;">
+                    South Window
+                </a>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" style="background: rgba(0,77,64,0.08); padding: 2px 5px;">
+                    <span class="navbar-toggler-icon" style="width: 18px; height: 18px;"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarMain">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="gap: 4px;">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about-us.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="property-listing.html">Properties</a></li>
+                        <li class="nav-item"><a class="nav-link" href="property-expo-2026.html">Expo 2026</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    </ul>
+                    <button class="btn rounded-pill px-4" style="background: #00695c; color: white !important; border: 1px solid #00695c; font-weight: 700; font-size: 16px; padding: 6px 22px;" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        <i class="bi bi-person-fill me-1"></i> Login/Register
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- ===== CONFIRMATION HERO ===== -->
+    <section class="confirmation-hero">
+        <div class="container px-4 px-lg-5 text-center">
+            <div class="checkmark">
+                <i class="bi bi-check-lg"></i>
+            </div>
+            <span class="registered-badge">
+                <i class="bi bi-patch-check-fill me-1"></i> Registration Confirmed
+            </span>
+            <h1 class="mt-3">You're Registered! 🎉</h1>
+            <p>Your spot at the China-Bangladesh Friendship Property Expo 2026 is confirmed.</p>
+            <p class="small" style="color: rgba(255,255,255,0.6);">
+                <i class="bi bi-envelope me-1"></i> A confirmation email has been sent to your inbox
+            </p>
+            <!-- Button to open success modal -->
+            <button class="btn btn-light rounded-pill px-5 mt-3" style="color: #00695c; font-weight: 700;" data-bs-toggle="modal" data-bs-target="#successModal">
+                <i class="bi bi-ticket-perforated me-2"></i> View Event Pass
+            </button>
+        </div>
+    </section>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <section style="padding: 40px 0 60px;">
+        <div class="container px-4 px-lg-5">
+
+            <div class="row g-4">
+
+                <!-- ===== LEFT COLUMN ===== -->
+                <div class="col-lg-8">
+
+                    <!-- ===== EVENT SUMMARY CARD ===== -->
+                    <div class="event-summary-card mb-4">
+                        <div class="d-flex align-items-start gap-3">
+                            <div class="event-icon">🏢</div>
+                            <div>
+                                <h3 class="event-title">China-Bangladesh Friendship Property Expo 2026</h3>
+                                <p class="text-muted small">Quarterly Event • Free Entry</p>
+                            </div>
+                        </div>
+
+                        <div class="row g-2 mt-3">
+                            <div class="col-md-6">
+                                <div class="event-detail">
+                                    <div class="detail-icon"><i class="bi bi-calendar-event"></i></div>
+                                    <div>
+                                        <div class="detail-label">Date</div>
+                                        <div class="detail-value">October 15-17, 2026</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="event-detail">
+                                    <div class="detail-icon"><i class="bi bi-clock"></i></div>
+                                    <div>
+                                        <div class="detail-label">Time</div>
+                                        <div class="detail-value">9:00 AM - 8:00 PM</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="event-detail">
+                                    <div class="detail-icon"><i class="bi bi-geo-alt"></i></div>
+                                    <div>
+                                        <div class="detail-label">Venue</div>
+                                        <div class="detail-value">International Convention City, Dhaka</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="event-detail">
+                                    <div class="detail-icon"><i class="bi bi-person"></i></div>
+                                    <div>
+                                        <div class="detail-label">Attendee</div>
+                                        <div class="detail-value">John Doe</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="event-detail">
+                                    <div class="detail-icon"><i class="bi bi-ticket-perforated"></i></div>
+                                    <div>
+                                        <div class="detail-label">Ticket Type</div>
+                                        <div class="detail-value"><span class="badge bg-success">Free Pass</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="event-detail">
+                                    <div class="detail-icon"><i class="bi bi-tags"></i></div>
+                                    <div>
+                                        <div class="detail-label">Interests</div>
+                                        <div class="detail-value">
+                                            <span class="badge bg-light text-dark me-1">Residential</span>
+                                            <span class="badge bg-light text-dark">Investment</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="registration-id">
+                            <div class="id-label">Registration ID</div>
+                            <div class="id-number">#SW-EXPO-2026-0042</div>
+                        </div>
+                    </div>
+
+                    <!-- ===== ADD TO CALENDAR ===== -->
+                    <div class="section-card mb-4">
+                        <h5 class="section-title"><i class="bi bi-calendar-plus"></i> Add to Calendar</h5>
+                        <p class="text-muted small">Save the event to your calendar and never miss it!</p>
+                        <div class="d-flex gap-3 flex-wrap">
+                            <a href="#" class="btn-calendar google" onclick="addToCalendar('google')">
+                                <i class="bi bi-google"></i> Google Calendar
+                            </a>
+                            <a href="#" class="btn-calendar outlook" onclick="addToCalendar('outlook')">
+                                <i class="bi bi-microsoft"></i> Outlook Calendar
+                            </a>
+                            <a href="#" class="btn-calendar" onclick="downloadICS()">
+                                <i class="bi bi-download"></i> Download .ics
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- ===== SOCIAL SHARE ===== -->
+                    <div class="section-card">
+                        <h5 class="section-title"><i class="bi bi-share"></i> Share Your Excitement</h5>
+                        <p class="text-muted small">Let your friends know you're attending!</p>
+                        <div class="d-flex gap-2 flex-wrap">
+                            <a href="#" class="btn-share facebook" onclick="shareEvent('facebook')">
+                                <i class="bi bi-facebook"></i> Facebook
+                            </a>
+                            <a href="#" class="btn-share twitter" onclick="shareEvent('twitter')">
+                                <i class="bi bi-twitter"></i> Twitter
+                            </a>
+                            <a href="#" class="btn-share linkedin" onclick="shareEvent('linkedin')">
+                                <i class="bi bi-linkedin"></i> LinkedIn
+                            </a>
+                            <a href="#" class="btn-share whatsapp" onclick="shareEvent('whatsapp')">
+                                <i class="bi bi-whatsapp"></i> WhatsApp
+                            </a>
+                            <a href="#" class="btn-share copy" onclick="copyEventLink()">
+                                <i class="bi bi-link-45deg"></i> Copy Link
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ===== RIGHT COLUMN ===== -->
+                <div class="col-lg-4">
+
+                    <!-- ===== QUICK ACTIONS ===== -->
+                    <div class="section-card mb-4">
+                        <h5 class="section-title"><i class="bi bi-lightning"></i> Quick Actions</h5>
+                        <div class="d-grid gap-3">
+                            <a href="property-expo-2026.html" class="btn-primary-custom w-100 justify-content-center">
+                                <i class="bi bi-arrow-left"></i> Back to Event
+                            </a>
+                            <a href="property-listing.html" class="btn-outline-custom w-100 justify-content-center">
+                                <i class="bi bi-building"></i> Browse Properties
+                            </a>
+                            <button class="btn-outline-custom w-100 justify-content-center" data-bs-toggle="modal" data-bs-target="#successModal">
+                                <i class="bi bi-ticket-perforated"></i> View Event Pass
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ===== WHAT'S NEXT ===== -->
+                    <div class="section-card mb-4">
+                        <h5 class="section-title"><i class="bi bi-clock-history"></i> What's Next?</h5>
+                        <div style="padding: 12px 0; border-bottom: 1px solid #f0f0f0;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span style="font-size: 1.5rem;">📧</span>
+                                <div>
+                                    <div style="font-weight: 600; color: #1a2a3a; font-size: 0.9rem;">Check Your Email</div>
+                                    <div style="font-size: 0.8rem; color: #6c757d;">Event details sent to your inbox</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="padding: 12px 0; border-bottom: 1px solid #f0f0f0;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span style="font-size: 1.5rem;">📱</span>
+                                <div>
+                                    <div style="font-weight: 600; color: #1a2a3a; font-size: 0.9rem;">Download Event Pass</div>
+                                    <div style="font-size: 0.8rem; color: #6c757d;">Show at the entrance</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="padding: 12px 0;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span style="font-size: 1.5rem;">🔔</span>
+                                <div>
+                                    <div style="font-weight: 600; color: #1a2a3a; font-size: 0.9rem;">Set Reminder</div>
+                                    <div style="font-size: 0.8rem; color: #6c757d;">We'll notify you before the event</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== SUCCESS MODAL ===== -->
+    <div class="modal fade success-modal" id="successModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header position-relative">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div>
+                        <div class="checkmark-circle">
+                            <i class="bi bi-check-lg"></i>
+                        </div>
+                        <h4>Registration Successful! 🎉</h4>
+                        <p>You're all set for the Property Expo 2026</p>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="reg-id">
+                        <div class="label">Registration ID</div>
+                        <div class="id">#SW-EXPO-2026-0042</div>
+                    </div>
+                    <div class="event-mini">
+                        <div class="icon"><i class="bi bi-calendar-event"></i></div>
+                        <div class="text">
+                            <div class="title">China-Bangladesh Friendship Property Expo 2026</div>
+                            <div class="sub">October 15-17, 2026 • 9:00 AM - 8:00 PM</div>
+                        </div>
+                    </div>
+                    <div class="event-mini">
+                        <div class="icon"><i class="bi bi-geo-alt"></i></div>
+                        <div class="text">
+                            <div class="title">International Convention City, Dhaka</div>
+                            <div class="sub">Free Entry • Open to all</div>
+                        </div>
+                    </div>
+                    <div class="event-mini">
+                        <div class="icon"><i class="bi bi-person"></i></div>
+                        <div class="text">
+                            <div class="title">John Doe</div>
+                            <div class="sub">Interests: Residential, Investment</div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-2">
+                        <span class="badge bg-success"><i class="bi bi-envelope me-1"></i> Confirmation email sent</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-sm-custom primary" data-bs-dismiss="modal">
+                        <i class="bi bi-check2"></i> Done
+                    </button>
+                    <a href="#" class="btn-sm-custom google-btn" onclick="addToCalendar('google')">
+                        <i class="bi bi-google"></i> Add to Calendar
+                    </a>
+                    <a href="#" class="btn-sm-custom share-btn" onclick="shareEvent('facebook')">
+                        <i class="bi bi-facebook"></i> Share
+                    </a>
+                    <a href="#" class="btn-sm-custom whatsapp-btn" onclick="shareEvent('whatsapp')">
+                        <i class="bi bi-whatsapp"></i> WhatsApp
+                    </a>
+                    <a href="#" class="btn-sm-custom outline" onclick="downloadPass()">
+                        <i class="bi bi-download"></i> Download Pass
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer-custom">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; South Window 2026. All rights reserved.</p>
+            <p class="m-0 text-center text-white-50 small mt-2">Your trusted property partner in Bangladesh</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // ===== ADD TO CALENDAR =====
+        function addToCalendar(type) {
+            const eventTitle = 'China-Bangladesh Friendship Property Expo 2026';
+            const eventDate = '20261015T090000';
+            const eventEnd = '20261017T200000';
+            const location = 'International Convention City, Dhaka';
+            const description = 'Join us at the China-Bangladesh Friendship Property Expo 2026. Meet top developers, explore exclusive offers, and find your dream property. Free entry!';
+
+            if (type === 'google') {
+                const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventTitle)}&dates=${eventDate}/${eventEnd}&details=${encodeURIComponent(description)}&location=${encodeURIComponent(location)}`;
+                window.open(url, '_blank');
+            } else if (type === 'outlook') {
+                const url = `https://outlook.live.com/calendar/0/action/compose?rru=addevent&startdt=${eventDate}&enddt=${eventEnd}&subject=${encodeURIComponent(eventTitle)}&body=${encodeURIComponent(description)}&location=${encodeURIComponent(location)}`;
+                window.open(url, '_blank');
+            }
+        }
+
+        // ===== DOWNLOAD ICS =====
+        function downloadICS() {
+            const eventTitle = 'China-Bangladesh Friendship Property Expo 2026';
+            const eventDate = '20261015T090000';
+            const eventEnd = '20261017T200000';
+            const location = 'International Convention City, Dhaka';
+            const description = 'Join us at the China-Bangladesh Friendship Property Expo 2026. Meet top developers, explore exclusive offers, and find your dream property. Free entry!';
+
+            const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//South Window//Property Expo 2026//EN
+BEGIN:VEVENT
+UID:${Date.now()}@southwindow.com
+DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z
+DTSTART:${eventDate}
+DTEND:${eventEnd}
+SUMMARY:${eventTitle}
+DESCRIPTION:${description}
+LOCATION:${location}
+END:VEVENT
+END:VCALENDAR`;
+
+            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'Property_Expo_2026.ics';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // ===== SHARE EVENT =====
+        function shareEvent(platform) {
+            const url = window.location.href;
+            const text = '🎉 I just registered for the China-Bangladesh Friendship Property Expo 2026! Join me at the event! 🏠';
+
+            const shareUrls = {
+                facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}`,
+                twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`,
+                linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
+                whatsapp: `https://api.whatsapp.com/send?text=${encodeURIComponent(text + ' ' + url)}`
+            };
+
+            if (shareUrls[platform]) {
+                window.open(shareUrls[platform], '_blank', 'width=600,height=500');
+            }
+        }
+
+        // ===== COPY EVENT LINK =====
+        function copyEventLink() {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                alert('✅ Event link copied to clipboard!');
+            }).catch(() => {
+                prompt('Copy this link:', url);
+            });
+        }
+
+        // ===== DOWNLOAD PASS =====
+        function downloadPass() {
+            alert('🎟️ Your event pass is being downloaded...');
+            setTimeout(() => {
+                alert('✅ Pass downloaded! Show this at the event entrance.');
+            }, 500);
+        }
+
+        // ===== AUTO SHOW MODAL ON LOAD =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show modal automatically after 1 second
+            setTimeout(function() {
+                const modal = new bootstrap.Modal(document.getElementById('successModal'));
+                modal.show();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
